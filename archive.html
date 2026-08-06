@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Archive — every strategy we've tested — Tried &amp; Traded</title>
+<meta name="description" content="Every trading strategy we have tested, ranked by expectancy. Holds, fails, or conditional — with the full test behind each one.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — remove before launch -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="preview-bar">Preview build · no test has been run yet — every row is awaiting a result</div>
+
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none">TRIED <b>&amp;</b> TRADED</a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a href="archive.html">The Archive</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="machine.html">The Machine</a>
+    <a class="cta" href="machine.html#buy">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+
+<header class="page-head"><div class="wrap">
+  <div class="crumb">The Archive</div>
+  <h1>Everything we've tested</h1>
+  <p class="standfirst">Ranked by expectancy, not by win rate. Every row links to the full
+     test — the rules, the data, and the limits.</p>
+  <div class="metabar">
+    <span>Tested <b class="ph">—</b></span>
+    <span>Holds <b class="ph">—</b></span>
+    <span>Conditional <b class="ph">—</b></span>
+    <span>Fails <b class="ph">—</b></span>
+  </div>
+</div></header>
+
+<section class="sec"><div class="wrap">
+
+  <div class="filters" role="group" aria-label="Filter by verdict">
+    <button class="chip" aria-pressed="true" data-f="all">All</button>
+    <button class="chip" aria-pressed="false" data-f="pass">Holds</button>
+    <button class="chip" aria-pressed="false" data-f="mixed">Conditional</button>
+    <button class="chip" aria-pressed="false" data-f="fail">Fails</button>
+    <button class="chip" aria-pressed="false" data-f="pending">Not yet tested</button>
+  </div>
+
+  <div class="win">
+    <div class="win-bar">ARCHIVE — SORTED BY EXPECTANCY<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="tablewrap">
+    <table id="archive">
+      <caption style="position:absolute;left:-9999px">Strategies tested, sorted by expectancy</caption>
+      <thead><tr>
+        <th scope="col">Strategy</th><th scope="col">Market</th>
+        <th scope="col" style="text-align:right">Trades</th>
+        <th scope="col" style="text-align:right">Win %</th>
+        <th scope="col" style="text-align:right">Expectancy</th>
+        <th scope="col">Verdict</th>
+      </tr></thead>
+      <tbody>
+        <tr data-v="pending"><td><a href="test-bull-put-spread.html">Put credit spread &middot; 16&#916; &middot; 45 DTE</a><span class="pill-new">New</span></td><td>SPY</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Iron condor &middot; 10&#916; wings &middot; 30 DTE<span class="pill-new">New</span></td><td>SPX</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td><a href="test-the-wheel.html">The wheel &middot; high-IV names</a></td><td>Single names</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td><a href="test-bear-call-spread.html">Bear call spread &middot; 20&#916; &middot; downtrend</a><span class="pill-new">New</span></td><td>SPY</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Poor man's covered call</td><td>QQQ</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Calendar spread into earnings</td><td>Mega-cap</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>0-DTE iron fly &middot; morning entry</td><td>SPX</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Covered call on a held portfolio</td><td>Blue chip</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Naked strangle &middot; 5&#916;</td><td>Futures</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Ratio spread &middot; 1x2</td><td>Index</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Broken-wing butterfly</td><td>SPX</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="archive-foot">&#9656; This list is the queue, not the results. A row only carries a
+    verdict once its test has been run and published.</div>
+
+  <div class="sec-head" style="margin-top:52px"><h2>Published so far</h2>
+    <span class="tag">Everything else in the table is queued</span></div>
+  <div class="posts">
+    <a class="post" href="test-the-wheel.html">
+      <div class="p-top"><span class="p-kind">Investigation</span><img src="assets/mascots/ferret-stand.svg" alt="" width="78" height="130"></div>
+      <div class="p-body"><h3>The wheel on high-IV tickers</h3><p>The most recommended options strategy on the internet, run properly.</p><span class="p-go">Read the test &rarr;</span></div>
+    </a>
+    <a class="post" href="test-bull-put-spread.html">
+      <div class="p-top"><span class="p-kind">Bullish setup</span><img src="assets/mascots/bull-stand.svg" alt="" width="78" height="130"></div>
+      <div class="p-body"><h3>The bull put spread at 16 delta</h3><p>High win rate, defined risk, and no need to be right about direction. Allegedly.</p><span class="p-go">Read the test &rarr;</span></div>
+    </a>
+    <a class="post" href="test-bear-call-spread.html">
+      <div class="p-top"><span class="p-kind">Bearish setup</span><img src="assets/mascots/bear-stand.svg" alt="" width="78" height="130"></div>
+      <div class="p-body"><h3>The bear call spread into a downtrend</h3><p>Falling markets are supposed to pay you twice. We checked whether they do.</p><span class="p-go">Read the test &rarr;</span></div>
+    </a>
+  </div>
+
+  <div style="margin-top:38px">
+    <a class="btn" href="methodology.html">How a verdict is decided</a>
+    <a class="btn ghost" href="machine.html">Test one yourself &rarr;</a>
+  </div>
+</div></section>
+
+<section class="sec light"><div class="wrap">
+  <div class="sec-head"><h2>What should we test next?</h2><span class="tag">Reader requests jump the queue</span></div>
+  <div class="charblock plain">
+    <div class="cb-fig">
+      <img class="sprite" src="assets/mascots/ferret-shrug.svg" alt="" width="180" height="300">
+      <img class="prop" src="assets/mascots/prop-question.svg" alt="" width="62" height="80">
+      <span class="cb-name">The ferret</span>
+    </div>
+    <div class="cb-body">
+      <p class="said">"Tell me what everyone keeps repeating, and I'll go and check it."</p>
+      <p>If there's a strategy you keep seeing recommended and you've never seen anyone
+         actually check it, tell us. Requests with a specific claim attached — a delta, a
+         tenor, a rule — get tested first, because they're the ones we can test fairly.</p>
+      <a class="btn" href="#">Request a test</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="machine.html">The Machine</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+
+  // verdict filter — progressive enhancement, table works fine without JS
+  var chips=document.querySelectorAll('.chip'), rows=document.querySelectorAll('#archive tbody tr');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      c.setAttribute('aria-pressed','true');
+      var f=c.dataset.f;
+      rows.forEach(function(r){
+        r.style.display=(f==='all'||r.dataset.v===f)?'':'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

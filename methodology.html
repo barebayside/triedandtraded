@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology — Tried &amp; Traded</title>
+<meta name="description" content="How we test a trading strategy: the data, the rules, what counts as a pass, and what we refuse to claim.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — remove before launch -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="preview-bar">Preview build · this site has not published a test yet</div>
+
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none">TRIED <b>&amp;</b> TRADED</a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a href="archive.html">The Archive</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="machine.html">The Machine</a>
+    <a class="cta" href="machine.html#buy">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+
+<header class="page-head"><div class="wrap">
+  <div class="crumb">Methodology</div>
+  <h1>How we test</h1>
+  <p class="standfirst">A verdict is only worth as much as the process behind it.
+     Here is ours, including the parts that limit what we can honestly claim.</p>
+</div></header>
+
+<!-- ===== THE PROCESS ===== -->
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><h2>Every test, same six steps</h2></div>
+  <ol class="steps">
+    <li>
+      <h3>Take the claim as it's actually made</h3>
+      <p>We test the strategy the way its advocates describe it — their deltas, their
+         tenors, their exit rules. Testing a straw-man version and declaring it broken
+         proves nothing. If the claim is vague, we test the most common interpretation
+         and say so.</p>
+    </li>
+    <li>
+      <h3>Fix the rules before the run</h3>
+      <p>Entry, exit, position size, and what happens on assignment are written down
+         first. This is the step that stops a test drifting into an exercise in finding
+         the settings that look best.</p>
+    </li>
+    <li>
+      <h3>Run it across everything we have</h3>
+      <p>Not a favourable window. The full period, including the regimes where the
+         strategy was never going to work. A strategy that only survives when you choose
+         the years hasn't survived.</p>
+    </li>
+    <li>
+      <h3>Judge on expectancy, never win rate</h3>
+      <p>Average profit per trade after losses are counted at full size. A strategy can
+         win nine times in ten and still lose money — that is the single most common way
+         a bad strategy passes for a good one.</p>
+    </li>
+    <li>
+      <h3>Look for the condition</h3>
+      <p>Most strategies aren't good or bad, they're good inside a boundary. We look for
+         the delta, tenor, or regime where the answer flips, and name it. "Conditional"
+         is a real verdict, not a hedge.</p>
+    </li>
+    <li>
+      <h3>Publish the limits with the result</h3>
+      <p>Every test says what it can't tell you — before anyone asks. If we wouldn't be
+         comfortable with a sceptic reading the caveats first, the test isn't ready.</p>
+    </li>
+  </ol>
+</div></section>
+
+<!-- ===== BULL vs BEAR — the argument the whole site exists to settle ===== -->
+<section class="sec light"><div class="wrap">
+  <div class="sec-head"><h2>Why we bother</h2><span class="tag">The argument, in two characters</span></div>
+
+  <div class="charblock plain">
+    <div class="cb-fig">
+      <img class="sprite" src="assets/mascots/bull-point.svg" alt="" width="180" height="300">
+      <span class="cb-name">The bull</span>
+    </div>
+    <div class="cb-body">
+      <h3>Someone says it works</h3>
+      <p class="said">"Sell puts on names you'd happily own. You either keep the premium
+         or you buy a stock you wanted anyway. It can't really go wrong."</p>
+      <p>Every strategy arrives already believed. It comes with a story that makes sense,
+         a name people recognise, and someone confident explaining it. None of that is
+         evidence, and none of it is a reason to dismiss it either.</p>
+    </div>
+  </div>
+
+  <div class="charblock plain flip">
+    <div class="cb-fig">
+      <img class="sprite" src="assets/mascots/bear-cross.svg" alt="" width="180" height="300">
+      <span class="cb-name">The bear</span>
+    </div>
+    <div class="cb-body">
+      <h3>Someone says it doesn't</h3>
+      <p class="said">"It wins nine times in ten and the tenth takes back everything.
+         You're picking up pennies."</p>
+      <p>The objection usually sounds just as reasonable. Both sides argue from stories
+         and from the handful of trades they remember. Neither has counted.</p>
+    </div>
+  </div>
+
+  <div class="charblock plain">
+    <div class="cb-fig">
+      <img class="sprite" src="assets/mascots/ferret-point.svg" alt="" width="180" height="300">
+      <img class="prop" src="assets/mascots/prop-magnify.svg" alt="" width="62" height="56">
+      <span class="cb-name">The ferret</span>
+    </div>
+    <div class="cb-body">
+      <h3>So we go and count</h3>
+      <p class="said">"Neither of you has run it. I have."</p>
+      <p>That is the entire job of this site. Not to have an opinion about a strategy, but
+         to run it across everything we have and publish what came out — including when
+         the answer is boring, and including when it makes our own software look bad.</p>
+      <a class="btn" href="archive.html">See what's been tested</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== VERDICT KEY ===== -->
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><h2>What a verdict means</h2><span class="tag">Three outcomes, no others</span></div>
+  <div class="key">
+    <div class="keycard">
+      <span class="badge b-pass">Holds</span>
+      <p>Positive expectancy across the full period, and it survives reasonable changes
+         to the assumptions. Not a recommendation — a statement that the claim stood up.</p>
+    </div>
+    <div class="keycard">
+      <span class="badge b-mixed">Conditional</span>
+      <p>Works inside a stated boundary and fails outside it. The boundary is always
+         named. Most honest strategies land here.</p>
+    </div>
+    <div class="keycard">
+      <span class="badge b-fail">Fails</span>
+      <p>Negative expectancy, or positive only under assumptions no one could actually
+         trade. Often paired with a high win rate — that's usually the point.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== DATA + LIMITS ===== -->
+<section class="sec light"><div class="wrap">
+  <div class="sec-head"><h2>The data, and what it can't do</h2></div>
+  <div class="prose">
+    <div class="callout">
+      <div class="ct">Data</div>
+      <table class="kv">
+        <tr><th scope="row">Options data source</th><td class="ph">—</td></tr>
+        <tr><th scope="row">Period covered</th><td class="ph">—</td></tr>
+        <tr><th scope="row">Underlyings</th><td class="ph">—</td></tr>
+        <tr><th scope="row">Pricing basis</th><td class="ph">—</td></tr>
+        <tr><th scope="row">Commissions modelled</th><td class="ph">—</td></tr>
+      </table>
+    </div>
+
+    <h3>What a backtest is</h3>
+    <p>A backtest is a record of what a set of rules would have produced against
+       historical prices. It is evidence, not proof. It tells you whether a claim has
+       ever been true, which is a much lower bar than whether it will be true — and a
+       much higher bar than most strategy advice clears.</p>
+
+    <h3>The four things we can't fix</h3>
+    <ul>
+      <li><strong>Fills.</strong> Historical quotes are not the price you'd have got.
+          We model this conservatively and say how.</li>
+      <li><strong>Liquidity.</strong> A strategy that works on paper in thin options
+          may be untradeable at size. Where that's a risk, we flag it.</li>
+      <li><strong>Regime coverage.</strong> The sample contains the markets that
+          happened, not the ones that could.</li>
+      <li><strong>Your execution.</strong> Every result assumes the rules were followed
+          exactly. Almost nobody does that.</li>
+    </ul>
+
+    <div class="callout limits">
+      <div class="ct">What we will never do</div>
+      <p>We will not publish a figure that didn't come out of a run. We will not quietly
+         change parameters until a strategy passes. We will not sell a strategy we
+         graded, and we take no payment from anyone whose strategy we test. If a test
+         makes our own software look bad, it gets published anyway.</p>
+    </div>
+
+    <h3>Reproducibility</h3>
+    <p>Every test publishes its parameters. Anyone with the same tool and the same data
+       should reach the same verdict — and if you run it and don't, we want to hear about
+       it. The tool that produced every result on this site is
+       <a href="machine.html">available to buy</a>.</p>
+  </div>
+
+  <div style="margin-top:30px">
+    <a class="btn" href="archive.html">See what's been tested</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="machine.html">The Machine</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

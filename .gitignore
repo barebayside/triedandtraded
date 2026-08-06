@@ -1,0 +1,7 @@
+# Internal only — never publish these to the public site repo.
+# DESIGN-RULES.md names the BBL umbrella, which breaks brand insulation.
+# GO-LIVE.md describes where secrets live in other repos.
+DESIGN-RULES.md
+GO-LIVE.md
+assets/mascots/README.md
+assets/mascots/generate.py
