@@ -196,7 +196,9 @@
       <p>One strategy, tested properly, in your inbox every Tuesday. The verdict, the
          assumptions behind it, and the condition that changes the answer. No tips, no
          signals, and nothing you have to act on.</p>
-      <form class="suform" id="suForm" method="post" data-endpoint="">
+      <form class="suform" id="suForm" method="post"
+            data-endpoint=""><!-- ← paste the Catalyst URL here after deploy:
+            https://<project>.development.catalystserverless.com.au/server/tnt_lead_capture -->
         <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">
         <input type="text" name="first_name" autocomplete="given-name" placeholder="First name (optional)" aria-label="First name">
         <button type="submit">Send it to me</button>
@@ -238,6 +240,16 @@
 (function(){
   var f=document.getElementById('suForm'); if(!f) return;
   var msg=document.getElementById('suMsg');
+  // First-touch attribution: whatever brought them here, kept for the whole visit.
+  function utms(){
+    var out={}, q=new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
+      var v=q.get(k); if(v){ try{sessionStorage.setItem('tnt_'+k,v)}catch(e){} }
+      try{ v = v || sessionStorage.getItem('tnt_'+k); }catch(e){}
+      if(v) out[k]=v;
+    });
+    return out;
+  }
   function say(kind,text){ msg.className='su-msg '+kind; msg.textContent=text; }
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -245,8 +257,10 @@
     if(!url){ say('err','Signup is not connected yet — no address was saved. Try again shortly.'); return; }
     var btn=f.querySelector('button'); btn.disabled=true; say('','');
     fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
-               body:JSON.stringify({email:f.email.value,first_name:f.first_name.value,
-                                    source:'triedandtraded.com',page:location.pathname})})
+               body:JSON.stringify(Object.assign({
+                 email:f.email.value, first_name:f.first_name.value,
+                 source:'triedandtraded.com', page:location.pathname
+               }, utms()))})
       .then(function(r){ if(!r.ok) throw new Error(r.status);
         say('ok','Done. Check your inbox to confirm — the first test lands Tuesday.'); f.reset(); })
       .catch(function(){ say('err','That did not save. Nothing was recorded — please try again.'); })
