@@ -30,7 +30,7 @@
     <a href="archive.html">The Archive</a>
     <a href="methodology.html">Methodology</a>
     <a href="machine.html">The Machine</a>
-    <a class="cta" href="machine.html#buy">Start Free</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
     <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
   </nav>
 </div></div>
@@ -177,11 +177,43 @@
   </div>
 </div></section>
 
+
+<!-- ============================================================
+     SIGNUP — Test of the Week
+     THIS FORM IS NOT WIRED YET. Set FORM_ENDPOINT below to go live:
+       Option A (no code):  replace this whole block with a Zoho Forms embed iframe
+       Option B (own data): a Zoho Catalyst function URL that writes to a Data Store
+     Until an endpoint is set the form refuses to submit and says so. It must never
+     show a success message it has not earned.
+     ============================================================ -->
+<section class="sec light" id="signup"><div class="wrap">
+  <div class="sec-head"><h2>Test of the week</h2><span class="tag">One test, every Tuesday. Free.</span></div>
+  <div class="signup">
+    <div class="su-fig">
+      <img src="assets/mascots/ferret-up.svg" alt="" width="170" height="283">
+    </div>
+    <div>
+      <p>One strategy, tested properly, in your inbox every Tuesday. The verdict, the
+         assumptions behind it, and the condition that changes the answer. No tips, no
+         signals, and nothing you have to act on.</p>
+      <form class="suform" id="suForm" method="post" data-endpoint="">
+        <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">
+        <input type="text" name="first_name" autocomplete="given-name" placeholder="First name (optional)" aria-label="First name">
+        <button type="submit">Send it to me</button>
+      </form>
+      <div class="su-msg" id="suMsg" role="status" aria-live="polite"></div>
+      <p class="su-small">Unsubscribe in one click. We never sell or share your address.
+         See the <a href="disclaimer.html">disclaimer</a>.</p>
+    </div>
+  </div>
+</div></section>
+
 <footer><div class="wrap">
   <span><b>TRIED &amp; TRADED</b></span>
   <a href="archive.html">Archive</a>
   <a href="methodology.html">Methodology</a>
   <a href="machine.html">The Machine</a>
+  <a href="disclaimer.html">Disclaimer</a>
   <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
 </div></footer>
 
@@ -196,6 +228,29 @@
     var next=dark?'light':'dark';
     root.setAttribute('data-theme',next);
     try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+
+<script>
+// Signup. Refuses to pretend: with no endpoint configured it says so rather than
+// showing a success message nobody earned.
+(function(){
+  var f=document.getElementById('suForm'); if(!f) return;
+  var msg=document.getElementById('suMsg');
+  function say(kind,text){ msg.className='su-msg '+kind; msg.textContent=text; }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var url=f.dataset.endpoint;
+    if(!url){ say('err','Signup is not connected yet — no address was saved. Try again shortly.'); return; }
+    var btn=f.querySelector('button'); btn.disabled=true; say('','');
+    fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
+               body:JSON.stringify({email:f.email.value,first_name:f.first_name.value,
+                                    source:'triedandtraded.com',page:location.pathname})})
+      .then(function(r){ if(!r.ok) throw new Error(r.status);
+        say('ok','Done. Check your inbox to confirm — the first test lands Tuesday.'); f.reset(); })
+      .catch(function(){ say('err','That did not save. Nothing was recorded — please try again.'); })
+      .finally(function(){ btn.disabled=false; });
   });
 })();
 </script>
