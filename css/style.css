@@ -494,3 +494,7 @@ tbody td a:hover{text-decoration-color:var(--pop)}
   .signup .su-fig{max-width:130px}
   .suform input,.suform button{width:100%}
 }
+
+/* A related test that has not been written yet is not a link. It says so. */
+.rcard-soon{opacity:.62;cursor:default}
+.rcard-soon:hover{transform:none;box-shadow:var(--so) var(--so) 0 var(--shadow)}
