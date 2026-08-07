@@ -109,8 +109,17 @@ h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:-.02
 
 /* ---------- top bar ---------- */
 .menubar{border-bottom:var(--bw) solid var(--ink);background:var(--paper-2);position:sticky;top:0;z-index:20}
-.menubar .wrap{display:flex;align-items:center;gap:26px;min-height:52px}
-.mark{font-family:var(--display);font-size:23px;text-transform:uppercase;letter-spacing:-.03em;white-space:nowrap}
+.menubar .wrap{display:flex;align-items:center;gap:26px;min-height:62px}
+/* The cast, side by side, as the mark. Three sprites at nav height are small —
+   they read as a row of characters rather than three identifiable animals, which
+   is the point at this size; the wordmark carries the name. Sprites drop out
+   below 900px where the bar has no room for them. */
+.mark{font-family:var(--display);font-size:23px;text-transform:uppercase;letter-spacing:-.03em;
+  white-space:nowrap;display:flex;align-items:center;gap:12px}
+.mark-cast{display:flex;align-items:flex-end;gap:3px;flex:none}
+.mark-cast img{height:50px;width:auto;margin:0;display:block;image-rendering:pixelated}
+.mark-word{display:block}
+@media (max-width:900px){.mark-cast{display:none}}
 .mark b{color:var(--accent);-webkit-text-stroke:.4px var(--ink)}
 .menubar nav{margin-left:auto;display:flex;gap:22px;font-family:var(--mono);font-size:15px;
   letter-spacing:.08em;text-transform:uppercase;align-items:center}
