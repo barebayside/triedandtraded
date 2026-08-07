@@ -39,14 +39,16 @@
   <ol class="steps">
     <li>
       <h3>Take the claim as it's actually made</h3>
-      <p>We test the strategy the way its advocates describe it — their deltas, their
-         tenors, their exit rules. Testing a straw-man version and declaring it broken
+      <p>We test the strategy the way its advocates describe it — their entry signal,
+         their exit rules, their holding period, and if it is an options strategy their
+         deltas and tenors too. Testing a straw-man version and declaring it broken
          proves nothing. If the claim is vague, we test the most common interpretation
          and say so.</p>
     </li>
     <li>
       <h3>Fix the rules before the run</h3>
-      <p>Entry, exit, position size, and what happens on assignment are written down
+      <p>Entry, exit, position size, and what happens in the awkward cases — a gap
+         straight through the stop, a trading halt, an assignment — are written down
          first. This is the step that stops a test drifting into an exercise in finding
          the settings that look best.</p>
     </li>
@@ -65,8 +67,8 @@
     <li>
       <h3>Look for the condition</h3>
       <p>Most strategies aren't good or bad, they're good inside a boundary. We look for
-         the delta, tenor, or regime where the answer flips, and name it. "Conditional"
-         is a real verdict, not a hedge.</p>
+         the holding period, the entry threshold, or the market regime where the answer
+         flips, and name it. "Conditional" is a real verdict, not a hedge.</p>
     </li>
     <li>
       <h3>Publish the limits with the result</h3>
@@ -131,13 +133,31 @@
 <section class="sec"><div class="wrap">
   <div class="sec-head"><h2>A strategy is not a name</h2><span class="tag">Pinning the claim down</span></div>
   <div class="prose">
-    <p>People argue about "the wheel" or "iron condors" as though the name were the thing.
-       It isn't. Two people who both say "I sell put spreads" can be running trades with
-       almost nothing in common, and they will both be certain the other one is doing it
-       wrong. Before anything can be tested, the claim has to be pinned to numbers.</p>
+    <p>People argue about "buying the dip", "the golden cross" or "the wheel" as though
+       the name were the thing. It isn't. Two people who both say they buy breakouts can
+       be running strategies with almost nothing in common, and both will be certain the
+       other one is doing it wrong. Before anything can be tested, the claim has to be
+       pinned to numbers.</p>
 
-    <p>For a credit spread that means <strong>four</strong> numbers, and all four have to
-       be stated:</p>
+    <p>What that takes depends on what is being traded.</p>
+
+    <h3>A strategy in shares</h3>
+    <ul>
+      <li><strong>Universe.</strong> Which stocks are eligible, decided by a rule rather
+          than by knowing how the decade turned out.</li>
+      <li><strong>Entry.</strong> The condition that puts you in, checkable on the day and
+          not only in hindsight.</li>
+      <li><strong>Exit.</strong> Both of them — the one that takes a profit and the one
+          that admits the trade was wrong.</li>
+      <li><strong>Position size.</strong> What each trade is worth as a share of the
+          account, because it decides whether one bad run ends the strategy.</li>
+      <li><strong>Holding period.</strong> What happens when neither exit ever triggers.</li>
+    </ul>
+
+    <h3>A strategy in options</h3>
+    <p>Options need all of the above and more, because the contract itself has to be
+       specified before it can be priced at all. For a credit spread that is four numbers,
+       and all four have to be stated:</p>
 
     <ul>
       <li><strong>Delta.</strong> How far out of the money the sold strike sits.</li>
@@ -159,10 +179,29 @@
          run — those live on the test pages, once there are any.</p>
     </div>
 
-    <p>When a claim arrives without all four — and most of them do — we test the most
+    <p>When a claim arrives without all of it — and most of them do — we test the most
        common interpretation, and the parameters table on that test says exactly what we
        chose. You are entitled to disagree with the choice. You should not have to guess
        at it.</p>
+
+    <h3>And a default is not an instruction</h3>
+    <p>The expensive mistake in testing is almost never a wrong formula. It is a parameter
+       that quietly fell back to a default while the run carried on looking entirely
+       normal. Ask for wings at 11% of the share price, get a fixed $5 spread on every
+       underlying from $40 to $440, and the machine has answered a question nobody asked —
+       accurately, and at length. The share-trading version is a position-size rule that
+       silently reverts to a fixed number of shares, so the strategy you tested was never
+       the strategy you wrote down.</p>
+    <p>Nothing about the output looks broken. The trades are real trades, the maths is
+       right, the chart is convincing. It is simply not the strategy that was requested.</p>
+
+    <div class="callout limits">
+      <div class="ct">Which is why the last step is not a formality</div>
+      <p>Before a verdict is published, the trades that came out are checked against the
+         strategy that went in — one parameter at a time. A run that cannot prove it
+         traded what it was asked to trade does not get a verdict, it gets run again. We
+         would rather publish late than publish a confident answer to the wrong question.</p>
+    </div>
   </div>
 </div></section>
 
@@ -173,8 +212,8 @@
   <div class="prose">
     <p>A strategy that wins nine times out of ten sounds unarguable. Here is one that wins
        nine times out of ten and makes you nothing at all.</p>
-    <p>Ten trades on a spread $5 wide. Nine of them expire worthless and you keep the $50
-       credit. The tenth goes against you and runs to the full width of the spread.</p>
+    <p>Ten trades. Nine of them hit the target and make $50. The tenth goes against you
+       and runs all the way to the stop.</p>
   </div>
 
   <div class="win">
@@ -185,9 +224,9 @@
         <th scope="col" style="text-align:right">Each</th>
         <th scope="col" style="text-align:right">Total</th></tr></thead>
       <tbody>
-        <tr><td>9 &times; expires worthless</td>
+        <tr><td>9 &times; hits the target</td>
           <td class="num">+$50</td><td class="num">+$450</td></tr>
-        <tr><td>1 &times; runs to full width</td>
+        <tr><td>1 &times; runs to the stop</td>
           <td class="num">&minus;$450</td><td class="num">&minus;$450</td></tr>
         <tr><td><strong>Ten trades &middot; 90% winners</strong></td>
           <td class="num"></td><td class="num"><strong>$0</strong></td></tr>
@@ -197,10 +236,11 @@
   </div>
 
   <div class="prose">
-    <p>Nothing there is unusual. That is roughly the shape of every credit strategy ever
-       recommended: win small, win often, and hand it back in one go. Move the loss to
-       $500 and the same 90% win rate is now a losing strategy. Move it to $400 and it is
-       a good one. <strong>The win rate did not move at all.</strong></p>
+    <p>Nothing there is unusual. It is the shape of any strategy with a tight target and
+       a distant stop — dip-buying on shares, mean-reversion, and very nearly every
+       premium-selling strategy in options. Win small, win often, hand it back in one go.
+       Move that loss to $500 and the same 90% win rate is a losing strategy. Move it to
+       $400 and it is a good one. <strong>The win rate did not move at all.</strong></p>
 
     <h3>So we judge on expectancy</h3>
     <p>Expectancy is the average profit per trade once losses are counted at full size —
@@ -249,13 +289,14 @@
 
 <!-- ===== THE PARTS PEOPLE GET WRONG ===== -->
 <section class="sec light"><div class="wrap">
-  <div class="sec-head"><h2>Three things that get<br>counted wrong constantly</h2>
-    <span class="tag">Including by people selling courses</span></div>
+  <div class="sec-head"><h2>Options carry two traps<br>that shares do not</h2>
+    <span class="tag">Skip this if you trade shares</span></div>
   <div class="prose">
-    <p>These are not exotic edge cases. They are ordinary mistakes that turn up in
-       published strategy advice, in trading software, and in our own work — the third
-       one cost us a run of tests we had to throw away. Every one of them makes a
-       strategy look different from what it is.</p>
+    <p>Everything up to here applies to any strategy on any instrument. This part does
+       not. An option has a defined maximum loss, an expiry and a premium, and each of
+       those introduces a way of counting risk that is wrong often enough to be worth
+       naming. Both of these turn up in published strategy advice, in trading software,
+       and in our own work.</p>
 
     <h3>1. A stop is a percentage of what you staked, not of what you can lose</h3>
     <p>On a debit trade the two are the same thing: the most you can lose is what you
@@ -273,23 +314,11 @@
        traded structures there is, and doubling its apparent risk changes every ratio
        anyone computes from it.</p>
 
-    <h3>3. A default is not an instruction</h3>
-    <p>The expensive mistake in testing is almost never a wrong formula. It is a
-       parameter that quietly fell back to a default while the run carried on looking
-       entirely normal. Ask for wings at 11% of the share price, get a fixed $5 spread on
-       every underlying from $40 to $440, and the machine has answered a question nobody
-       asked — accurately, and at length.</p>
-    <p>Nothing about the output looks broken. The trades are real trades, the maths is
-       right, the chart is convincing. It is simply not the strategy that was requested.</p>
-
-    <div class="callout limits">
-      <div class="ct">Which is why the last step is not a formality</div>
-      <p>Before a verdict is published, the trades that came out are checked against the
-         strategy that went in — the widths, the deltas, the tenors, one at a time. A run
-         that cannot prove it traded what it was asked to trade does not get a verdict, it
-         gets run again. We would rather publish late than publish a confident answer to
-         the wrong question.</p>
-    </div>
+    <p>Neither trap has an equivalent in a share strategy, where the most you can lose is
+       what the position is worth and there is no expiry deciding it for you. That is the
+       reason the two are separated on this page rather than blended into one list of
+       rules: <strong>a method that pretends every instrument behaves the same way is
+       already wrong before it runs.</strong></p>
   </div>
 </div></section>
 
@@ -300,6 +329,7 @@
     <div class="callout">
       <div class="ct">Data</div>
       <table class="kv">
+        <tr><th scope="row">Price data source</th><td><span class="ph">—</span></td></tr>
         <tr><th scope="row">Options data source</th><td><span class="ph">—</span></td></tr>
         <tr><th scope="row">Period covered</th><td><span class="ph">—</span></td></tr>
         <tr><th scope="row">Underlyings</th><td><span class="ph">—</span></td></tr>
@@ -319,18 +349,22 @@
        dividends. We adjust for splits, because otherwise a four-for-one split reads as a
        75% crash and every condition built on it fires nonsense. We do not adjust for
        dividends.</p>
-    <p>The reason is that an option is priced off the number that was actually on the
-       screen that morning, not off a series rewritten afterwards. A test that picks its
-       trades from a dividend-adjusted chart and then fills them at real prices is
-       quietly running two different histories against each other. It is a small
-       discrepancy that gets everywhere, and it is easier to avoid than to find.</p>
+    <p>The reason is that you would have traded at the number that was actually on the
+       screen that morning, not one rewritten afterwards to account for payouts nobody
+       had received yet. A test that picks its trades off a dividend-adjusted chart and
+       then fills them at real prices is quietly running two different histories against
+       each other. It is a small discrepancy that gets everywhere and is far easier to
+       avoid than to find later. It bites hardest on options, which are priced off the
+       underlying's real level, but it distorts a share strategy's entry signals just as
+       readily.</p>
 
     <h3>The four things we can't fix</h3>
     <ul>
       <li><strong>Fills.</strong> Historical quotes are not the price you'd have got.
           We model this conservatively and say how.</li>
-      <li><strong>Liquidity.</strong> A strategy that works on paper in thin options
-          may be untradeable at size. Where that's a risk, we flag it.</li>
+      <li><strong>Liquidity.</strong> A strategy that works on paper in a thin market —
+          a small-cap share or a barely-quoted option — may be untradeable at any size
+          worth having. Where that's a risk, we flag it.</li>
       <li><strong>Regime coverage.</strong> The sample contains the markets that
           happened, not the ones that could.</li>
       <li><strong>Your execution.</strong> Every result assumes the rules were followed
