@@ -245,7 +245,12 @@
     if(!url){ say('err','Signup is not connected yet — nothing was saved. Please try again shortly.'); return; }
 
     var btn=f.querySelector('button'); btn.disabled=true; say('','Sending…');
-    fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
+    // text/plain, NOT application/json — deliberately. application/json makes this a
+    // "preflighted" request, and Catalyst's gateway answers OPTIONS itself with no
+    // CORS headers, so the browser blocks the POST before it is sent. text/plain is a
+    // CORS-simple request, skips the preflight, and the POST reply carries the headers.
+    // The function parses the body regardless of content type. Do not "tidy" this back.
+    fetch(url,{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},
                body:JSON.stringify(Object.assign({
                  email:f.email.value.trim().toLowerCase(),
                  first_name:f.first_name.value.trim(),
