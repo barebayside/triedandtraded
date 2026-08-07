@@ -241,6 +241,65 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   letter-spacing:.06em;text-transform:uppercase;
   border-top:1px solid var(--hair);padding-top:14px;margin-top:4px}
 
+/* ===== Test of the Week prompt — see js/tt-popup.js for the trigger rules =====
+   Docked bottom-right, never a full-screen overlay. Google counts an interstitial
+   that covers the content on arrival as a ranking negative, and this site is about
+   to be indexed. The article stays readable behind it on every breakpoint. */
+.ttp{position:fixed;right:22px;bottom:22px;width:min(430px,calc(100vw - 44px));z-index:120;
+  background:var(--panel);border:var(--bw) solid var(--ink);box-shadow:var(--so) var(--so) 0 var(--shadow);
+  transform:translateY(14px);opacity:0;transition:transform .22s ease-out,opacity .22s ease-out}
+.ttp.open{transform:translateY(0);opacity:1}
+@media (prefers-reduced-motion:reduce){.ttp,.ttp.open{transition:none;transform:none}}
+
+.ttp-bar{background:var(--deep);color:#fff;font-family:var(--pixel);font-size:12px;
+  letter-spacing:.06em;padding:9px 12px;display:flex;align-items:center;gap:10px;
+  border-bottom:var(--bw) solid var(--ink)}
+.ttp-x{margin-left:auto;background:none;border:0;color:#fff;font-size:22px;line-height:1;
+  cursor:pointer;padding:0 2px;font-family:var(--mono)}
+.ttp-x:hover{color:var(--accent)}
+.ttp-x:focus-visible{outline:3px solid var(--pop);outline-offset:2px}
+
+.ttp-body{display:grid;grid-template-columns:92px 1fr;gap:16px;padding:18px 18px 16px;align-items:end}
+.ttp-fig{display:block;width:92px;align-self:end;image-rendering:pixelated}
+.ttp-kick{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mute);margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.ttp-kick b{width:9px;height:9px;background:var(--pop);display:inline-block}
+.ttp h2{font-size:25px;line-height:1.02;margin:0 0 8px}
+.ttp-sub{font-size:15px;color:var(--body);margin:0 0 14px}
+
+.ttp-form{display:block}
+.ttp-two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.ttp-form input{font-family:var(--mono);font-size:15px;padding:10px 11px;width:100%;
+  border:var(--bw) solid var(--ink);background:var(--panel);color:var(--ink);
+  display:block;box-sizing:border-box;margin-bottom:8px}
+.ttp-two input{margin-bottom:0}
+.ttp-form input::placeholder{color:var(--mute)}
+.ttp-form input:focus-visible{outline:3px solid var(--pop);outline-offset:2px}
+.ttp-form button{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;padding:11px 18px;width:100%;border:var(--bw) solid var(--ink);
+  background:var(--accent);color:var(--accent-ink);box-shadow:4px 4px 0 var(--shadow);
+  cursor:pointer;transition:transform .06s linear,box-shadow .06s linear}
+.ttp-form button:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--shadow)}
+.ttp-form button:focus-visible{outline:3px solid var(--pop);outline-offset:2px}
+
+.ttp-msg{font-family:var(--mono);font-size:13px;margin-top:10px;display:none}
+.ttp-msg.ok{display:block;color:var(--pass)}
+.ttp-msg.err{display:block;color:var(--fail)}
+.ttp-no{display:block;margin-top:10px;background:none;border:0;padding:0;cursor:pointer;
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mute);
+  text-decoration:underline;text-underline-offset:3px}
+.ttp-no:hover{color:var(--ink)}
+.ttp-no:focus-visible{outline:3px solid var(--pop);outline-offset:2px}
+
+@media (max-width:560px){
+  /* Full width along the bottom, still docked — the page above stays visible. */
+  .ttp{right:0;left:0;bottom:0;width:100%;border-left:0;border-right:0;border-bottom:0;box-shadow:none}
+  .ttp-body{grid-template-columns:1fr;gap:10px;padding:16px}
+  .ttp-fig{display:none}
+  .ttp h2{font-size:22px}
+  .ttp-sub{font-size:14px}
+}
+
 footer{padding:38px 0}
 footer .wrap{display:flex;gap:22px;flex-wrap:wrap;align-items:center;
   font-family:var(--mono);font-size:14px;color:var(--mute);letter-spacing:.05em}
