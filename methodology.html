@@ -35,7 +35,7 @@
 
 <!-- ===== THE PROCESS ===== -->
 <section class="sec"><div class="wrap">
-  <div class="sec-head"><h2>Every test, same six steps</h2></div>
+  <div class="sec-head"><h2>Every test, same seven steps</h2></div>
   <ol class="steps">
     <li>
       <h3>Take the claim as it's actually made</h3>
@@ -63,6 +63,13 @@
       <p>Average profit per trade after losses are counted at full size. A strategy can
          win nine times in ten and still lose money — that is the single most common way
          a bad strategy passes for a good one.</p>
+    </li>
+    <li>
+      <h3>Prove it on data the strategy has never seen</h3>
+      <p>A result measured on the same history the rules were chosen from proves only
+         that the rules fit that history. So part of the data is held back, and the
+         verdict rests on how the strategy did there. Where there are enough trades, we
+         walk it forward across the whole period instead of trusting one split.</p>
     </li>
     <li>
       <h3>Look for the condition</h3>
@@ -265,14 +272,82 @@
   </div>
 </div></section>
 
-<!-- ===== VERDICT KEY ===== -->
+<!-- ===== VALIDATION ===== -->
 <section class="sec"><div class="wrap">
+  <div class="sec-head"><h2>Measuring it is<br>the easy part</h2>
+    <span class="tag">Proving it wasn't luck</span></div>
+  <div class="prose">
+    <p>Here is the uncomfortable fact about backtesting: if you try enough variations of a
+       strategy, one of them will look excellent by pure chance. Nothing about that result
+       is fraudulent. The trades are real, the arithmetic is right, and the equity curve
+       goes up and to the right. It simply will not do it again.</p>
+
+    <p><strong>A backtest that has been adjusted until it passes is not evidence. It is a
+       record of adjusting.</strong> So an expectancy number does not become a verdict
+       until it has survived four checks.</p>
+
+    <h3>1. Hold data back</h3>
+    <p>The rules are fixed on one part of the history, then run on a part the strategy has
+       never seen. We split roughly seventy-thirty, and we split on <em>trades</em> rather
+       than on dates, so both halves carry a comparable amount of trading rather than one
+       half happening to contain a quiet year.</p>
+    <p>The out-of-sample half is the one that counts. A strategy that looks strong on the
+       first part and comes apart on the second was fitted to the past, not found in it.</p>
+
+    <h3>2. Measure the gap, and publish it</h3>
+    <p>The distance between the in-sample result and the out-of-sample result is itself a
+       number worth seeing, so we report it rather than only reporting the half that
+       flatters. A small gap means the strategy travelled. A wide one means the first
+       number described a particular stretch of history and not the strategy — and a
+       strategy can be profitable in <em>both</em> halves and still fail here, if the drop
+       between them is steep enough.</p>
+
+    <h3>3. Walk it forward, where there are enough trades</h3>
+    <p>One split is still one draw, and a single lucky cut of the data can flatter a
+       strategy just as easily as a single unlucky one can bury it. Walking forward
+       repeats the exercise across the whole history: fix the rules on a window, test on
+       the window immediately after it, roll both forward, and do it again to the end.</p>
+    <p>What comes out is a chain of out-of-sample results from many different market
+       conditions instead of one verdict resting on an arbitrary boundary. It is the
+       closest a backtest gets to having actually traded the thing. It also needs a great
+       many trades to mean anything, so it runs automatically when a test has enough —
+       and when a test does not have enough, <strong>the page says walk-forward was not
+       available rather than quietly leaving it out.</strong></p>
+
+    <h3>4. Count how many things we tried</h3>
+    <p>If we test forty variations of a strategy and publish the best one, "the best of
+       forty" is a different claim from "this works", and reporting the first as though it
+       were the second is how a testing site turns into a machine for manufacturing
+       impressive flukes. The more variations a test explores, the higher the bar its
+       winner has to clear before it earns a verdict.</p>
+    <p>Alongside this we shuffle the order of the trades many times over and look at the
+       spread of outcomes. It answers something the headline figure hides — how much of
+       the result depended on the wins and losses happening to arrive in a favourable
+       order, and how bad the worst stretch could reasonably have been rather than how
+       bad it happened to be.</p>
+
+    <div class="callout limits">
+      <div class="ct">What this changes about the verdicts</div>
+      <p>A strategy can be clearly profitable across the full history and still not earn
+         <strong>Holds</strong> — because it did not survive on the data it had never
+         seen. That is not a contradiction, it is the check working. When that happens the
+         test says so plainly and shows both numbers.</p>
+      <p>And where there are too few trades to run the checks properly, the answer is not
+         a cautious pass. The verdict stays <strong>Pending</strong> until there is enough
+         to test, however good the raw figure looks.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== VERDICT KEY ===== -->
+<section class="sec light"><div class="wrap">
   <div class="sec-head"><h2>What a verdict means</h2><span class="tag">Three outcomes, no others</span></div>
   <div class="key">
     <div class="keycard">
       <span class="badge b-pass">Holds</span>
-      <p>Positive expectancy across the full period, and it survives reasonable changes
-         to the assumptions. Not a recommendation — a statement that the claim stood up.</p>
+      <p>Positive expectancy on data the strategy was never fitted to, surviving
+         reasonable changes to the assumptions. Not a recommendation — a statement that
+         the claim stood up when it was checked properly.</p>
     </div>
     <div class="keycard">
       <span class="badge b-mixed">Conditional</span>
@@ -288,7 +363,7 @@
 </div></section>
 
 <!-- ===== THE PARTS PEOPLE GET WRONG ===== -->
-<section class="sec light"><div class="wrap">
+<section class="sec"><div class="wrap">
   <div class="sec-head"><h2>Options carry two traps<br>that shares do not</h2>
     <span class="tag">Skip this if you trade shares</span></div>
   <div class="prose">
@@ -323,7 +398,7 @@
 </div></section>
 
 <!-- ===== DATA + LIMITS ===== -->
-<section class="sec"><div class="wrap">
+<section class="sec light"><div class="wrap">
   <div class="sec-head"><h2>The data, and what it can't do</h2></div>
   <div class="prose">
     <div class="callout">
