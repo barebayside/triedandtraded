@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Archive — every strategy we've tested — Tried &amp; Traded</title>
-<meta name="description" content="Every trading strategy we have tested, ranked by expectancy. Holds, fails, or conditional — with the full test behind each one.">
+<title>The Archive &mdash; every strategy we have tested &mdash; Tried &amp; Traded</title>
+<meta name="description" content="Every strategy we have tested or queued, split into options backtesting and stock backtesting.">
 <meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — remove before launch -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,163 +29,40 @@
 <header class="page-head"><div class="wrap">
   <div class="crumb">The Archive</div>
   <h1>Everything we've tested</h1>
-  <p class="standfirst">Sorted into what you trade, then into the family the claim belongs
-     to. Every entry links to the full test — the rules, the data, and the limits.</p>
+  <p class="standfirst">Split by what you trade. Pick a shelf and you get the written tests
+     and the full list for that side, in one place.</p>
   <div class="metabar">
     <span>A verdict appears here once its test has run</span>
   </div>
 </div></header>
 
-<!-- ================= MASTER MENU ================= -->
+<!-- ================= THE TWO SHELVES ================= -->
 <section class="sec"><div class="wrap">
   <div class="sec-head"><h2>Two shelves</h2><span class="tag">Start with what you trade</span></div>
   <div class="shelves">
-    <a class="shelf" href="#options">
+    <a class="shelf" href="archive-options.html">
       <span class="sk">Shelf one</span>
       <h3>Options<br>backtesting</h3>
-      <p>Credit spreads, condors and flies, the wheel and covered calls, calendars, and the
-         undefined-risk trades most people are told never to touch.</p>
-      <span class="sgo">Five families &rarr;</span>
+      <p>Credit spreads, iron condors and flies, the wheel and covered calls, calendars
+         and diagonals, and the undefined-risk trades most people are told never to touch.</p>
+      <span class="sgo">3 written &middot; 11 queued &rarr;</span>
     </a>
-    <a class="shelf" href="#stocks">
+    <a class="shelf" href="archive-stocks.html">
       <span class="sk">Shelf two</span>
       <h3>Stock<br>backtesting</h3>
       <p>Trend following, mean reversion, breakouts, momentum and income. The claims made
-         about shares, tested the same way as the ones made about options.</p>
-      <span class="sgo">Nothing tested yet &rarr;</span>
+         about shares, tested exactly the same way as the ones made about options.</p>
+      <span class="sgo">Nothing written yet &middot; 10 queued &rarr;</span>
     </a>
   </div>
+  <div class="archive-foot">&#9656; Same method on both shelves. Only the two
+    options-specific traps on the <a href="methodology.html">methodology page</a> change,
+    because a share has no expiry deciding the outcome for you.</div>
 </div></section>
 
-<!-- ================= OPTIONS ================= -->
-<section class="sec light" id="options"><div class="wrap">
-  <div class="sec-head"><h2>Options backtesting</h2>
-    <span class="tag">Five families &middot; <b class="pop">3 written</b></span></div>
-
-  <p class="fam">Family 01 &mdash; Credit spreads</p>
-  <div class="win">
-    <div class="win-bar">CREDIT SPREADS — ONE SIDE, DEFINED RISK<span class="win-dots"><i></i><i></i><i></i></span></div>
-    <div class="tablewrap">
-    <table class="narrow">
-      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
-      <tbody>
-        <tr><td><a href="test-bull-put-spread.html">Bull put spread &middot; 16&#916; &middot; 45 DTE</a><span class="pill-new">New</span></td>
-          <td>SPY</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td><a href="test-bear-call-spread.html">Bear call spread &middot; 20&#916; &middot; downtrend</a><span class="pill-new">New</span></td>
-          <td>SPY</td><td><span class="badge b-pending">Pending</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <p class="fam">Family 02 &mdash; Iron condors and flies</p>
-  <div class="win">
-    <div class="win-bar">CONDORS AND FLIES — BOTH SIDES AT ONCE<span class="win-dots"><i></i><i></i><i></i></span></div>
-    <div class="tablewrap">
-    <table class="narrow">
-      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
-      <tbody>
-        <tr><td>Iron condor &middot; 10&#916; wings &middot; 30 DTE</td><td>SPX</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>0-DTE iron fly &middot; morning entry</td><td>SPX</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Broken-wing butterfly</td><td>SPX</td><td><span class="badge b-pending">Pending</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <p class="fam">Family 03 &mdash; The wheel and covered calls</p>
-  <div class="win">
-    <div class="win-bar">WHEEL AND COVERED CALLS — PREMIUM ON SHARES<span class="win-dots"><i></i><i></i><i></i></span></div>
-    <div class="tablewrap">
-    <table class="narrow">
-      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
-      <tbody>
-        <tr><td><a href="test-the-wheel.html">The wheel &middot; high-IV names</a></td>
-          <td>Single names</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Covered call on a held portfolio</td><td>Blue chip</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Poor man's covered call</td><td>QQQ</td><td><span class="badge b-pending">Pending</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <p class="fam">Family 04 &mdash; Calendars and diagonals</p>
-  <div class="win">
-    <div class="win-bar">CALENDARS AND DIAGONALS — TIME AGAINST TIME<span class="win-dots"><i></i><i></i><i></i></span></div>
-    <div class="tablewrap">
-    <table class="narrow">
-      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
-      <tbody>
-        <tr><td>Calendar spread into earnings</td><td>Mega-cap</td><td><span class="badge b-pending">Pending</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <p class="fam">Family 05 &mdash; Undefined risk</p>
-  <div class="win">
-    <div class="win-bar">UNDEFINED RISK — NO FLOOR UNDER THE LOSS<span class="win-dots"><i></i><i></i><i></i></span></div>
-    <div class="tablewrap">
-    <table class="narrow">
-      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
-      <tbody>
-        <tr><td>Naked strangle &middot; 5&#916;</td><td>Futures</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Ratio spread &middot; 1x2</td><td>Index</td><td><span class="badge b-pending">Pending</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <div class="archive-foot">&#9656; A family is how the claim is structured, not how it is
-    marketed. Two strategies with different names and the same risk shape sit together.</div>
-</div></section>
-
-<!-- ================= STOCKS ================= -->
-<section class="sec" id="stocks"><div class="wrap">
-  <div class="sec-head"><h2>Stock backtesting</h2>
-    <span class="tag">Five families &middot; none tested</span></div>
-
-  <div class="charblock plain">
-    <div class="cb-fig">
-      <img class="sprite" src="assets/mascots/ferret-shrug.svg" alt="" width="180" height="300">
-      <span class="cb-name">The ferret</span>
-    </div>
-    <div class="cb-body">
-      <p class="said">"Nothing on this shelf yet. I'd rather say that than put up a row
-         with a shrug in it."</p>
-      <p>The same method applies here without modification — pin the claim to a
-         specification, judge on expectancy, hold data back and prove it out of sample.
-         Only the two options-specific traps on the
-         <a href="methodology.html">methodology page</a> drop away, because a share has no
-         expiry deciding the outcome for you.</p>
-    </div>
-  </div>
-
-  <p class="fam">The families we expect to start with</p>
-  <div class="win">
-    <div class="win-bar">SHARES — QUEUE, NOT RESULTS<span class="win-dots"><i></i><i></i><i></i></span></div>
-    <div class="tablewrap">
-    <table class="narrow">
-      <thead><tr><th scope="col">Family</th><th scope="col">The claim</th><th scope="col">Verdict</th></tr></thead>
-      <tbody>
-        <tr><td>Trend following</td><td>Moving-average crossovers</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Mean reversion</td><td>Buying the dip</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Breakouts</td><td>The 52-week high</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Momentum</td><td>Relative strength ranking</td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Income</td><td>Dividend capture</td><td><span class="badge b-pending">Pending</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <div class="archive-foot">&#9656; This is a queue and nothing more. No claim on this shelf
-    has been run, and the order will change as readers ask for things.</div>
-</div></section>
-
+<!-- ================= WRITTEN SO FAR ================= -->
 <section class="sec light"><div class="wrap">
-
-
-  <div class="sec-head"><h2>Published so far</h2>
+  <div class="sec-head"><h2>Written so far</h2>
     <span class="tag">Everything else on both shelves is queued</span></div>
   <div class="posts">
     <a class="post" href="test-the-wheel.html">
@@ -208,6 +85,7 @@
   </div>
 </div></section>
 
+<!-- ================= WHAT NEXT ================= -->
 <section class="sec"><div class="wrap">
   <div class="sec-head"><h2>What should we test next?</h2><span class="tag">Reader requests jump the queue</span></div>
   <div class="charblock plain">
@@ -219,71 +97,12 @@
     <div class="cb-body">
       <p class="said">"Tell me what everyone keeps repeating, and I'll go and check it."</p>
       <p>If there's a strategy you keep seeing recommended and you've never seen anyone
-         actually check it, tell us. Requests with a specific claim attached — a delta, a
-         tenor, a rule — get tested first, because they're the ones we can test fairly.</p>
+         actually check it, tell us. Requests with a specific claim attached &mdash; a
+         delta, a tenor, a moving average, a rule &mdash; get tested first, because
+         they're the ones we can test fairly.</p>
       <a class="btn" href="index.html#signup">Request a test</a>
     </div>
   </div>
-</div></section>
-
-<!-- ================= THE ONE-TABLE VIEW =================
-     Deliberately last. The shelves above are how you BROWSE; this is how you
-     COMPARE across families once there are real numbers to compare. It stays
-     until then because the queue is the only honest thing the site can show. -->
-<section class="sec light" id="alltests"><div class="wrap">
-  <div class="sec-head"><h2>Everything in one table</h2>
-    <span class="tag">For comparing across families</span></div>
-  <p class="fam">Both shelves, one list &mdash; filterable by verdict</p>
-
-  <div class="filters" role="group" aria-label="Filter by verdict">
-    <button class="chip" aria-pressed="true" data-f="all">All</button>
-    <button class="chip" aria-pressed="false" data-f="pass">Holds</button>
-    <button class="chip" aria-pressed="false" data-f="mixed">Conditional</button>
-    <button class="chip" aria-pressed="false" data-f="fail">Fails</button>
-    <button class="chip" aria-pressed="false" data-f="pending">Not yet tested</button>
-  </div>
-
-  <div class="win">
-    <div class="win-bar">ARCHIVE — SORTED BY EXPECTANCY<span class="win-dots"><i></i><i></i><i></i></span></div>
-    <div class="tablewrap">
-    <table id="archive">
-      <caption style="position:absolute;left:-9999px">Strategies tested, sorted by expectancy</caption>
-      <thead><tr>
-        <th scope="col">Strategy</th><th scope="col">Market</th>
-        <th scope="col" style="text-align:right">Trades</th>
-        <th scope="col" style="text-align:right">Win %</th>
-        <th scope="col" style="text-align:right">Expectancy</th>
-        <th scope="col">Verdict</th>
-      </tr></thead>
-      <tbody>
-        <tr data-v="pending"><td><a href="test-bull-put-spread.html">Put credit spread &middot; 16&#916; &middot; 45 DTE</a><span class="pill-new">New</span></td><td>SPY</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td>Iron condor &middot; 10&#916; wings &middot; 30 DTE<span class="pill-new">New</span></td><td>SPX</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td><a href="test-the-wheel.html">The wheel &middot; high-IV names</a></td><td>Single names</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td><a href="test-bear-call-spread.html">Bear call spread &middot; 20&#916; &middot; downtrend</a><span class="pill-new">New</span></td><td>SPY</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td>Poor man's covered call</td><td>QQQ</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td>Calendar spread into earnings</td><td>Mega-cap</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td>0-DTE iron fly &middot; morning entry</td><td>SPX</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td>Covered call on a held portfolio</td><td>Blue chip</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td>Naked strangle &middot; 5&#916;</td><td>Futures</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td>Ratio spread &middot; 1x2</td><td>Index</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr data-v="pending"><td>Broken-wing butterfly</td><td>SPX</td>
-          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-  <div class="archive-foot">&#9656; This list is the queue, not the results. A row only carries a
-    verdict once its test has been run and published.</div>
 </div></section>
 
 <footer><div class="wrap">

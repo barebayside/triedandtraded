@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stock backtesting &mdash; Tried &amp; Traded</title>
+<meta name="description" content="Share strategies queued for testing: trend following, mean reversion, breakouts, momentum and income.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — remove before launch -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none">TRIED <b>&amp;</b> TRADED</a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a href="archive.html">The Archive</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+
+<header class="page-head"><div class="wrap">
+  <div class="crumb"><a href="archive.html">The Archive</a> &rsaquo; Shelf two</div>
+  <h1>Stock backtesting</h1>
+  <p class="standfirst">The claims made about shares, tested the same way as the ones made
+     about options. Nothing on this shelf has been run yet.</p>
+  <div class="metabar">
+    <span>0 written &middot; 10 queued</span>
+  </div>
+</div></header>
+
+<!-- ===== EMPTY STATE ===== -->
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><h2>Nothing written yet</h2>
+    <span class="tag">Said plainly, rather than padded out</span></div>
+  <div class="charblock plain">
+    <div class="cb-fig">
+      <img class="sprite" src="assets/mascots/ferret-shrug.svg" alt="" width="180" height="300">
+      <span class="cb-name">The ferret</span>
+    </div>
+    <div class="cb-body">
+      <p class="said">"Nothing on this shelf yet. I would rather say so than put up a row
+         with a shrug in it."</p>
+      <p>The method carries over without modification &mdash; pin the claim to a
+         specification, judge on expectancy, hold data back and prove it out of sample.
+         Only the two options-specific traps on the
+         <a href="methodology.html">methodology page</a> drop away, because a share has no
+         expiry deciding the outcome for you.</p>
+      <a class="btn" href="index.html#signup">Tell us what to test first</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== BY STRATEGY ===== -->
+<section class="sec light"><div class="wrap">
+  <div class="sec-head"><h2>By strategy</h2>
+    <span class="tag">Grouped by what the strategy is betting on</span></div>
+
+  <div class="win">
+    <div class="win-bar">TREND FOLLOWING — THE MOVE CONTINUES<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="tablewrap">
+    <table class="narrow">
+      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Moving-average crossover &middot; 50/200</td><td>Large cap</td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr><td>Price above the 200-day</td><td>Index</td><td><span class="badge b-pending">Pending</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="win-bar">MEAN REVERSION — THE MOVE SNAPS BACK<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="tablewrap">
+    <table class="narrow">
+      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Buying the dip &middot; fixed % pullback</td><td>Index</td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr><td>RSI oversold &middot; 2-day</td><td>Large cap</td><td><span class="badge b-pending">Pending</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="win-bar">BREAKOUTS — THE MOVE STARTS HERE<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="tablewrap">
+    <table class="narrow">
+      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>The 52-week high</td><td>All caps</td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr><td>Donchian channel breakout</td><td>All caps</td><td><span class="badge b-pending">Pending</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="win-bar">MOMENTUM — BUY WHAT IS ALREADY WINNING<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="tablewrap">
+    <table class="narrow">
+      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Relative strength ranking &middot; 12-month</td><td>All caps</td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr><td>Sector rotation &middot; monthly</td><td>Sector ETFs</td><td><span class="badge b-pending">Pending</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="win-bar">INCOME — PAID TO HOLD<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="tablewrap">
+    <table class="narrow">
+      <thead><tr><th scope="col">Test</th><th scope="col">Market</th><th scope="col">Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Dividend capture</td><td>High yield</td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr><td>Dividend aristocrats, held</td><td>Large cap</td><td><span class="badge b-pending">Pending</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="archive-foot">&#9656; This is a queue and nothing more. No claim on this shelf
+    has been run, and the order will change as readers ask for things.</div>
+</div></section>
+
+<!-- ===== ONE TABLE ===== -->
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><h2>Everything in one table</h2>
+    <span class="tag">For comparing across strategies</span></div>
+
+  <div class="filters" role="group" aria-label="Filter by verdict">
+    <button class="chip" aria-pressed="true" data-f="all">All</button>
+    <button class="chip" aria-pressed="false" data-f="pass">Holds</button>
+    <button class="chip" aria-pressed="false" data-f="mixed">Conditional</button>
+    <button class="chip" aria-pressed="false" data-f="fail">Fails</button>
+    <button class="chip" aria-pressed="false" data-f="pending">Not yet tested</button>
+  </div>
+
+  <div class="win">
+    <div class="win-bar">SHARES — SORTED BY EXPECTANCY<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="tablewrap">
+    <table id="archive">
+      <caption style="position:absolute;left:-9999px">Share strategies, sorted by expectancy</caption>
+      <thead><tr>
+        <th scope="col">Strategy</th><th scope="col">Market</th>
+        <th scope="col" style="text-align:right">Trades</th>
+        <th scope="col" style="text-align:right">Win %</th>
+        <th scope="col" style="text-align:right">Expectancy</th>
+        <th scope="col">Verdict</th>
+      </tr></thead>
+      <tbody>
+        <tr data-v="pending"><td>Moving-average crossover &middot; 50/200</td><td>Large cap</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Price above the 200-day</td><td>Index</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Buying the dip &middot; fixed % pullback</td><td>Index</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>RSI oversold &middot; 2-day</td><td>Large cap</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>The 52-week high</td><td>All caps</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Donchian channel breakout</td><td>All caps</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Relative strength ranking &middot; 12-month</td><td>All caps</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Sector rotation &middot; monthly</td><td>Sector ETFs</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Dividend capture</td><td>High yield</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+        <tr data-v="pending"><td>Dividend aristocrats, held</td><td>Large cap</td>
+          <td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td class="num"><span class="ph">&mdash;</span></td><td><span class="badge b-pending">Pending</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="archive-foot">&#9656; This list is the queue, not the results. A row only carries
+    a verdict once its test has been run and published.</div>
+
+  <div style="margin-top:38px">
+    <a class="btn" href="archive-options.html">Options backtesting &rarr;</a>
+    <a class="btn ghost" href="methodology.html">How a verdict is decided</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+
+  // verdict filter — progressive enhancement, table works fine without JS
+  var chips=document.querySelectorAll('.chip'), rows=document.querySelectorAll('#archive tbody tr');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      c.setAttribute('aria-pressed','true');
+      var f=c.dataset.f;
+      rows.forEach(function(r){
+        r.style.display=(f==='all'||r.dataset.v===f)?'':'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
