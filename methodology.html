@@ -120,8 +120,107 @@
       <p class="said">"Neither of you has run it. I have."</p>
       <p>That is the entire job of this site. Not to have an opinion about a strategy, but
          to run it across everything we have and publish what came out — including when
-         the answer is boring, and including when it makes our own software look bad.</p>
+         the answer is boring, when it is inconvenient, and when it contradicts something
+         we said about the same strategy last year.</p>
       <a class="btn" href="archive.html">See what's been tested</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== WHAT A STRATEGY ACTUALLY IS ===== -->
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><h2>A strategy is not a name</h2><span class="tag">Pinning the claim down</span></div>
+  <div class="prose">
+    <p>People argue about "the wheel" or "iron condors" as though the name were the thing.
+       It isn't. Two people who both say "I sell put spreads" can be running trades with
+       almost nothing in common, and they will both be certain the other one is doing it
+       wrong. Before anything can be tested, the claim has to be pinned to numbers.</p>
+
+    <p>For a credit spread that means <strong>four</strong> numbers, and all four have to
+       be stated:</p>
+
+    <ul>
+      <li><strong>Delta.</strong> How far out of the money the sold strike sits.</li>
+      <li><strong>Tenor.</strong> How long until expiry.</li>
+      <li><strong>Width.</strong> How far apart the two strikes are.</li>
+      <li><strong>Minimum credit.</strong> The least you will accept for taking the trade.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="ct">Why all four, and not just the popular two</div>
+      <p><strong>Width and credit together are the risk. Neither one alone tells you
+         anything.</strong> Sell a spread $5 wide and collect $50, and you are risking
+         $450 to make $50 — a shade over nine to one. Collect that same $50 on a spread
+         $80 wide and you are risking $7,950 for it.</p>
+      <p>Same delta. Same tenor. Same credit. One of them is a trade nobody would
+         knowingly place. A test that fixes only the credit quietly averages the two
+         together and reports the blend as though it were a strategy.</p>
+      <p><strong>Arithmetic, not a result.</strong> No figure on this page came out of a
+         run — those live on the test pages, once there are any.</p>
+    </div>
+
+    <p>When a claim arrives without all four — and most of them do — we test the most
+       common interpretation, and the parameters table on that test says exactly what we
+       chose. You are entitled to disagree with the choice. You should not have to guess
+       at it.</p>
+  </div>
+</div></section>
+
+<!-- ===== EXPECTANCY ===== -->
+<section class="sec light"><div class="wrap">
+  <div class="sec-head"><h2>Win rate is the most<br>misleading number in trading</h2>
+    <span class="tag">And the reason most strategies sound good</span></div>
+  <div class="prose">
+    <p>A strategy that wins nine times out of ten sounds unarguable. Here is one that wins
+       nine times out of ten and makes you nothing at all.</p>
+    <p>Ten trades on a spread $5 wide. Nine of them expire worthless and you keep the $50
+       credit. The tenth goes against you and runs to the full width of the spread.</p>
+  </div>
+
+  <div class="win">
+    <div class="win-bar">TEN TRADES — ARITHMETIC ONLY<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="tablewrap">
+    <table class="narrow">
+      <thead><tr><th scope="col">What happens</th>
+        <th scope="col" style="text-align:right">Each</th>
+        <th scope="col" style="text-align:right">Total</th></tr></thead>
+      <tbody>
+        <tr><td>9 &times; expires worthless</td>
+          <td class="num">+$50</td><td class="num">+$450</td></tr>
+        <tr><td>1 &times; runs to full width</td>
+          <td class="num">&minus;$450</td><td class="num">&minus;$450</td></tr>
+        <tr><td><strong>Ten trades &middot; 90% winners</strong></td>
+          <td class="num"></td><td class="num"><strong>$0</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Nothing there is unusual. That is roughly the shape of every credit strategy ever
+       recommended: win small, win often, and hand it back in one go. Move the loss to
+       $500 and the same 90% win rate is now a losing strategy. Move it to $400 and it is
+       a good one. <strong>The win rate did not move at all.</strong></p>
+
+    <h3>So we judge on expectancy</h3>
+    <p>Expectancy is the average profit per trade once losses are counted at full size —
+       the only number that answers the question people actually care about, which is
+       whether the thing makes money. Every verdict on this site leads with it. Win rate
+       is reported, because people want to see it, and it is never what decides the
+       verdict.</p>
+
+    <p>This is also the honest reason the site exists. A high win rate is exactly what
+       makes a strategy <em>popular</em> — it feels like winning, every week, for months.
+       Popularity is what puts a strategy on the list to be tested. It is not evidence of
+       anything.</p>
+
+    <div class="callout">
+      <div class="ct">And a good average over four trades is not a finding</div>
+      <p>A number can be right and still mean nothing, if it rests on too few trades. Every
+         verdict states how many trades it was measured over, and a thin sample gets said
+         out loud rather than being averaged into confidence. Where the sample is too thin
+         to call, the verdict stays Pending — which is why <strong>Pending is a real
+         verdict here and not an empty slot.</strong></p>
     </div>
   </div>
 </div></section>
@@ -148,8 +247,54 @@
   </div>
 </div></section>
 
-<!-- ===== DATA + LIMITS ===== -->
+<!-- ===== THE PARTS PEOPLE GET WRONG ===== -->
 <section class="sec light"><div class="wrap">
+  <div class="sec-head"><h2>Three things that get<br>counted wrong constantly</h2>
+    <span class="tag">Including by people selling courses</span></div>
+  <div class="prose">
+    <p>These are not exotic edge cases. They are ordinary mistakes that turn up in
+       published strategy advice, in trading software, and in our own work — the third
+       one cost us a run of tests we had to throw away. Every one of them makes a
+       strategy look different from what it is.</p>
+
+    <h3>1. A stop is a percentage of what you staked, not of what you can lose</h3>
+    <p>On a debit trade the two are the same thing: the most you can lose is what you
+       paid. On a credit trade they are nowhere near each other. Collect $0.55 on a
+       spread $5 wide and you have staked $55 while risking $445. A stop set at "100%"
+       sounds like it protects the whole position, and it fires at about an eighth of the
+       real risk.</p>
+    <p>Neither setting is wrong. Believing you have the second one when you have the
+       first is. Every exit rule we test states which of the two it is measured against.</p>
+
+    <h3>2. An iron condor's maximum loss is the width minus the credit — not twice it</h3>
+    <p>The price can only finish on one side. Both wings cannot be breached by the same
+       expiry, so the risk is one side's width less everything you collected. Wings $5
+       wide with $100 taken in is $400 at risk, not $900. It is one of the most commonly
+       traded structures there is, and doubling its apparent risk changes every ratio
+       anyone computes from it.</p>
+
+    <h3>3. A default is not an instruction</h3>
+    <p>The expensive mistake in testing is almost never a wrong formula. It is a
+       parameter that quietly fell back to a default while the run carried on looking
+       entirely normal. Ask for wings at 11% of the share price, get a fixed $5 spread on
+       every underlying from $40 to $440, and the machine has answered a question nobody
+       asked — accurately, and at length.</p>
+    <p>Nothing about the output looks broken. The trades are real trades, the maths is
+       right, the chart is convincing. It is simply not the strategy that was requested.</p>
+
+    <div class="callout limits">
+      <div class="ct">Which is why the last step is not a formality</div>
+      <p>Before a verdict is published, the trades that came out are checked against the
+         strategy that went in — the widths, the deltas, the tenors, one at a time. A run
+         that cannot prove it traded what it was asked to trade does not get a verdict, it
+         gets run again. We would rather publish late than publish a confident answer to
+         the wrong question.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== DATA + LIMITS ===== -->
+<section class="sec"><div class="wrap">
   <div class="sec-head"><h2>The data, and what it can't do</h2></div>
   <div class="prose">
     <div class="callout">
@@ -169,6 +314,17 @@
        ever been true, which is a much lower bar than whether it will be true — and a
        much higher bar than most strategy advice clears.</p>
 
+    <h3>One choice worth naming: we don't back-adjust for dividends</h3>
+    <p>Historical price series are usually adjusted twice over — once for splits, once for
+       dividends. We adjust for splits, because otherwise a four-for-one split reads as a
+       75% crash and every condition built on it fires nonsense. We do not adjust for
+       dividends.</p>
+    <p>The reason is that an option is priced off the number that was actually on the
+       screen that morning, not off a series rewritten afterwards. A test that picks its
+       trades from a dividend-adjusted chart and then fills them at real prices is
+       quietly running two different histories against each other. It is a small
+       discrepancy that gets everywhere, and it is easier to avoid than to find.</p>
+
     <h3>The four things we can't fix</h3>
     <ul>
       <li><strong>Fills.</strong> Historical quotes are not the price you'd have got.
@@ -185,8 +341,9 @@
       <div class="ct">What we will never do</div>
       <p>We will not publish a figure that didn't come out of a run. We will not quietly
          change parameters until a strategy passes. We will not sell a strategy we
-         graded, and we take no payment from anyone whose strategy we test. If a test
-         makes our own software look bad, it gets published anyway.</p>
+         graded, and we take no payment from anyone whose strategy we test — not to run
+         one, not to delay one, and not to leave one unpublished. A result that is
+         inconvenient for us goes up exactly like any other.</p>
     </div>
 
     <h3>Reproducibility</h3>

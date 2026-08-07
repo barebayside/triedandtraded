@@ -79,6 +79,11 @@ h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:-.02
 
 /* ---------- retro chrome ---------- */
 .win{border:var(--bw) solid var(--ink);background:var(--panel);box-shadow:var(--so) var(--so) 0 var(--shadow)}
+/* A .win carries a hard offset shadow and NO margin of its own, so anything placed
+   directly after one used to sit on top of the shadow. Clearance only when something
+   actually follows — a window that ends its container keeps the tight fit it had.
+   Collapses with the next element's margin-top, so it never doubles up. */
+.win:not(:last-child){margin-bottom:34px}
 .win-bar{background:var(--deep);color:#fff;font-family:var(--pixel);font-size:13px;letter-spacing:.06em;
   text-transform:uppercase;padding:8px 12px;display:flex;align-items:center;gap:10px;
   border-bottom:var(--bw) solid var(--ink)}
@@ -168,11 +173,18 @@ h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:-.02
 /* archive table */
 .tablewrap{overflow-x:auto}
 table{width:100%;min-width:680px;border-collapse:collapse;font-family:var(--mono);font-size:16px;background:var(--panel)}
+/* The 680px floor exists so the six-column archive table keeps its shape and scrolls
+   inside .tablewrap rather than crushing. A table with two or three columns has no
+   business inheriting it — on a phone it pushed the numbers off-screen, which on a
+   table whose whole point IS the numbers is the same as not showing it. */
+table.narrow{min-width:0}
 thead th{background:var(--ink);color:var(--paper);text-align:left;padding:10px 14px;font-size:13px;
   letter-spacing:.13em;text-transform:uppercase;font-weight:400;white-space:nowrap}
 tbody td{padding:11px 14px;border-bottom:1px solid var(--hair)}
 tbody tr:nth-child(even) td{background:var(--panel-2)}
-td.num{text-align:right;font-variant-numeric:tabular-nums}
+/* nowrap: a narrow column was breaking "−$450" after the minus sign, which on a
+   results table is not a cosmetic problem — it reads as a different number. */
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .badge{display:inline-block;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;
   border:1.5px solid;font-weight:700;white-space:nowrap}
 .b-pass{color:var(--pass);border-color:var(--pass)}
