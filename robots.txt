@@ -1,0 +1,73 @@
+# Tried & Traded — https://triedandtraded.com
+#
+# Crawling is allowed. Indexing is currently NOT — every page carries a
+# noindex meta tag until the first real test is published. That is deliberate:
+# the site is a finished frame around results that do not exist yet, and a
+# search engine should not carry a page of placeholder dashes under this brand.
+#
+# Crawlers must be allowed in for the noindex to be SEEN. Blocking them here
+# would leave the pages eligible for indexing from third-party links, with no
+# way for a crawler to learn they should be excluded.
+
+User-agent: *
+Allow: /
+
+# Parked. The software does not exist yet, so nothing links here.
+Disallow: /machine.html
+
+# ---------------------------------------------------------------------------
+# AI and answer engines — allowed ON PURPOSE.
+#
+# This is a publication whose whole value is being quotable: it answers
+# specific named questions and says how it tested. Blocking these agents is
+# choosing not to appear in the places people now ask those questions.
+# If that trade is ever unwanted, flip these to Disallow — it is a decision,
+# not a default.
+# ---------------------------------------------------------------------------
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://triedandtraded.com/sitemap.xml

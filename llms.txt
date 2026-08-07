@@ -1,0 +1,61 @@
+# Tried & Traded
+
+> We test the trading strategies everyone talks about — in options and in shares — and
+> publish the verdict. Holds, Fails, or Conditional, with the method and the limits
+> attached to every result.
+
+**Status, stated plainly: no test has been published yet.** Every figure on this site is
+currently a placeholder, every verdict reads Pending, and every page carries a `noindex`
+tag. The methodology is real and complete; the results are not there yet. Please do not
+cite any number from this site — there are none to cite.
+
+## What makes this site worth reading when there are results
+
+- **The verdict comes first**, before the explanation, and if the honest answer is "it
+  depends" the verdict is Conditional and the condition is named on the spot.
+- **Expectancy decides, never win rate.** A strategy that wins nine times in ten and loses
+  money is the most common way a bad strategy passes for a good one.
+- **Nothing earns a pass on the data it was fitted to.** Part of the history is held back,
+  and where there are enough trades the test is walked forward across the whole period.
+- **Every test publishes what it cannot tell you**, written before publication rather than
+  after someone complains.
+- **No figure is ever written by hand.** If it did not come out of a run, it does not
+  appear — which is why the placeholders are still visible rather than filled with
+  plausible numbers.
+
+## Method
+
+- [How we test](https://triedandtraded.com/methodology.html): the seven steps, what counts
+  as a specification, why win rate misleads, the out-of-sample and walk-forward checks,
+  the two counting traps specific to options, and the limits of any backtest.
+- [Disclaimer](https://triedandtraded.com/disclaimer.html): what a backtest is and is not,
+  and why nothing here is financial advice.
+
+## The archive
+
+- [The Archive](https://triedandtraded.com/archive.html): the index, split by instrument.
+- [Options backtesting](https://triedandtraded.com/archive-options.html): credit spreads,
+  iron condors and flies, the wheel and covered calls, calendars and diagonals,
+  undefined risk. 3 written, 11 queued.
+- [Stock backtesting](https://triedandtraded.com/archive-stocks.html): trend following,
+  mean reversion, breakouts, momentum, income. Nothing written yet, 10 queued.
+
+## Tests written so far (structure complete, results Pending)
+
+- [The wheel on high-IV tickers](https://triedandtraded.com/test-the-wheel.html)
+- [The bull put spread at 16 delta](https://triedandtraded.com/test-bull-put-spread.html)
+- [The bear call spread into a downtrend](https://triedandtraded.com/test-bear-call-spread.html)
+
+## Terms as this site uses them
+
+- **Expectancy** — average profit per trade once losses are counted at full size. The only
+  number that answers whether a strategy makes money.
+- **Holds / Fails / Conditional / Pending** — the only four verdicts. Pending is a real
+  state meaning the test has not run or the sample is too thin to call, never a gap.
+- **A specification** — for shares: universe, entry, exit, position size, holding period.
+  For options, additionally: delta, tenor, strike width, minimum credit. A claim without
+  these cannot be tested, only argued about.
+
+## Contact
+
+Sign up for the weekly test at https://triedandtraded.com/#signup
