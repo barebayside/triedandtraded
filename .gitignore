@@ -5,3 +5,7 @@ DESIGN-RULES.md
 GO-LIVE.md
 assets/mascots/README.md
 assets/mascots/generate.py
+
+# Generators are internal tooling — they hardcode local paths and are not part
+# of the published site. Kept in the working copy, out of the public repo.
+build/
