@@ -506,17 +506,33 @@ tbody td a:hover{text-decoration-color:var(--pop)}
 .signup .su-fig img{width:100%;max-width:170px}
 .signup h2{margin-bottom:12px}
 .signup p{color:var(--body);margin:0 0 20px;max-width:52ch}
-.suform{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
-.suform input{font-family:var(--mono);font-size:16px;padding:13px 14px;
-  border:var(--bw) solid var(--ink);background:var(--panel);color:var(--ink);min-width:230px;flex:1}
-.suform input::placeholder{color:var(--mute)}
-.suform input:focus-visible{outline:3px solid var(--pop);outline-offset:2px}
-.suform button{font-family:var(--mono);font-size:16px;font-weight:700;letter-spacing:.06em;
+/* Two-across on desktop, stacked on a phone. The name pair shares a row, email and
+   the comment take the full width, and the button sits on its own line so it is never
+   mistaken for a fourth field. */
+.suform{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.suform .su-row{grid-column:1 / -1}
+.suform label{display:block;font-family:var(--mono);font-size:13px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.suform label .req{color:var(--pop)}
+.suform label .su-opt{color:var(--mute);text-transform:none;letter-spacing:0;font-style:italic}
+.suform input,.suform textarea{font-family:var(--mono);font-size:16px;padding:13px 14px;
+  border:var(--bw) solid var(--ink);background:var(--panel);color:var(--ink);
+  width:100%;display:block;box-sizing:border-box}
+.suform textarea{resize:vertical;min-height:88px;line-height:1.5}
+.suform input::placeholder,.suform textarea::placeholder{color:var(--mute)}
+.suform input:focus-visible,.suform textarea:focus-visible{outline:3px solid var(--pop);outline-offset:2px}
+/* A field the browser has rejected, but only once the user has tried to submit —
+   :invalid on its own shouts at somebody who has not typed anything yet. */
+.suform.tried input:invalid,.suform.tried textarea:invalid{border-color:var(--fail)}
+.suform button{justify-self:start;font-family:var(--mono);font-size:16px;font-weight:700;letter-spacing:.06em;
   text-transform:uppercase;padding:13px 24px;border:var(--bw) solid var(--ink);
   background:var(--accent);color:var(--accent-ink);box-shadow:5px 5px 0 var(--shadow);cursor:pointer;
   transition:transform .06s linear,box-shadow .06s linear}
 .suform button:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--shadow)}
-.su-small{font-family:var(--mono);font-size:13px;color:var(--mute);margin-top:14px}
+/* Scoped to .signup on purpose. `.signup p` (0,1,1) outranks a bare `.su-small` (0,1,0),
+   so the margin here was silently losing to `margin:0 0 20px` and the submit button's
+   hard shadow sat on top of this line. Keep the parent selector or it breaks again. */
+.signup .su-small{font-family:var(--mono);font-size:13px;color:var(--mute);margin:22px 0 0}
 .su-msg{font-family:var(--mono);font-size:14px;margin-top:14px;padding:12px 14px;
   border:var(--bw) solid var(--ink);display:none}
 .su-msg.ok{display:block;background:var(--panel);border-color:var(--pass);color:var(--pass)}
@@ -524,7 +540,8 @@ tbody td a:hover{text-decoration-color:var(--pop)}
 @media (max-width:820px){
   .signup{grid-template-columns:1fr;gap:22px}
   .signup .su-fig{max-width:130px}
-  .suform input,.suform button{width:100%}
+  .suform{grid-template-columns:1fr}
+  .suform button{width:100%;justify-self:stretch;text-align:center}
 }
 
 /* A related test that has not been written yet is not a link. It says so. */

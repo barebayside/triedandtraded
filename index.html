@@ -146,11 +146,32 @@
       <p>One strategy, tested properly, in your inbox every Tuesday. The verdict, the
          assumptions behind it, and the condition that changes the answer. No tips, no
          signals, and nothing you have to act on.</p>
-      <form class="suform" id="suForm" method="post"
-            data-endpoint=""><!-- ← paste the Catalyst URL here after deploy:
-            https://<project>.development.catalystserverless.com.au/server/tnt_lead_capture -->
-        <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">
-        <input type="text" name="first_name" autocomplete="given-name" placeholder="First name (optional)" aria-label="First name">
+      <!-- Wired 2026-08-07 to the Catalyst DEVELOPMENT environment, which is what is
+           deployed today. When the function is promoted to Production in the console,
+           this URL changes (.development. → the production host) and must be updated
+           here — the form will start failing loudly rather than silently if it is not. -->
+      <form class="suform" id="suForm" method="post" novalidate
+            data-endpoint="https://bbl-pipeline-7006497428.development.catalystserverless.com.au/server/tnt_lead_capture/">
+        <div>
+          <label for="suFirst">First name <span class="req">*</span></label>
+          <input type="text" id="suFirst" name="first_name" required autocomplete="given-name"
+                 placeholder="Jane" maxlength="60">
+        </div>
+        <div>
+          <label for="suLast">Last name <span class="req">*</span></label>
+          <input type="text" id="suLast" name="last_name" required autocomplete="family-name"
+                 placeholder="Smith" maxlength="60">
+        </div>
+        <div class="su-row">
+          <label for="suEmail">Email <span class="req">*</span></label>
+          <input type="email" id="suEmail" name="email" required autocomplete="email"
+                 placeholder="you@example.com" maxlength="120">
+        </div>
+        <div class="su-row">
+          <label for="suComment">What would you like tested? <span class="su-opt">Optional</span></label>
+          <textarea id="suComment" name="comment" rows="3" maxlength="1000"
+                    placeholder="A strategy you keep seeing recommended, options or shares — and the rule you'd want checked."></textarea>
+        </div>
         <button type="submit">Send it to me</button>
       </form>
       <div class="su-msg" id="suMsg" role="status" aria-live="polite"></div>
@@ -200,18 +221,41 @@
     return out;
   }
   function say(kind,text){ msg.className='su-msg '+kind; msg.textContent=text; }
+
+  // Our own check rather than the browser's, so the wording matches the page and
+  // the first offending field gets focus instead of a bare native tooltip.
+  function firstProblem(){
+    if(!f.first_name.value.trim()) return [f.first_name,'Please add your first name.'];
+    if(!f.last_name.value.trim())  return [f.last_name,'Please add your last name.'];
+    var e=f.email.value.trim();
+    if(!e)                          return [f.email,'Please add your email address.'];
+    if(!/^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(e))
+                                    return [f.email,'That email address does not look right.'];
+    return null;
+  }
+
   f.addEventListener('submit',function(e){
     e.preventDefault();
+    f.classList.add('tried');
+
+    var bad=firstProblem();
+    if(bad){ say('err',bad[1]); bad[0].focus(); return; }
+
     var url=f.dataset.endpoint;
-    if(!url){ say('err','Signup is not connected yet — no address was saved. Try again shortly.'); return; }
-    var btn=f.querySelector('button'); btn.disabled=true; say('','');
+    if(!url){ say('err','Signup is not connected yet — nothing was saved. Please try again shortly.'); return; }
+
+    var btn=f.querySelector('button'); btn.disabled=true; say('','Sending…');
     fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
                body:JSON.stringify(Object.assign({
-                 email:f.email.value, first_name:f.first_name.value,
+                 email:f.email.value.trim().toLowerCase(),
+                 first_name:f.first_name.value.trim(),
+                 last_name:f.last_name.value.trim(),
+                 comment:f.comment.value.trim(),
                  source:'triedandtraded.com', page:location.pathname
                }, utms()))})
       .then(function(r){ if(!r.ok) throw new Error(r.status);
-        say('ok','Done. Check your inbox to confirm — the first test lands Tuesday.'); f.reset(); })
+        say('ok','Done. Check your inbox to confirm — the first test lands Tuesday.');
+        f.reset(); f.classList.remove('tried'); })
       .catch(function(){ say('err','That did not save. Nothing was recorded — please try again.'); })
       .finally(function(){ btn.disabled=false; });
   });
