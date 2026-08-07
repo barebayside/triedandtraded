@@ -241,6 +241,146 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   letter-spacing:.06em;text-transform:uppercase;
   border-top:1px solid var(--hair);padding-top:14px;margin-top:4px}
 
+/* ============================================================================
+   THE FIELD SCENE — bull charges, bear charges, ferret inspects the wreckage.
+
+   Scenery palette is teal/grey/brown and deliberately contains NO green, red or
+   amber. Those are verdict colours (§3) and a grass-green field would put the
+   "Holds" colour into the decoration, which is exactly what that rule forbids.
+   The explosion is magenta + cyan — --pop already means "look here" and never
+   means good or bad, so it is the only honest colour for a bang.
+
+   Timing is one chain; js/tt-arena.js only adds .run when it scrolls into view.
+   CYCLE in that file must match the longest animation below (10.2s).
+   ========================================================================== */
+.arena{
+  --sky:#E4EEEA; --far:#AFC4BD; --soil:#B3C8C1; --soil2:#8FA9A2;
+  --bark:#6B5136; --leaf:#0B3B3C; --leaf2:#14595A; --rock:#78908A; --rock2:#9CB0AA;
+  position:relative;width:100%;aspect-ratio:320/132;overflow:hidden;
+  border:var(--bw) solid var(--ink);box-shadow:var(--so) var(--so) 0 var(--shadow);
+  background:var(--sky)}
+/* Dusk. Without this the field stays bright mint on a dark page and reads as a
+   hole punched through it — the scene palette is local to .arena, so it does not
+   inherit the dark-mode token swap and has to be restated. */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .arena{
+    --sky:#0E2725; --far:#17403D; --soil:#123331; --soil2:#0A211F;
+    --bark:#4A3826; --leaf:#0A3132; --leaf2:#12494A; --rock:#2B4A46; --rock2:#3B5C57}
+}
+:root[data-theme="dark"] .arena{
+  --sky:#0E2725; --far:#17403D; --soil:#123331; --soil2:#0A211F;
+  --bark:#4A3826; --leaf:#0A3132; --leaf2:#12494A; --rock:#2B4A46; --rock2:#3B5C57}
+
+.arena-scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+.arena img{position:absolute;bottom:14%;height:64%;width:auto;image-rendering:pixelated;
+  opacity:0;pointer-events:none}
+
+/* --- the two charges --------------------------------------------------- */
+.arena.run .arena-bull{animation:aBull 10.2s linear forwards}
+.arena.run .arena-bear{animation:aBear 10.2s linear forwards}
+@keyframes aBull{
+  0%      {left:-16%;opacity:1;transform:rotate(0deg) translateY(0)}
+  4%      {transform:rotate(6deg) translateY(-3%)}
+  8%      {transform:rotate(6deg) translateY(0)}
+  12%     {transform:rotate(7deg) translateY(-3%)}
+  16.6%   {left:41%;opacity:1;transform:rotate(9deg) translateY(0)}
+  17.2%   {left:41%;opacity:0}
+  100%    {left:41%;opacity:0}
+}
+@keyframes aBear{
+  0%      {right:-16%;opacity:1;transform:rotate(0deg) translateY(0)}
+  4%      {transform:rotate(-6deg) translateY(-3%)}
+  8%      {transform:rotate(-6deg) translateY(0)}
+  12%     {transform:rotate(-7deg) translateY(-3%)}
+  16.6%   {right:41%;opacity:1;transform:rotate(-9deg) translateY(0)}
+  17.2%   {right:41%;opacity:0}
+  100%    {right:41%;opacity:0}
+}
+
+/* --- impact ------------------------------------------------------------- */
+/* A hard-edged starburst, not a soft glow — the whole site is zero-radius and a
+   blurred circle would read as from a different website. clip-path keeps the
+   edges crisp at any size. */
+.arena-flash{position:absolute;left:50%;top:54%;width:0;height:0;
+  background:#fff;transform:translate(-50%,-50%);opacity:0;
+  clip-path:polygon(50% 0%,58.04% 30.6%,85.36% 14.64%,69.4% 41.96%,100% 50%,69.4% 58.04%,85.36% 85.36%,58.04% 69.4%,50% 100%,41.96% 69.4%,14.64% 85.36%,30.6% 58.04%,0% 50%,30.6% 41.96%,14.64% 14.64%,41.96% 30.6%)}
+.arena.run .arena-flash{animation:aFlash 10.2s linear forwards}
+@keyframes aFlash{
+  0%,16.5% {width:0;height:0;opacity:0}
+  16.8%    {width:7%;height:17%;opacity:1;background:#fff}
+  17.6%    {width:19%;height:46%;opacity:1;background:var(--pop)}
+  19.2%    {width:27%;height:65%;opacity:.5;background:var(--accent)}
+  21%      {width:33%;height:80%;opacity:0;background:var(--accent)}
+  100%     {opacity:0}
+}
+/* The shards used to be sized in % inside a zero-size parent, which resolves to
+   zero — they were in the DOM and invisible on every frame. Fixed size, absolute
+   position, parent spans the whole arena. */
+.arena-boom{position:absolute;inset:0;pointer-events:none}
+.arena-boom i{position:absolute;left:calc(50% - 6px);top:calc(54% - 6px);
+  width:12px;height:12px;background:var(--ink);display:block;opacity:0}
+.arena-boom i:nth-child(3n){background:var(--pop)}
+.arena-boom i:nth-child(3n+1){background:var(--accent)}
+.arena.run .arena-boom i{animation:aShard 10.2s linear forwards}
+@keyframes aShard{
+  0%,16.5% {opacity:0;transform:rotate(var(--a)) translateX(0) rotate(0)}
+  17%      {opacity:1;transform:rotate(var(--a)) translateX(0) rotate(0)}
+  23%      {opacity:1;transform:rotate(var(--a)) translateX(calc(var(--d) * .8)) rotate(200deg)}
+  27%      {opacity:0;transform:rotate(var(--a)) translateX(var(--d)) rotate(300deg)}
+  100%     {opacity:0}
+}
+
+/* --- the crater is only there after the bang --------------------------- */
+.arena-crater{opacity:0}
+.arena.run .arena-crater{animation:aCrater 10.2s linear forwards}
+@keyframes aCrater{0%,17% {opacity:0} 21%,100% {opacity:1}}
+
+/* --- the ferret walks in, then shrugs ----------------------------------- */
+.arena.run .arena-ferret{animation:aFerret 10.2s linear forwards}
+@keyframes aFerret{
+  0%,30%   {left:-14%;opacity:0;transform:translateY(0)}
+  31%      {left:-14%;opacity:1}
+  35%      {transform:translateY(-2%)}
+  39%      {transform:translateY(0)}
+  43%      {transform:translateY(-2%)}
+  47%      {transform:translateY(0)}
+  51%      {transform:translateY(-2%)}
+  55%      {left:44%;opacity:1;transform:translateY(0)}
+  60%      {left:44%;opacity:1}
+  61%      {left:44%;opacity:0}
+  100%     {left:44%;opacity:0}
+}
+.arena.run .arena-ferret2{animation:aFerret2 10.2s linear forwards}
+@keyframes aFerret2{
+  0%,60%   {left:44%;opacity:0}
+  61%,92%  {left:44%;opacity:1}
+  96%,100% {left:36%;opacity:0}
+}
+
+/* --- the still frame, for anyone who does not want motion --------------- */
+@media (prefers-reduced-motion:reduce){
+  /* EVERY animated element has to be listed. The first version left the crater
+     and the shrugging ferret still running their keyframes, which hold opacity 0
+     for the first 60% of the timeline — so reduced-motion users got an empty
+     field instead of the punchline. */
+  .arena.run .arena-bull,.arena.run .arena-bear,.arena.run .arena-flash,
+  .arena.run .arena-boom i,.arena.run .arena-ferret,
+  .arena.run .arena-ferret2,.arena.run .arena-crater{animation:none !important}
+  .arena .arena-bull,.arena .arena-bear,.arena .arena-flash,.arena .arena-boom i{opacity:0}
+  .arena .arena-crater{opacity:1}
+  .arena .arena-ferret2{opacity:1;left:44%}
+}
+
+.arena-cap{font-family:var(--mono);font-size:15px;color:var(--mute);margin-top:18px;
+  max-width:62ch}
+
+@media (max-width:700px){
+  .arena{aspect-ratio:320/168}
+  .arena img{height:52%;bottom:16%}
+  .arena-cap{font-size:14px}
+}
+
 /* ===== Test of the Week prompt — see js/tt-popup.js for the trigger rules =====
    Docked bottom-right, never a full-screen overlay. Google counts an interstitial
    that covers the content on arrival as a ranking negative, and this site is about

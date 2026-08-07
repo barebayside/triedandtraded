@@ -120,6 +120,87 @@
   </div>
 </div></section>
 
+<!-- ================= THE ARGUMENT, IN A FIELD =================
+     The whole premise of the site in one wordless loop: the bull is certain, the
+     bear is certain, they cancel each other out, and the only one left standing
+     is the one who went and looked.
+
+     The scenery is teal and grey ON PURPOSE. Green, red and amber are verdict
+     colours (DESIGN-RULES §3) — a grass-green field would put the "Holds" colour
+     in the furniture, which is the exact thing that rule exists to prevent.
+     The explosion is magenta and cyan for the same reason.
+     ============================================================ -->
+<section class="sec light" id="argument"><div class="wrap">
+  <div class="sec-head"><h2>Two people are certain.<br>Neither has counted.</h2>
+    <span class="tag">The argument this site exists to settle</span></div>
+
+  <div class="arena" role="img"
+       aria-label="A bull and a bear charge at each other across a field and knock
+                   each other out. A ferret walks over, looks at what is left, and shrugs.">
+    <svg class="arena-scene" viewBox="0 0 320 132" preserveAspectRatio="xMidYMax slice"
+         shape-rendering="crispEdges" aria-hidden="true" focusable="false">
+      <rect x="0" y="0" width="320" height="94" fill="var(--sky)"/>
+      <!-- distant ground swells -->
+      <rect x="18"  y="84" width="70" height="10" fill="var(--far)"/>
+      <rect x="34"  y="80" width="38" height="4"  fill="var(--far)"/>
+      <rect x="188" y="82" width="96" height="12" fill="var(--far)"/>
+      <rect x="212" y="78" width="48" height="4"  fill="var(--far)"/>
+      <!-- ground -->
+      <rect x="0" y="94" width="320" height="38" fill="var(--soil)"/>
+      <rect x="0" y="94" width="320" height="2"  fill="var(--hair)"/>
+      <!-- left tree -->
+      <rect x="44" y="56" width="8"  height="40" fill="var(--bark)"/>
+      <rect x="30" y="34" width="36" height="10" fill="var(--leaf)"/>
+      <rect x="24" y="44" width="48" height="10" fill="var(--leaf)"/>
+      <rect x="30" y="54" width="36" height="6"  fill="var(--leaf)"/>
+      <rect x="34" y="38" width="14" height="4"  fill="var(--leaf2)"/>
+      <rect x="28" y="46" width="16" height="4"  fill="var(--leaf2)"/>
+      <!-- right tree, shorter -->
+      <rect x="268" y="62" width="7"  height="34" fill="var(--bark)"/>
+      <rect x="256" y="44" width="32" height="9"  fill="var(--leaf)"/>
+      <rect x="250" y="53" width="44" height="9"  fill="var(--leaf)"/>
+      <rect x="258" y="47" width="12" height="4"  fill="var(--leaf2)"/>
+      <!-- rock -->
+      <rect x="196" y="86" width="26" height="10" fill="var(--rock)"/>
+      <rect x="200" y="82" width="18" height="4"  fill="var(--rock)"/>
+      <rect x="202" y="83" width="8"  height="3"  fill="var(--rock2)"/>
+      <!-- grass tufts -->
+      <rect x="12"  y="102" width="2" height="5" fill="var(--far)"/>
+      <rect x="16"  y="104" width="2" height="3" fill="var(--far)"/>
+      <rect x="96"  y="108" width="2" height="5" fill="var(--far)"/>
+      <rect x="100" y="110" width="2" height="3" fill="var(--far)"/>
+      <rect x="240" y="104" width="2" height="5" fill="var(--far)"/>
+      <rect x="244" y="106" width="2" height="3" fill="var(--far)"/>
+      <rect x="300" y="112" width="2" height="5" fill="var(--far)"/>
+      <!-- the crater, revealed after the collision -->
+      <g class="arena-crater">
+        <rect x="132" y="101" width="56" height="6" fill="var(--soil2)"/>
+        <rect x="138" y="97"  width="44" height="4" fill="var(--soil2)"/>
+        <rect x="146" y="99"  width="28" height="5" fill="var(--rock)"/>
+        <rect x="128" y="104" width="8"  height="3" fill="var(--soil2)"/>
+        <rect x="184" y="104" width="8"  height="3" fill="var(--soil2)"/>
+        <rect x="150" y="94"  width="4"  height="3" fill="var(--soil2)"/>
+        <rect x="170" y="93"  width="4"  height="4" fill="var(--soil2)"/>
+      </g>
+    </svg>
+
+    <img class="arena-bull"   src="assets/mascots/bull-point.svg"   alt="" width="120" height="200">
+    <img class="arena-bear"   src="assets/mascots/bear-point.svg"   alt="" width="120" height="200">
+    <img class="arena-ferret" src="assets/mascots/ferret-stand.svg" alt="" width="110" height="183">
+    <img class="arena-ferret2" src="assets/mascots/ferret-shrug.svg" alt="" width="110" height="183">
+
+    <div class="arena-boom" aria-hidden="true">
+      <i style="--a:0deg;--d:210px"></i><i style="--a:30deg;--d:150px"></i><i style="--a:60deg;--d:185px"></i>
+      <i style="--a:90deg;--d:130px"></i><i style="--a:120deg;--d:205px"></i><i style="--a:150deg;--d:160px"></i>
+      <i style="--a:180deg;--d:195px"></i><i style="--a:210deg;--d:140px"></i><i style="--a:240deg;--d:215px"></i>
+      <i style="--a:270deg;--d:165px"></i><i style="--a:300deg;--d:180px"></i><i style="--a:330deg;--d:145px"></i></div>
+    <div class="arena-flash" aria-hidden="true"></div>
+  </div>
+
+  <p class="arena-cap">The bull says it works. The bear says it doesn't. Neither of them
+    has run it &mdash; which is the entire reason this site exists.</p>
+</div></section>
+
 <!-- ================= TEST OF THE WEEK ================= -->
 <section class="sec" id="verdict"><div class="wrap">
   <div class="sec-head"><h2>Test of the week</h2>
@@ -327,6 +408,7 @@
   });
 })();
 </script>
+<script defer src="/js/tt-arena.js"></script>
 <script defer src="/js/tt-popup.js"></script>
 </body>
 </html>
