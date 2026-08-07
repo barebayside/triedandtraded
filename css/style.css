@@ -207,7 +207,11 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
 .sticker .kicker.pop-bg{background:var(--pop)}
 .sticker h3{font-size:26px;margin-bottom:10px}
 .sticker p{color:var(--body);font-size:18px;margin:0 0 18px}
-.sticker .price{font-family:var(--mono);font-size:16px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+/* The price line is the thing a reader looks for. Muted grey made it unreadable —
+   it now sits on ink, bold, above a hairline rule so the card has a clear foot. */
+.sticker .price{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--ink);
+  letter-spacing:.06em;text-transform:uppercase;
+  border-top:1px solid var(--hair);padding-top:14px;margin-top:4px}
 
 footer{padding:38px 0}
 footer .wrap{display:flex;gap:22px;flex-wrap:wrap;align-items:center;
