@@ -358,6 +358,34 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   96%,100% {left:36%;opacity:0}
 }
 
+/* --- the ferret's line -------------------------------------------------- */
+.arena-say{position:absolute;left:48%;bottom:81%;transform:translateX(-50%) translateY(6px);
+  background:var(--panel);border:var(--bw) solid var(--ink);
+  box-shadow:5px 5px 0 var(--shadow);padding:10px 14px;text-align:center;
+  white-space:nowrap;opacity:0;pointer-events:none}
+.arena-say b{display:block;font-family:var(--display);text-transform:uppercase;
+  font-size:clamp(15px,1.5vw,21px);line-height:1;letter-spacing:-.01em;color:var(--ink)}
+.arena-say span{display:block;font-family:var(--mono);font-size:clamp(11px,1vw,14px);
+  letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:5px}
+/* stepped pixel tail, pointing down at him */
+.arena-say i{position:absolute;display:block;background:var(--panel);
+  border-left:var(--bw) solid var(--ink);border-right:var(--bw) solid var(--ink)}
+.arena-say i.t1{width:18px;height:8px;left:calc(50% - 9px);bottom:-8px;
+  border-bottom:0;box-shadow:0 2px 0 -2px var(--ink)}
+.arena-say i.t2{width:8px;height:8px;left:calc(50% - 4px);bottom:-16px;
+  border-bottom:var(--bw) solid var(--ink)}
+/* the bubble sits over the tail's top border so it reads as one shape */
+.arena-say::after{content:"";position:absolute;left:calc(50% - 7px);bottom:-2px;
+  width:14px;height:4px;background:var(--panel)}
+
+.arena.run .arena-say{animation:aSay 10.2s linear forwards}
+@keyframes aSay{
+  0%,63%   {opacity:0;transform:translateX(-50%) translateY(6px)}
+  66%      {opacity:1;transform:translateX(-50%) translateY(0)}
+  88%      {opacity:1;transform:translateX(-50%) translateY(0)}
+  92%,100% {opacity:0;transform:translateX(-50%) translateY(0)}
+}
+
 /* --- the still frame, for anyone who does not want motion --------------- */
 @media (prefers-reduced-motion:reduce){
   /* EVERY animated element has to be listed. The first version left the crater
@@ -366,10 +394,12 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
      field instead of the punchline. */
   .arena.run .arena-bull,.arena.run .arena-bear,.arena.run .arena-flash,
   .arena.run .arena-boom i,.arena.run .arena-ferret,
-  .arena.run .arena-ferret2,.arena.run .arena-crater{animation:none !important}
+  .arena.run .arena-ferret2,.arena.run .arena-crater,
+  .arena.run .arena-say{animation:none !important}
   .arena .arena-bull,.arena .arena-bear,.arena .arena-flash,.arena .arena-boom i{opacity:0}
   .arena .arena-crater{opacity:1}
   .arena .arena-ferret2{opacity:1;left:44%}
+  .arena .arena-say{opacity:1;transform:translateX(-50%)}
 }
 
 .arena-cap{font-family:var(--mono);font-size:15px;color:var(--mute);margin-top:18px;
@@ -377,6 +407,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 
 @media (max-width:700px){
   .arena{aspect-ratio:320/168}
+  .arena-say{bottom:70%;padding:8px 11px}
   .arena img{height:52%;bottom:16%}
   .arena-cap{font-size:14px}
 }
