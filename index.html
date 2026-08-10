@@ -336,6 +336,17 @@
           <textarea id="suComment" name="comment" rows="3" maxlength="1000"
                     placeholder="A strategy you keep seeing recommended, options or shares — and the rule you'd want checked."></textarea>
         </div>
+        <!-- Bot trap, added 2026-08-10 after a junk signup reached CRM. Nobody sees
+             this and nothing legitimate fills it in; scripts that fill every input do.
+             Hidden three ways on purpose — off-screen for sighted users, aria-hidden
+             for screen readers, tabindex -1 so keyboard tabbing skips it. The name is
+             matched by HONEYPOT_FIELD in the capture function: rename one, rename both.
+             `display:none` is deliberately NOT used — some bots skip those. -->
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+          <label for="suCompanyWebsite">Do not fill this in</label>
+          <input type="text" id="suCompanyWebsite" name="company_website"
+                 tabindex="-1" autocomplete="off">
+        </div>
         <button type="submit">Send it to me</button>
       </form>
       <div class="su-msg" id="suMsg" role="status" aria-live="polite"></div>
@@ -374,6 +385,11 @@
 (function(){
   var f=document.getElementById('suForm'); if(!f) return;
   var msg=document.getElementById('suMsg');
+  // When the form became fillable. The gap between this and the submit is the single
+  // cheapest tell there is: a person needs seconds, a script needs none. Sent as
+  // elapsed_ms and judged by the function, which owns the threshold — the page is not
+  // trusted to enforce anything, only to report.
+  var shownAt=Date.now();
   // First-touch attribution: whatever brought them here, kept for the whole visit.
   function utms(){
     var out={}, q=new URLSearchParams(location.search);
@@ -420,6 +436,8 @@
                  first_name:f.first_name.value.trim(),
                  last_name:f.last_name.value.trim(),
                  comment:f.comment.value.trim(),
+                 company_website:f.company_website.value,
+                 elapsed_ms:Date.now()-shownAt,
                  source:'triedandtraded.com', page:location.pathname
                }, utms()))})
       .then(function(r){ if(!r.ok) throw new Error(r.status);
