@@ -15,6 +15,10 @@ Allow: /
 # Parked. The software does not exist yet, so nothing links here.
 Disallow: /machine.html
 
+# Parked 2026-08-19. The stock shelf is held back until the options side has real
+# results; the page still exists and nothing links to it.
+Disallow: /archive-stocks.html
+
 # ---------------------------------------------------------------------------
 # AI and answer engines — allowed ON PURPOSE.
 #

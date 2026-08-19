@@ -223,6 +223,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 /* The archive's two master shelves — options and stocks. Two, never three:
    the pair IS the taxonomy, so a third column would misrepresent the site. */
 .shelves{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.shelves.one{grid-template-columns:1fr}
 .shelf{display:block;text-decoration:none;color:inherit;background:var(--panel);
   border:var(--bw) solid var(--ink);box-shadow:var(--so) var(--so) 0 var(--shadow);padding:26px 24px}
 .shelf:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--shadow)}

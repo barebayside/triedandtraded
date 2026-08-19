@@ -1,6 +1,6 @@
 # Tried & Traded
 
-> We test the trading strategies everyone talks about — in options and in shares — and
+> We test the options strategies everyone talks about and
 > publish the verdict. Holds, Fails, or Conditional, with the method and the limits
 > attached to every result.
 
@@ -37,8 +37,6 @@ cite any number from this site — there are none to cite.
 - [Options backtesting](https://triedandtraded.com/archive-options.html): credit spreads,
   iron condors and flies, the wheel and covered calls, calendars and diagonals,
   undefined risk. 3 written, 11 queued.
-- [Stock backtesting](https://triedandtraded.com/archive-stocks.html): trend following,
-  mean reversion, breakouts, momentum, income. Nothing written yet, 10 queued.
 
 ## Tests written so far (structure complete, results Pending)
 
