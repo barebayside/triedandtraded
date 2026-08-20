@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Field Guide &mdash; Tried &amp; Traded</title>
-<meta name="description" content="Every term a Tried &amp; Traded test uses, explained on its own page. Search the Field Guide for a strategy, a Greek, an exit rule or a way of measuring a result.">
-<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<meta name="description" content="Every term a Tried &amp; Traded test uses, explained on its own page. Pick a section &mdash; exits, structures, tests or method &mdash; or search the guide for a word.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY - phase 3 of BLOG-QUEUE.md removes this -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
@@ -18,13 +18,29 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
 .article-main h1{font-size:clamp(30px,3.6vw,44px);line-height:1.05;margin:6px 0 14px}
-.sec{padding:52px 0}
-.gidx-lede{font-size:20px;line-height:1.5;color:var(--body);max-width:60ch;margin:0 0 26px}
+.sec{padding:48px 0}
 
-/* ---- the search box. One loud thing on the view, so it takes the accent. ---- */
+/* ---- the two ways in, stated rather than implied ---- */
+.how{display:grid;grid-template-columns:1fr 1fr;gap:0;border:var(--bw) solid var(--ink);
+  background:var(--panel);box-shadow:var(--so) var(--so) 0 var(--shadow);
+  margin:0 0 26px;max-width:760px}
+.how > div{padding:18px 20px}
+.how > div + div{border-left:var(--bw) solid var(--ink)}
+.how .n{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;color:#fff;
+  background:var(--deep);display:inline-block;padding:3px 8px;margin:0 0 10px}
+.how h3{font-family:var(--display);text-transform:uppercase;font-size:17px;
+  margin:0 0 6px;color:var(--ink);line-height:1.1}
+.how p{margin:0;font-size:15px;line-height:1.5;color:var(--body)}
+.how p b{color:var(--ink)}
+@media (max-width:720px){
+  .how{grid-template-columns:1fr}
+  .how > div + div{border-left:0;border-top:var(--bw) solid var(--ink)}
+}
+
+/* ---- the search box ---- */
 .gsearch{border:var(--bw) solid var(--ink);background:var(--panel);
   box-shadow:var(--so) var(--so) 0 var(--shadow);display:flex;align-items:stretch;
-  max-width:640px}
+  max-width:760px}
 .gsearch input{flex:1;border:0;background:transparent;color:var(--ink);
   font-family:var(--sans);font-size:18px;padding:15px 16px;min-width:0}
 .gsearch input::placeholder{color:var(--mute)}
@@ -39,24 +55,52 @@
 .gs-count{font-family:var(--mono);font-size:12.5px;color:var(--mute);margin:12px 0 0}
 .gs-count b{color:var(--ink)}
 
-/* ---- the shelf ---- */
-.gidx-group{margin:0 0 40px}
-.gidx-group > h3{font-family:var(--display);text-transform:uppercase;font-size:19px;
-  margin:0 0 4px;color:var(--ink)}
-.gidx-group > h3 i{font-style:normal;color:var(--pop);font-size:13px;
-  font-family:var(--mono);margin-left:8px;vertical-align:2px}
-.gidx-sub{font-family:var(--mono);font-size:12.5px;color:var(--mute);margin:0 0 14px}
+/* ---- THE SECTION RAIL. It must follow you down the page: `position:sticky`
+   cannot, because each band is its own <section> and a sticky rail is trapped
+   inside whichever one holds it. Fixed, with the column inset to leave room. ---- */
+@media (min-width:1120px){
+  .sec > .wrap{padding-right:274px}
+  .rail{position:fixed;top:88px;width:228px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:18px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:7px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ul{list-style:none;margin:0;padding:6px 0}
+.rail-nav li{margin:0}
+.rail-nav button{width:100%;text-align:left;border:0;background:transparent;
+  cursor:pointer;font-family:var(--mono);font-size:13px;line-height:1.35;
+  color:var(--body);padding:8px 12px;display:flex;justify-content:space-between;
+  gap:10px;align-items:baseline}
+.rail-nav button:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav button i{font-style:normal;font-size:11.5px;color:var(--mute)}
+.rail-nav button.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-nav button.on i{color:var(--ink)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- the shelves ---- */
+.gidx-group{margin:0 0 44px;scroll-margin-top:80px}
+.gidx-group > h2{font-family:var(--display);text-transform:uppercase;
+  font-size:clamp(20px,2.2vw,25px);margin:0 0 4px;color:var(--ink);line-height:1.1}
+.gidx-group > h2 i{font-style:normal;color:var(--pop);font-size:13px;
+  font-family:var(--mono);margin-left:10px;vertical-align:3px}
+.gidx-sub{font-family:var(--mono);font-size:12.5px;color:var(--mute);margin:0 0 16px;
+  max-width:66ch;line-height:1.5}
 .gidx-list{list-style:none;margin:0;padding:0;border-top:var(--bw) solid var(--ink)}
 .gidx-list li{border-bottom:1px solid var(--hair)}
-.gidx-list a{display:grid;grid-template-columns:minmax(0,22em) 1fr;gap:20px;
+.gidx-list a{display:grid;grid-template-columns:minmax(0,21em) 1fr;gap:20px;
   padding:13px 4px;text-decoration:none;align-items:baseline}
 .gidx-list a:hover{background:var(--panel-2)}
 .gidx-t{font-weight:700;font-size:17px;color:var(--ink);line-height:1.3}
 .gidx-d{font-size:14.5px;color:var(--body);line-height:1.45}
 .gidx-list mark{background:var(--accent);color:var(--accent-ink);padding:0 2px}
-@media (max-width:760px){
-  .gidx-list a{grid-template-columns:1fr;gap:5px}
-}
+@media (max-width:760px){.gidx-list a{grid-template-columns:1fr;gap:5px}}
 
 /* ---- nothing found ---- */
 .gs-empty{display:none;align-items:center;gap:18px;border:var(--bw) dashed var(--hair);
@@ -65,7 +109,7 @@
 .gs-empty p{margin:0;color:var(--body);font-size:16px;max-width:46ch}
 .gs-empty b{color:var(--ink)}
 .gidx-note{font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--mute);
-  border-left:3px solid var(--accent);padding:8px 0 8px 13px;margin:0 0 30px;
+  border-left:3px solid var(--accent);padding:8px 0 8px 13px;margin:0 0 34px;
   max-width:70ch}
 .gidx-note b{color:var(--body)}
 </style>
@@ -77,76 +121,79 @@
   <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
   <nav id="mainnav">
     <a href="test-the-wheel.html">Test of the Week</a>
-    <a href="archive.html">The Archive</a>
-    <a href="guide.html">Field Guide</a>
+    <a class="hub" href="archive.html">The Archive</a>
+    <a class="hub" href="guide.html" aria-current="page">Field Guide</a>
     <a href="methodology.html">Methodology</a>
     <a class="cta" href="index.html#signup">Start Free</a>
     <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
   </nav>
 </div></div>
-<section class="sec"><div class="wrap"><div class="article-main">
+<section class="sec"><div class="wrap article-layout">
+<div class="article-main">
 <span class="tag">The Field Guide</span>
 <h1>Look a word up</h1>
-<p class="gidx-lede">Every term our tests use, explained on its own page. One page, one idea, and the link never changes.</p>
+<div class="how"><div><span class="n">1</span><h3>Pick a section</h3><p>The guide is grouped into sections &mdash; <b>exits</b>, <b>structures</b>, the <b>tests</b> and the <b>method</b>. Choose one and only those articles are shown.</p></div><div><span class="n">2</span><h3>Or search a word</h3><p>Type any term &mdash; <b>delta</b>, <b>iron condor</b>, <b>stop loss</b> &mdash; and every article that explains it comes up.</p></div></div>
 <div class="gsearch"><span class="gs-icon">FIND</span><input id="gs" type="search" autocomplete="off" spellcheck="false" placeholder="bull put spread, delta, stop loss, expectancy&hellip;" aria-label="Search the Field Guide"><button id="gsClear" type="button" aria-label="Clear the search">&times;</button></div>
 <p class="gs-count" id="gsCount"></p>
-<div class="gs-empty" id="gsEmpty"><img src="assets/mascots/ferret-shrug.svg" alt=""><p><b>Nothing on that yet.</b> The guide is being written in clusters &mdash; exits first, then the structures. If it is a term one of our tests uses, it will have a page.</p></div>
-</div></div></section>
+<div class="gs-empty" id="gsEmpty"><img src="assets/mascots/ferret-shrug.svg" alt=""><p><b>Nothing on that yet.</b> The guide is being written in sections &mdash; exits and structures first. If it is a term one of our tests uses, it will have a page.</p></div>
+</div>
+<aside class="rail"><div class="rail-nav"><h3>Pick a section</h3><ul><li><button class="on" data-c="all"><span>Everything</span><i>34</i></button></li><li><button data-c="exits"><span>Exits</span><i>13</i></button></li><li><button data-c="structures"><span>Structures</span><i>17</i></button></li><li><button data-c="tests"><span>The tests</span><i>3</i></button></li><li><button data-c="other"><span>Method</span><i>1</i></button></li></ul></div><p class="rail-note">A Field Guide page states <b>no results</b>. Every number on one is arithmetic from a specification printed beside it.</p></aside>
+</div></section>
 <section class="sec light"><div class="wrap"><div class="article-main">
 <p class="gidx-note">A Field Guide page states <b>no results</b> &mdash; every number on one is arithmetic from a specification printed beside it. Results live in the tests, and <b>no test has published one yet</b>.</p>
-<div class="gidx-group">
-<h3>Exits <i>13</i></h3>
-<p class="gidx-sub">How a trade ends &mdash; and why that decides more than the entry</p>
+<div class="gidx-group" id="sec-exits">
+<h2>Exits <i>13</i></h2>
+<p class="gidx-sub">How a trade ends &mdash; and why that decides more than the entry does</p>
 <ul class="gidx-list">
-<li data-u="guide-close-at-50.html"><a href="guide-close-at-50.html"><span class="gidx-t">Does closing at 50% beat holding to expiry?</span><span class="gidx-d">Closing an options trade at half its maximum profit is the most repeated rule in premium selling. Here is what the rule actually claims, and what a test would have to show.</span></a></li>
-<li data-u="guide-exit-profit-target.html"><a href="guide-exit-profit-target.html"><span class="gidx-t">Exit 1 — the profit target</span><span class="gidx-d">A profit target closes an options trade once it has captured a stated fraction of the most it could make. What 50% actually means, and what it costs you.</span></a></li>
-<li data-u="guide-exit-stop-loss.html"><a href="guide-exit-stop-loss.html"><span class="gidx-t">Exit 2 — the stop loss</span><span class="gidx-d">A stop loss on an options trade is a multiple of what you staked, not of what you can lose. Get that backwards and the stop fires far too early or far too late.</span></a></li>
-<li data-u="guide-exit-time.html"><a href="guide-exit-time.html"><span class="gidx-t">Exit 3 — the time exit</span><span class="gidx-d">A time exit closes an options trade at a fixed number of days to expiry, in profit or not. It is a rule about gamma wearing a clock’s clothes.</span></a></li>
-<li data-u="guide-exit-expiry.html"><a href="guide-exit-expiry.html"><span class="gidx-t">Exit 4 — holding to expiry</span><span class="gidx-d">Holding an options trade to expiry is the exit that costs nothing to run and is the control every other exit has to beat.</span></a></li>
-<li data-u="guide-exit-technical.html"><a href="guide-exit-technical.html"><span class="gidx-t">Exit 5 — the technical exit</span><span class="gidx-d">A technical exit closes an options trade when the underlying does something you named in advance. It is the hardest exit to test honestly.</span></a></li>
-<li data-u="guide-exit-assignment.html"><a href="guide-exit-assignment.html"><span class="gidx-t">Exit 6 — assignment</span><span class="gidx-d">Assignment ends an options trade by delivering shares. Taken on purpose it is a strategy; taken by surprise it is the most expensive way a defined-risk trade goes wrong.</span></a></li>
-<li data-u="guide-exit-roll.html"><a href="guide-exit-roll.html"><span class="gidx-t">Exit 7 — the roll</span><span class="gidx-d">Rolling an options trade closes it and opens a new one further out. It is on the list of exits because so many traders count it as one, and it is the reason losing streaks look flat.</span></a></li>
-<li data-u="guide-seven-exits.html"><a href="guide-seven-exits.html"><span class="gidx-t">The seven ways to exit an options trade</span><span class="gidx-d">There are seven ways an options trade can end: profit target, stop loss, time exit, expiry, technical exit, assignment and the roll. What each one does, and what it costs.</span></a></li>
-<li data-u="guide-exit-rule.html"><a href="guide-exit-rule.html"><span class="gidx-t">What is an exit rule?</span><span class="gidx-d">An exit rule is the part of a strategy that decides when a trade ends, stated before the trade opens. Here is what makes one a rule rather than a habit.</span></a></li>
-<li data-u="guide-gamma-risk.html"><a href="guide-gamma-risk.html"><span class="gidx-t">What is gamma risk near expiry?</span><span class="gidx-d">Gamma risk is how fast your delta changes as the stock moves. Near expiry it grows sharply, which is the reason time exits exist.</span></a></li>
-<li data-u="guide-21-dte-exit.html"><a href="guide-21-dte-exit.html"><span class="gidx-t">What is the 21-DTE exit?</span><span class="gidx-d">The 21-DTE exit closes an options trade three weeks before expiry regardless of profit. Where the rule came from, what it is really managing, and what would have to be true for it to work.</span></a></li>
-<li data-u="guide-exit-changes-the-answer.html"><a href="guide-exit-changes-the-answer.html"><span class="gidx-t">Why the exit changes the answer more than the entry</span><span class="gidx-d">Two traders can run identical option entries for a year and reach opposite conclusions. The exit is usually why, and here is the mechanism.</span></a></li>
+<li data-u="guide-close-at-50.html" data-c="exits"><a href="guide-close-at-50.html"><span class="gidx-t">Does closing at 50% beat holding to expiry?</span><span class="gidx-d">Closing an options trade at half its maximum profit is the most repeated rule in premium selling. Here is what the rule actually claims, and what a test would have to show.</span></a></li>
+<li data-u="guide-exit-profit-target.html" data-c="exits"><a href="guide-exit-profit-target.html"><span class="gidx-t">Exit 1 — the profit target</span><span class="gidx-d">A profit target closes an options trade once it has captured a stated fraction of the most it could make. What 50% actually means, and what it costs you.</span></a></li>
+<li data-u="guide-exit-stop-loss.html" data-c="exits"><a href="guide-exit-stop-loss.html"><span class="gidx-t">Exit 2 — the stop loss</span><span class="gidx-d">A stop loss on an options trade is a multiple of what you staked, not of what you can lose. Get that backwards and the stop fires far too early or far too late.</span></a></li>
+<li data-u="guide-exit-time.html" data-c="exits"><a href="guide-exit-time.html"><span class="gidx-t">Exit 3 — the time exit</span><span class="gidx-d">A time exit closes an options trade at a fixed number of days to expiry, in profit or not. It is a rule about gamma wearing a clock’s clothes.</span></a></li>
+<li data-u="guide-exit-expiry.html" data-c="exits"><a href="guide-exit-expiry.html"><span class="gidx-t">Exit 4 — holding to expiry</span><span class="gidx-d">Holding an options trade to expiry is the exit that costs nothing to run and is the control every other exit has to beat.</span></a></li>
+<li data-u="guide-exit-technical.html" data-c="exits"><a href="guide-exit-technical.html"><span class="gidx-t">Exit 5 — the technical exit</span><span class="gidx-d">A technical exit closes an options trade when the underlying does something you named in advance. It is the hardest exit to test honestly.</span></a></li>
+<li data-u="guide-exit-assignment.html" data-c="exits"><a href="guide-exit-assignment.html"><span class="gidx-t">Exit 6 — assignment</span><span class="gidx-d">Assignment ends an options trade by delivering shares. Taken on purpose it is a strategy; taken by surprise it is the most expensive way a defined-risk trade goes wrong.</span></a></li>
+<li data-u="guide-exit-roll.html" data-c="exits"><a href="guide-exit-roll.html"><span class="gidx-t">Exit 7 — the roll</span><span class="gidx-d">Rolling an options trade closes it and opens a new one further out. It is on the list of exits because so many traders count it as one, and it is the reason losing streaks look flat.</span></a></li>
+<li data-u="guide-seven-exits.html" data-c="exits"><a href="guide-seven-exits.html"><span class="gidx-t">The seven ways to exit an options trade</span><span class="gidx-d">There are seven ways an options trade can end: profit target, stop loss, time exit, expiry, technical exit, assignment and the roll. What each one does, and what it costs.</span></a></li>
+<li data-u="guide-exit-rule.html" data-c="exits"><a href="guide-exit-rule.html"><span class="gidx-t">What is an exit rule?</span><span class="gidx-d">An exit rule is the part of a strategy that decides when a trade ends, stated before the trade opens. Here is what makes one a rule rather than a habit.</span></a></li>
+<li data-u="guide-gamma-risk.html" data-c="exits"><a href="guide-gamma-risk.html"><span class="gidx-t">What is gamma risk near expiry?</span><span class="gidx-d">Gamma risk is how fast your delta changes as the stock moves. Near expiry it grows sharply, which is the reason time exits exist.</span></a></li>
+<li data-u="guide-21-dte-exit.html" data-c="exits"><a href="guide-21-dte-exit.html"><span class="gidx-t">What is the 21-DTE exit?</span><span class="gidx-d">The 21-DTE exit closes an options trade three weeks before expiry regardless of profit. Where the rule came from, what it is really managing, and what would have to be true for it to work.</span></a></li>
+<li data-u="guide-exit-changes-the-answer.html" data-c="exits"><a href="guide-exit-changes-the-answer.html"><span class="gidx-t">Why the exit changes the answer more than the entry</span><span class="gidx-d">Two traders can run identical option entries for a year and reach opposite conclusions. The exit is usually why, and here is the mechanism.</span></a></li>
 </ul></div>
-<div class="gidx-group">
-<h3>Structures <i>17</i></h3>
-<p class="gidx-sub">What each strategy is made of, and what it costs to be wrong</p>
+<div class="gidx-group" id="sec-structures">
+<h2>Structures <i>17</i></h2>
+<p class="gidx-sub">What each strategy is made of, what it pays, and what it costs to be wrong</p>
 <ul class="gidx-list">
-<li data-u="guide-bear-call-spread.html"><a href="guide-bear-call-spread.html"><span class="gidx-t">The bear call spread</span><span class="gidx-d">A bear call spread sells a call above the price and buys a further one above that. The mirror of the bull put spread — and it does not behave like one.</span></a></li>
-<li data-u="guide-broken-wing-butterfly.html"><a href="guide-broken-wing-butterfly.html"><span class="gidx-t">The broken-wing butterfly</span><span class="gidx-d">A butterfly with one wing pushed further out, which makes it very cheap to open. What the extra distance buys, and what it costs on the side you moved.</span></a></li>
-<li data-u="guide-bull-put-spread.html"><a href="guide-bull-put-spread.html"><span class="gidx-t">The bull put spread</span><span class="gidx-d">A bull put spread sells a put below the price and buys a further one below that. What it is made of, what it pays, where you actually enter, and the trap that catches people.</span></a></li>
-<li data-u="guide-calendar-spread.html"><a href="guide-calendar-spread.html"><span class="gidx-t">The calendar spread</span><span class="gidx-d">A calendar spread sells a near-dated option and buys a longer-dated one at the same strike. A volatility trade wearing a direction trade&#x27;s clothes.</span></a></li>
-<li data-u="guide-cash-secured-put.html"><a href="guide-cash-secured-put.html"><span class="gidx-t">The cash-secured put</span><span class="gidx-d">A cash-secured put is an offer to buy a stock lower, and you are paid for making it. What it pays, what it obliges, and why the cash matters more than the option.</span></a></li>
-<li data-u="guide-covered-call.html"><a href="guide-covered-call.html"><span class="gidx-t">The covered call</span><span class="gidx-d">A covered call sells a call against shares you already own. What it pays, what it gives up, and why the income is not the whole story.</span></a></li>
-<li data-u="guide-debit-spread.html"><a href="guide-debit-spread.html"><span class="gidx-t">The debit spread</span><span class="gidx-d">A debit spread buys one option and sells a cheaper one further out. You pay to open it, and time works against you — the mirror of everything else on this shelf.</span></a></li>
-<li data-u="guide-diagonal-spread.html"><a href="guide-diagonal-spread.html"><span class="gidx-t">The diagonal spread</span><span class="gidx-d">A diagonal spread sells a near-dated option and buys a longer-dated one at a different strike. A calendar and a vertical at the same time.</span></a></li>
-<li data-u="guide-iron-condor.html"><a href="guide-iron-condor.html"><span class="gidx-t">The iron condor</span><span class="gidx-d">An iron condor sells a put spread and a call spread on the same stock and expiry. What it pays, why its maximum loss is width minus credit and not twice it, and what actually goes wrong.</span></a></li>
-<li data-u="guide-iron-fly.html"><a href="guide-iron-fly.html"><span class="gidx-t">The iron fly</span><span class="gidx-d">An iron fly sells a straddle at the money and buys wings either side. The largest credit on the shelf, and the narrowest range to keep it in.</span></a></li>
-<li data-u="guide-strangle.html"><a href="guide-strangle.html"><span class="gidx-t">The naked strangle</span><span class="gidx-d">A naked strangle sells a put below the stock and a call above it, with nothing bought to cap either side. The largest income on the shelf and the only unlimited loss.</span></a></li>
-<li data-u="guide-pmcc.html"><a href="guide-pmcc.html"><span class="gidx-t">The poor man&#x27;s covered call</span><span class="gidx-d">A poor man&#x27;s covered call replaces the shares in a covered call with a long-dated in-the-money call. What that substitution buys, and what it quietly costs.</span></a></li>
-<li data-u="guide-ratio-spread.html"><a href="guide-ratio-spread.html"><span class="gidx-t">The ratio spread</span><span class="gidx-d">A 1x2 ratio spread buys one option and sells two further out. It is a spread with an extra naked leg, and that leg is the whole story.</span></a></li>
-<li data-u="guide-straddle.html"><a href="guide-straddle.html"><span class="gidx-t">The short straddle</span><span class="gidx-d">A short straddle sells a put and a call at the same strike. The most premium two legs can collect, and the least room to keep it in.</span></a></li>
-<li data-u="guide-0dte.html"><a href="guide-0dte.html"><span class="gidx-t">What is 0-DTE trading?</span><span class="gidx-d">0-DTE means trading options that expire the same day. It is not a structure — it is a clock, and it changes every structure it is applied to.</span></a></li>
-<li data-u="guide-credit-spread.html"><a href="guide-credit-spread.html"><span class="gidx-t">What is a credit spread?</span><span class="gidx-d">A credit spread sells one option and buys a cheaper one further out, so you are paid to open it and your loss is capped. The parent of the bull put and the bear call.</span></a></li>
-<li data-u="guide-the-wheel.html"><a href="guide-the-wheel.html"><span class="gidx-t">What is the wheel strategy?</span><span class="gidx-d">The wheel sells a cash-secured put, takes assignment, then sells covered calls against the shares. Three positions in a loop — and the loop is where the argument is.</span></a></li>
+<li data-u="guide-bear-call-spread.html" data-c="structures"><a href="guide-bear-call-spread.html"><span class="gidx-t">The bear call spread</span><span class="gidx-d">A bear call spread sells a call above the price and buys a further one above that. The mirror of the bull put spread — and it does not behave like one.</span></a></li>
+<li data-u="guide-broken-wing-butterfly.html" data-c="structures"><a href="guide-broken-wing-butterfly.html"><span class="gidx-t">The broken-wing butterfly</span><span class="gidx-d">A butterfly with one wing pushed further out, which makes it very cheap to open. What the extra distance buys, and what it costs on the side you moved.</span></a></li>
+<li data-u="guide-bull-put-spread.html" data-c="structures"><a href="guide-bull-put-spread.html"><span class="gidx-t">The bull put spread</span><span class="gidx-d">A bull put spread sells a put below the price and buys a further one below that. What it is made of, what it pays, where you actually enter, and the trap that catches people.</span></a></li>
+<li data-u="guide-calendar-spread.html" data-c="structures"><a href="guide-calendar-spread.html"><span class="gidx-t">The calendar spread</span><span class="gidx-d">A calendar spread sells a near-dated option and buys a longer-dated one at the same strike. A volatility trade wearing a direction trade&#x27;s clothes.</span></a></li>
+<li data-u="guide-cash-secured-put.html" data-c="structures"><a href="guide-cash-secured-put.html"><span class="gidx-t">The cash-secured put</span><span class="gidx-d">A cash-secured put is an offer to buy a stock lower, and you are paid for making it. What it pays, what it obliges, and why the cash matters more than the option.</span></a></li>
+<li data-u="guide-covered-call.html" data-c="structures"><a href="guide-covered-call.html"><span class="gidx-t">The covered call</span><span class="gidx-d">A covered call sells a call against shares you already own. What it pays, what it gives up, and why the income is not the whole story.</span></a></li>
+<li data-u="guide-debit-spread.html" data-c="structures"><a href="guide-debit-spread.html"><span class="gidx-t">The debit spread</span><span class="gidx-d">A debit spread buys one option and sells a cheaper one further out. You pay to open it, and time works against you — the mirror of everything else on this shelf.</span></a></li>
+<li data-u="guide-diagonal-spread.html" data-c="structures"><a href="guide-diagonal-spread.html"><span class="gidx-t">The diagonal spread</span><span class="gidx-d">A diagonal spread sells a near-dated option and buys a longer-dated one at a different strike. A calendar and a vertical at the same time.</span></a></li>
+<li data-u="guide-iron-condor.html" data-c="structures"><a href="guide-iron-condor.html"><span class="gidx-t">The iron condor</span><span class="gidx-d">An iron condor sells a put spread and a call spread on the same stock and expiry. What it pays, why its maximum loss is width minus credit and not twice it, and what actually goes wrong.</span></a></li>
+<li data-u="guide-iron-fly.html" data-c="structures"><a href="guide-iron-fly.html"><span class="gidx-t">The iron fly</span><span class="gidx-d">An iron fly sells a straddle at the money and buys wings either side. The largest credit on the shelf, and the narrowest range to keep it in.</span></a></li>
+<li data-u="guide-strangle.html" data-c="structures"><a href="guide-strangle.html"><span class="gidx-t">The naked strangle</span><span class="gidx-d">A naked strangle sells a put below the stock and a call above it, with nothing bought to cap either side. The largest income on the shelf and the only unlimited loss.</span></a></li>
+<li data-u="guide-pmcc.html" data-c="structures"><a href="guide-pmcc.html"><span class="gidx-t">The poor man&#x27;s covered call</span><span class="gidx-d">A poor man&#x27;s covered call replaces the shares in a covered call with a long-dated in-the-money call. What that substitution buys, and what it quietly costs.</span></a></li>
+<li data-u="guide-ratio-spread.html" data-c="structures"><a href="guide-ratio-spread.html"><span class="gidx-t">The ratio spread</span><span class="gidx-d">A 1x2 ratio spread buys one option and sells two further out. It is a spread with an extra naked leg, and that leg is the whole story.</span></a></li>
+<li data-u="guide-straddle.html" data-c="structures"><a href="guide-straddle.html"><span class="gidx-t">The short straddle</span><span class="gidx-d">A short straddle sells a put and a call at the same strike. The most premium two legs can collect, and the least room to keep it in.</span></a></li>
+<li data-u="guide-0dte.html" data-c="structures"><a href="guide-0dte.html"><span class="gidx-t">What is 0-DTE trading?</span><span class="gidx-d">0-DTE means trading options that expire the same day. It is not a structure — it is a clock, and it changes every structure it is applied to.</span></a></li>
+<li data-u="guide-credit-spread.html" data-c="structures"><a href="guide-credit-spread.html"><span class="gidx-t">What is a credit spread?</span><span class="gidx-d">A credit spread sells one option and buys a cheaper one further out, so you are paid to open it and your loss is capped. The parent of the bull put and the bear call.</span></a></li>
+<li data-u="guide-the-wheel.html" data-c="structures"><a href="guide-the-wheel.html"><span class="gidx-t">What is the wheel strategy?</span><span class="gidx-d">The wheel sells a cash-secured put, takes assignment, then sells covered calls against the shares. Three positions in a loop — and the loop is where the argument is.</span></a></li>
 </ul></div>
-<div class="gidx-group">
-<h3>The tests <i>3</i></h3>
-<p class="gidx-sub">A post is a test. ⚠️ No result is published yet &mdash; every figure on these is still a placeholder</p>
+<div class="gidx-group" id="sec-tests">
+<h2>The tests <i>3</i></h2>
+<p class="gidx-sub">A post is a test. &#9888; No result is published yet &mdash; every figure on these is still a placeholder</p>
 <ul class="gidx-list">
-<li data-u="test-bear-call-spread.html"><a href="test-bear-call-spread.html"><span class="gidx-t">The bear call spread into a downtrend</span><span class="gidx-d">We tested the bear call spread entered into an established downtrend. Here is the verdict, the assumptions, and the condition that changes the answer.</span></a></li>
-<li data-u="test-bull-put-spread.html"><a href="test-bull-put-spread.html"><span class="gidx-t">The bull put spread at 16 delta</span><span class="gidx-d">We tested the 16-delta bull put spread across decades of options data. Here is the verdict, the assumptions, and the condition that changes the answer.</span></a></li>
-<li data-u="test-the-wheel.html"><a href="test-the-wheel.html"><span class="gidx-t">The wheel on high-IV tickers</span><span class="gidx-d">We ran the wheel on high-implied-volatility tickers across decades of options data. Here is the verdict, the assumptions, and the condition that changes the answer.</span></a></li>
+<li data-u="test-bear-call-spread.html" data-c="tests"><a href="test-bear-call-spread.html"><span class="gidx-t">The bear call spread into a downtrend</span><span class="gidx-d">We tested the bear call spread entered into an established downtrend. Here is the verdict, the assumptions, and the condition that changes the answer.</span></a></li>
+<li data-u="test-bull-put-spread.html" data-c="tests"><a href="test-bull-put-spread.html"><span class="gidx-t">The bull put spread at 16 delta</span><span class="gidx-d">We tested the 16-delta bull put spread across decades of options data. Here is the verdict, the assumptions, and the condition that changes the answer.</span></a></li>
+<li data-u="test-the-wheel.html" data-c="tests"><a href="test-the-wheel.html"><span class="gidx-t">The wheel on high-IV tickers</span><span class="gidx-d">We ran the wheel on high-implied-volatility tickers across decades of options data. Here is the verdict, the assumptions, and the condition that changes the answer.</span></a></li>
 </ul></div>
-<div class="gidx-group">
-<h3>Method <i>1</i></h3>
-<p class="gidx-sub">How a verdict is decided</p>
+<div class="gidx-group" id="sec-other">
+<h2>Method <i>1</i></h2>
+<p class="gidx-sub">How a verdict is decided, and what we will not claim</p>
 <ul class="gidx-list">
-<li data-u="methodology.html"><a href="methodology.html"><span class="gidx-t">How we test</span><span class="gidx-d">How we test a trading strategy: the data, the rules, what counts as a pass, and what we refuse to claim.</span></a></li>
+<li data-u="methodology.html" data-c="other"><a href="methodology.html"><span class="gidx-t">How we test</span><span class="gidx-d">How we test a trading strategy: the data, the rules, what counts as a pass, and what we refuse to claim.</span></a></li>
 </ul></div>
 </div></div></section>
 <script type="application/json" id="tt-index">
@@ -167,7 +214,9 @@
   var count = document.getElementById('gsCount'), empty = document.getElementById('gsEmpty');
   var rows = [].slice.call(document.querySelectorAll('.gidx-list li'));
   var groups = [].slice.call(document.querySelectorAll('.gidx-group'));
+  var picks = [].slice.call(document.querySelectorAll('.rail-nav button'));
   var byUrl = {}; data.forEach(function(d){ byUrl[d.u] = d; });
+  var section = 'all';
 
   function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
 
@@ -181,6 +230,11 @@
     }).replace(re, '<mark>$1</mark>');
   }
 
+  function label(c){
+    var b = document.querySelector('.rail-nav button[data-c="' + c + '"] span');
+    return b ? b.textContent : c;
+  }
+
   function run(){
     var q = box.value.trim().toLowerCase();
     var terms = q ? q.split(/\s+/).filter(function(t){ return t.length > 1; }) : [];
@@ -188,9 +242,10 @@
     var shown = 0;
     rows.forEach(function(li){
       var d = byUrl[li.getAttribute('data-u')];
-      var hit = !terms.length || terms.every(function(t){
+      var inSection = section === 'all' || li.getAttribute('data-c') === section;
+      var hit = inSection && (!terms.length || terms.every(function(t){
         return d && (d.x.indexOf(t) > -1 || d.t.toLowerCase().indexOf(t) > -1);
-      });
+      }));
       li.style.display = hit ? '' : 'none';
       if(hit){
         shown++;
@@ -204,16 +259,41 @@
       });
       g.style.display = any ? '' : 'none';
     });
+    picks.forEach(function(b){
+      b.className = b.getAttribute('data-c') === section ? 'on' : '';
+    });
     empty.style.display = shown ? 'none' : 'flex';
-    count.innerHTML = q
-      ? '<b>' + shown + '</b> of ' + rows.length + ' pages match &ldquo;' +
-        q.replace(/[&<>]/g,'') + '&rdquo;'
-      : '<b>' + rows.length + '</b> pages. Type to narrow them.';
+    var where = section === 'all' ? '' : ' in ' + label(section);
+    if(q){
+      count.innerHTML = '<b>' + shown + '</b> of ' + rows.length +
+        ' pages match &ldquo;' + q.replace(/[&<>]/g,'') + '&rdquo;' + where;
+    } else if(section === 'all'){
+      count.innerHTML = '<b>' + rows.length + '</b> pages across ' + groups.length +
+        ' sections. Pick one, or search.';
+    } else {
+      count.innerHTML = '<b>' + shown + '</b> pages in ' + label(section) +
+        '. <a href="#" id="gsAll">Show every section</a>';
+      var a = document.getElementById('gsAll');
+      if(a) a.addEventListener('click', function(e){
+        e.preventDefault(); section = 'all'; run(); scrollTo({top:0,behavior:'smooth'});
+      });
+    }
   }
 
+  picks.forEach(function(b){
+    b.addEventListener('click', function(){
+      section = b.getAttribute('data-c');
+      run();
+      if(section !== 'all'){
+        var g = document.getElementById('sec-' + section);
+        if(g) g.scrollIntoView({behavior:'smooth', block:'start'});
+      } else {
+        scrollTo({top:0, behavior:'smooth'});
+      }
+    });
+  });
   box.addEventListener('input', run);
   clear.addEventListener('click', function(){ box.value=''; box.focus(); run(); });
-  // "/" focuses the box, the way every search box a reader has used behaves
   addEventListener('keydown', function(e){
     if(e.key === '/' && document.activeElement !== box){ e.preventDefault(); box.focus(); }
     if(e.key === 'Escape' && document.activeElement === box){ box.value=''; run(); box.blur(); }

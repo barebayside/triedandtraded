@@ -124,6 +124,13 @@ h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:-.02
   letter-spacing:.08em;text-transform:uppercase;align-items:center}
 .menubar nav a{text-decoration:none;color:var(--body);white-space:nowrap}
 .menubar nav a:hover{color:var(--pop)}
+/* The two libraries you browse — the Archive and the Field Guide — are boxed so
+   the bar does not read as one run of identical text. Test of the Week and
+   Methodology stay plain: they are single destinations, not shelves. */
+.menubar nav a.hub{border:1.5px solid var(--hair);padding:5px 11px;color:var(--ink)}
+.menubar nav a.hub:hover{border-color:var(--ink);background:var(--panel);color:var(--ink)}
+.menubar nav a.hub[aria-current="page"]{border-color:var(--ink);background:var(--ink);
+  color:var(--paper)}
 .menubar nav a.cta{background:var(--ink);color:var(--paper);padding:5px 11px}
 .menubar nav a.cta:hover{background:var(--pop);color:#fff}
 .navtoggle{display:none;margin-left:auto;font-family:var(--mono);font-size:14px;text-transform:uppercase;
