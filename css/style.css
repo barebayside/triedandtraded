@@ -192,7 +192,19 @@ h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:-.02
   color:var(--mute);text-align:center}
 
 /* archive table */
-.tablewrap{overflow-x:auto}
+/* A scroll container only works if it is allowed to be narrower than the table
+   inside it. max-width:100% stops it inheriting the table's width in a grid or
+   flex track and pushing the whole page sideways. */
+.tablewrap{overflow-x:auto;max-width:100%;overscroll-behavior-x:contain;
+  /* A table that scrolls with no sign it scrolls reads as a table with three columns.
+     The two `local` gradients ride with the content and sit over the two `scroll`
+     shadows, so a shadow only shows on a side there is still something to reach.
+     Pure CSS — nothing to run, and it costs nothing on a table that already fits. */
+  background:
+    linear-gradient(to right, var(--panel) 42%, color-mix(in srgb, var(--panel) 0%, transparent)) 0 0 / 30px 100% no-repeat local,
+    linear-gradient(to left,  var(--panel) 42%, color-mix(in srgb, var(--panel) 0%, transparent)) 100% 0 / 30px 100% no-repeat local,
+    linear-gradient(to right, color-mix(in srgb, var(--ink) 34%, transparent), transparent) 0 0 / 16px 100% no-repeat scroll,
+    linear-gradient(to left,  color-mix(in srgb, var(--ink) 34%, transparent), transparent) 100% 0 / 16px 100% no-repeat scroll}
 table{width:100%;min-width:680px;border-collapse:collapse;font-family:var(--mono);font-size:16px;background:var(--panel)}
 /* The 680px floor exists so the six-column archive table keeps its shape and scrolls
    inside .tablewrap rather than crushing. A table with two or three columns has no
@@ -602,6 +614,12 @@ footer b{color:var(--ink)}
   font-size:16px;letter-spacing:0;text-transform:none}
 .kv td{padding:9px 0;border-bottom:1px dashed var(--hair);text-align:right}
 .kv td .ph{min-width:3.5em;text-align:center}
+/* The row labels are held on one line at reading width. On a 320px screen
+   "Commissions & slippage" alone is wider than the column, so below the phone
+   breakpoint the label may wrap rather than push the page out. This has to sit
+   AFTER the .kv rules above — a media query adds no specificity, so the same
+   selector earlier in the file would simply lose. */
+@media (max-width:700px){.kv th{white-space:normal}}
 
 /* archive filters */
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
@@ -656,6 +674,11 @@ footer b{color:var(--ink)}
    investigation → ferret. Set data-cast on <body>.
    ============================================================ */
 .article-layout{display:grid;grid-template-columns:1fr 200px;gap:46px;align-items:start}
+/* min-width:0 — without it the article column is a grid/flex item whose automatic
+   minimum is its min-content width. One wide table then set the width of the whole
+   column, and on a phone the entire page scrolled sideways: headings, paragraphs and
+   all. The table is allowed to overflow; the column is not. */
+.article-main{min-width:0}
 .rail{position:sticky;top:70px}
 .rail-inner{border:var(--bw) solid var(--ink);background:var(--panel-2);
   box-shadow:5px 5px 0 var(--shadow);padding:0 14px 14px}
@@ -670,14 +693,27 @@ footer b{color:var(--ink)}
 /* Below the rail breakpoint the character introduces the piece once, at the top,
    instead of vanishing entirely — phones are where most reading happens. */
 @media (max-width:1080px){
-  .article-layout{grid-template-columns:1fr;display:flex;flex-direction:column}
+  /* align-items:stretch, not the `start` the two-column grid uses. In a collapsed
+     column, `start` sizes the article to its own content instead of the screen, so
+     one wide table set the width of the headings and paragraphs too and the whole
+     page scrolled sideways. Stretch pins the column to the screen; a wide table
+     then scrolls inside its own .tablewrap, which is the only thing that should. */
+  .article-layout{grid-template-columns:1fr;display:flex;flex-direction:column;
+    align-items:stretch}
   /* the rail sits after the article in the markup (correct for reading order and
      screen readers), so it must be pulled to the top when the columns collapse */
   .rail{position:static;margin-bottom:30px;order:-1}
-  .rail-inner{display:flex;align-items:center;gap:16px;padding:14px}
+  /* wrap + min-width:0: at 320px the name, the character and the line of speech
+     add up to more than the screen, and without these the row simply pushed the
+     page sideways instead of dropping the speech to a second line. */
+  .rail-inner{display:flex;align-items:center;gap:16px;padding:14px;flex-wrap:wrap}
   .rail-who{margin:0;align-self:flex-start}
   .rail img{width:74px;margin:0}
-  .rail-say{border-top:0;margin:0;padding:0;min-height:0;flex:1}
+  /* flex:1 1 160px, not flex:1. On a phone the name and the character left the
+     speech about 15px of column and the words spilled past the screen edge. Given
+     a 160px basis it stays on the row while there is room for it and drops to its
+     own full-width line when there is not. Nothing changes above ~480px. */
+  .rail-say{border-top:0;margin:0;padding:0;min-height:0;flex:1 1 160px;min-width:0}
 }
 
 /* ============================================================

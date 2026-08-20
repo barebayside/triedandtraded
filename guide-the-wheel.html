@@ -219,7 +219,12 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 .rail-note b{color:var(--body)}
 
 /* ---- data tables ---- */
-.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+/* min-width:0 — css/style.css puts a 680px floor under every <table> so the six-column
+   archive keeps its shape. A guide table is often two or three columns and has no
+   business inheriting that: on a phone it forced a sideways scroll to read a table
+   that already fitted. These size to their own content and scroll inside .tablewrap
+   only when they genuinely do not fit. */
+.gt{width:100%;min-width:0;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
 .gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
   font-size:14.5px;vertical-align:top;color:var(--ink)}
 .gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;

@@ -251,7 +251,12 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 .say p{margin:0}
 
 /* Data tables. */
-.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+/* min-width:0 — css/style.css puts a 680px floor under every <table> so the six-column
+   archive keeps its shape. A guide table is often two or three columns and has no
+   business inheriting that: on a phone it forced a sideways scroll to read a table
+   that already fitted. These size to their own content and scroll inside .tablewrap
+   only when they genuinely do not fit. */
+.gt{width:100%;min-width:0;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
 .gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
   font-size:14.5px;vertical-align:top}
 .gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
@@ -296,7 +301,7 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 <section class="sec light" id="s2"><div class="wrap">
   <div class="sec-head"><h2>The trade, written out</h2></div>
   <div class="article-main">
-<p>Everything above is the idea. This is the position &mdash; the lines you would actually send to a broker.</p><div class="win"><div class="win-bar">Order ticket<span class="win-dots"><i></i><i></i><i></i></span></div><div class="win-body"><table class="gt tick"><thead><tr><th>Leg</th><th>Action</th><th>Qty</th><th>Expiry</th><th>DTE</th><th>Strike</th><th>Delta</th><th>Price</th></tr></thead><tbody><tr><th>1</th><td>Buy shares</td><td class="n">+100</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">stock</td><td class="n">+100</td><td class="n">$100.00</td></tr><tr><th>2</th><td>Sell to open</td><td class="n">-1</td><td class="n">16 Oct 26</td><td class="n">45</td><td class="n">105 Call</td><td class="n">-0.32 <span class="sub">(32&#916;)</span></td><td class="n">$1.77</td></tr><tr class="net"><th>Net</th><td>Debit</td><td class="n">1 position</td><td class="n">16 Oct 26</td><td class="n">45</td><td class="n">&mdash;</td><td class="n">+0.68</td><td class="n">$98.23</td></tr></tbody></table><p class="ordline">BUY +100 XYZ @ 100.00   &#183;   SELL -1 XYZ 16 OCT 26 105 CALL @ 1.77</p></div></div><h3>Reading it back</h3><ul><li><strong>The shares are bought at the market price</strong> &mdash; the ticket shows them at the spot price on the day.</li><li><strong>The call is sold above the money.</strong></li><li><strong>The net is a debit</strong>, because the shares cost far more than the call pays.</li><li><strong>That debit is the position</strong>, which is why the maximum loss is measured against the whole stock holding and not against the premium.</li></ul>
+<p>Everything above is the idea. This is the position &mdash; the lines you would actually send to a broker.</p><div class="win"><div class="win-bar">Order ticket<span class="win-dots"><i></i><i></i><i></i></span></div><div class="win-body"><div class="tablewrap"><table class="gt tick"><thead><tr><th>Leg</th><th>Action</th><th>Qty</th><th>Expiry</th><th>DTE</th><th>Strike</th><th>Delta</th><th>Price</th></tr></thead><tbody><tr><th>1</th><td>Buy shares</td><td class="n">+100</td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n">stock</td><td class="n">+100</td><td class="n">$100.00</td></tr><tr><th>2</th><td>Sell to open</td><td class="n">-1</td><td class="n">16 Oct 26</td><td class="n">45</td><td class="n">105 Call</td><td class="n">-0.32 <span class="sub">(32&#916;)</span></td><td class="n">$1.77</td></tr><tr class="net"><th>Net</th><td>Debit</td><td class="n">1 position</td><td class="n">16 Oct 26</td><td class="n">45</td><td class="n">&mdash;</td><td class="n">+0.68</td><td class="n">$98.23</td></tr></tbody></table></div><p class="ordline">BUY +100 XYZ @ 100.00   &#183;   SELL -1 XYZ 16 OCT 26 105 CALL @ 1.77</p></div></div><h3>Reading it back</h3><ul><li><strong>The shares are bought at the market price</strong> &mdash; the ticket shows them at the spot price on the day.</li><li><strong>The call is sold above the money.</strong></li><li><strong>The net is a debit</strong>, because the shares cost far more than the call pays.</li><li><strong>That debit is the position</strong>, which is why the maximum loss is measured against the whole stock holding and not against the premium.</li></ul>
   </div>
 </div></section>
 <section class="sec" id="s3"><div class="wrap">

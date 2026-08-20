@@ -251,7 +251,12 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 .say p{margin:0}
 
 /* Data tables. */
-.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+/* min-width:0 — css/style.css puts a 680px floor under every <table> so the six-column
+   archive keeps its shape. A guide table is often two or three columns and has no
+   business inheriting that: on a phone it forced a sideways scroll to read a table
+   that already fitted. These size to their own content and scroll inside .tablewrap
+   only when they genuinely do not fit. */
+.gt{width:100%;min-width:0;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
 .gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
   font-size:14.5px;vertical-align:top}
 .gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
@@ -296,7 +301,7 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 <section class="sec light" id="s2"><div class="wrap">
   <div class="sec-head"><h2>The trade, written out</h2></div>
   <div class="article-main">
-<p>Everything above is the idea. This is the position &mdash; the lines you would actually send to a broker.</p><div class="win"><div class="win-bar">Order ticket<span class="win-dots"><i></i><i></i><i></i></span></div><div class="win-body"><table class="gt tick"><thead><tr><th>Leg</th><th>Action</th><th>Qty</th><th>Expiry</th><th>DTE</th><th>Strike</th><th>Delta</th><th>Price</th></tr></thead><tbody><tr><th>1</th><td>Sell to open</td><td class="n">-1</td><td class="n">16 Oct 26</td><td class="n">45</td><td class="n">95 Put</td><td class="n">+0.25 <span class="sub">(25&#916;)</span></td><td class="n">$1.35</td></tr><tr class="net"><th>Net</th><td>Credit</td><td class="n">1 position</td><td class="n">16 Oct 26</td><td class="n">45</td><td class="n">&mdash;</td><td class="n">+0.25</td><td class="n">$1.35</td></tr></tbody></table><p class="ordline">SELL -1 XYZ 16 OCT 26 95 PUT @ 1.35 CREDIT</p></div></div><h3>Reading it back</h3><ul><li><strong>One expiry, one strike.</strong> Nothing else in the position.</li><li><strong>Sell the 95 put</strong> &mdash; below the money, so it starts out of the money.</li><li><strong>The credit is paid to you on the day.</strong></li><li><strong>The cash behind it is the real position size</strong>, and it is far larger than the credit.</li></ul>
+<p>Everything above is the idea. This is the position &mdash; the lines you would actually send to a broker.</p><div class="win"><div class="win-bar">Order ticket<span class="win-dots"><i></i><i></i><i></i></span></div><div class="win-body"><div class="tablewrap"><table class="gt tick"><thead><tr><th>Leg</th><th>Action</th><th>Qty</th><th>Expiry</th><th>DTE</th><th>Strike</th><th>Delta</th><th>Price</th></tr></thead><tbody><tr><th>1</th><td>Sell to open</td><td class="n">-1</td><td class="n">16 Oct 26</td><td class="n">45</td><td class="n">95 Put</td><td class="n">+0.25 <span class="sub">(25&#916;)</span></td><td class="n">$1.35</td></tr><tr class="net"><th>Net</th><td>Credit</td><td class="n">1 position</td><td class="n">16 Oct 26</td><td class="n">45</td><td class="n">&mdash;</td><td class="n">+0.25</td><td class="n">$1.35</td></tr></tbody></table></div><p class="ordline">SELL -1 XYZ 16 OCT 26 95 PUT @ 1.35 CREDIT</p></div></div><h3>Reading it back</h3><ul><li><strong>One expiry, one strike.</strong> Nothing else in the position.</li><li><strong>Sell the 95 put</strong> &mdash; below the money, so it starts out of the money.</li><li><strong>The credit is paid to you on the day.</strong></li><li><strong>The cash behind it is the real position size</strong>, and it is far larger than the credit.</li></ul>
   </div>
 </div></section>
 <section class="sec" id="s3"><div class="wrap">
