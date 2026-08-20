@@ -1,13 +1,16 @@
 # Tried & Traded — https://triedandtraded.com
 #
-# Crawling is allowed everywhere. Indexing is allowed for the FIELD GUIDE ONLY
-# (/guide.html and /guide-*.html) — 39 reference pages that state no results and
-# contain no placeholders, so there is nothing on them to hide from a reader.
+# Crawling is allowed everywhere. Indexing is allowed for every page that has
+# nothing to hide — the homepage, the archive shelf, the methodology, the
+# disclaimer and all 39 Field Guide pages. None of those shows a placeholder.
 #
-# Everything else still carries a noindex meta tag until the first real test is
-# published: the homepage, the archive, the three test articles, the methodology
-# page and the disclaimer all either show placeholder dashes or point at a verdict
-# that does not exist yet. A search engine should not carry those under this brand.
+# Still carrying a noindex meta tag, and staying that way until a test publishes a
+# real result: the three test articles and the options archive. Those are the
+# pages where every figure is currently a dash next to a Pending stamp, and a
+# search engine should not carry them under this brand.
+#
+# machine.html and archive-stocks.html are parked: unlinked, noindexed AND
+# disallowed below.
 #
 # Crawlers must be allowed in for the noindex to be SEEN. Blocking them here
 # would leave the pages eligible for indexing from third-party links, with no
@@ -79,3 +82,6 @@ User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://triedandtraded.com/sitemap.xml
+
+# A plain-language map of this site for language models, kept current by hand:
+# https://triedandtraded.com/llms.txt

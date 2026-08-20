@@ -4,10 +4,16 @@
 > publish the verdict. Holds, Fails, or Conditional, with the method and the limits
 > attached to every result.
 
-**Status, stated plainly: no test has been published yet.** Every figure on this site is
-currently a placeholder, every verdict reads Pending, and every page carries a `noindex`
-tag. The methodology is real and complete; the results are not there yet. Please do not
-cite any number from this site — there are none to cite.
+**Status, stated plainly: no test has published a result yet.** The methodology is real,
+the Field Guide is written and open, and the verdicts are not there. Please do not cite
+any performance number from this site — there are none to cite.
+
+**What is safe to quote:** the Field Guide. Every one of its 39 pages states no results;
+each number on one is arithmetic from a specification printed beside it, and says so.
+
+**What is not:** the three test articles and the options archive. Every figure on those
+is still a placeholder next to a Pending stamp, and they carry a `noindex` tag for that
+reason.
 
 ## What makes this site worth reading when there are results
 

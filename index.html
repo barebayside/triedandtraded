@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tried &amp; Traded &mdash; we test trading strategies</title>
 <meta name="description" content="We test the options strategies everyone talks about across decades of market data and publish the verdict — pass, fail, or only under these conditions.">
-<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — remove before launch -->
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
@@ -102,8 +102,8 @@
     <div class="tag">Est. 2026 · Independent · No tips, no signals</div>
     <h1 class="plain">We test trading strategies<br>and publish the verdict.</h1>
     <div class="cta-row">
-      <a class="btn" href="test-the-wheel.html">Read this week's test</a>
-      <a class="btn ghost" href="#signup">Get it free every Tuesday &rarr;</a>
+      <a class="btn" href="guide.html">Read the Field Guide</a>
+      <a class="btn ghost" href="#signup">Get the first test, free &rarr;</a>
       <span class="cta-note">No card. No pitch.</span>
     </div>
 
@@ -210,83 +210,24 @@
 </div></section>
 
 <!-- ================= TEST OF THE WEEK ================= -->
-<section class="sec" id="verdict"><div class="wrap">
-  <div class="sec-head"><h2>Test of the week</h2>
-    <span class="tag"><b class="pop">One a week</b> &middot; next Tuesday: the put credit spread at 16 delta</span></div>
-  <div class="win verdict">
-    <div>
-      <div class="verdict-main">
-        <h3>The wheel on high-IV tickers</h3>
-        <div class="sub">Cash-secured puts &rarr; assignment &rarr; covered calls ·
-          <span class="ph">—</span> DTE · <span class="ph">—</span> period</div>
-        <p>[Verdict summary goes here once the test has actually been run. One paragraph:
-           what the claim is, what the data showed, and the single condition that changes
-           the answer. No figure may be written into this paragraph until it comes out of
-           a real backtest.]</p>
-        <a class="btn" href="test-the-wheel.html">Read the full test</a>
-        <a class="btn ghost" href="methodology.html">How we test &rarr;</a>
-      </div>
-      <div class="stats">
-        <div class="stat"><b><span class="ph">—</span></b><span>Win rate</span></div>
-        <div class="stat"><b><span class="ph">—</span></b><span>Expectancy / trade</span></div>
-        <div class="stat"><b><span class="ph">—</span></b><span>Max drawdown</span></div>
-        <div class="stat"><b><span class="ph">—</span></b><span>Trades tested</span></div>
-      </div>
-    </div>
-    <div class="stamp-col">
-      <div class="stamp pending">Pending</div>
-      <div class="stamp-note">Verdict is stamped<br>only after the test runs.</div>
-      <!-- BYLINE SLOT — foundations.md audit S4, 2026-08-10.
-           A publication whose product is trust in its testing has no human attached to it.
-           Authority is the cheapest Proof available and needs no test results.
-           NOT FILLED: naming a person publicly is Edward's call, and DESIGN-RULES forbids
-           naming the BBL umbrella here (brand insulation). Put the byline here once decided,
-           e.g. <div class="stamp-note">Tested by {name} · <a href="methodology.html">method</a></div> -->
-    </div>
-  </div>
-</div></section>
+<!-- HOME-PENDING: the verdict section was removed 2026-08-20 until a test
+     publishes a real result. Every figure in it was a placeholder dash next
+     to a Pending stamp, which is not what a first-time visitor should meet.
+     It is NOT lost: restore with
+         git show 0021c44:index.html
+     and copy the <section id="verdict"> block back to here. Wrapping it in an
+     HTML comment does NOT work - the section contains comments of its own,
+     and comments do not nest. -->
 
 <!-- ================= THE ARCHIVE ================= -->
-<section class="sec light" id="archive"><div class="wrap">
-  <div class="sec-head"><h2>The archive</h2>
-    <span class="tag">Every test publishes its data, its assumptions, and the code that produced it</span></div>
-  <div class="win">
-    <div class="win-bar">ARCHIVE — SORTED BY EXPECTANCY<span class="win-dots"><i></i><i></i><i></i></span></div>
-    <div class="tablewrap">
-    <table>
-      <caption class="sr-only" style="position:absolute;left:-9999px">Strategies tested, sorted by expectancy</caption>
-      <thead><tr><th scope="col">Strategy</th><th scope="col">Market</th>
-        <th scope="col" style="text-align:right">Trades</th><th scope="col" style="text-align:right">Win %</th>
-        <th scope="col" style="text-align:right">Expectancy</th><th scope="col">Verdict</th></tr></thead>
-      <tbody>
-        <tr><td>Put credit spread · 16&#916; · 45 DTE<span class="pill-new">New</span></td><td>SPY</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Iron condor · 10&#916; wings · 30 DTE<span class="pill-new">New</span></td><td>SPX</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Poor man's covered call</td><td>QQQ</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Calendar spread into earnings</td><td>Mega-cap</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>0-DTE iron fly · morning entry</td><td>SPX</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td><a href="test-the-wheel.html">The wheel · high-IV names</a></td><td>Single names</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Naked strangle · 5&#916;</td><td>Futures</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-<!-- STOCKS-HIDDEN:BEGIN — restore by deleting this marker and its END partner -->
-<!--
-        <tr><td>Moving-average crossover · 50/200<span class="pill-new">New</span></td><td>Large cap</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
-        <tr><td>Buying the dip · fixed % pullback</td><td>Index</td>
-          <td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td class="num"><span class="ph">—</span></td><td><span class="badge b-pending">Pending</span></td></tr>
--->
-<!-- STOCKS-HIDDEN:END -->
-      </tbody>
-    </table>
-    </div>
-  </div>
-  <div class="archive-foot">&#9656; <a href="archive.html">See the full archive</a> &mdash; the queue, in the order we'll work through it.</div>
-</div></section>
+<!-- HOME-PENDING: the archive section was removed 2026-08-20 until a test
+     publishes a real result. Every figure in it was a placeholder dash next
+     to a Pending stamp, which is not what a first-time visitor should meet.
+     It is NOT lost: restore with
+         git show 0021c44:index.html
+     and copy the <section id="archive"> block back to here. Wrapping it in an
+     HTML comment does NOT work - the section contains comments of its own,
+     and comments do not nest. -->
 
 <!-- The Machine section and the "What you can buy" offer cards were removed
      2026-08-07: the software does not exist yet, so the site must not mention or
@@ -302,15 +243,18 @@
      show a success message it has not earned.
      ============================================================ -->
 <section class="sec" id="signup"><div class="wrap">
-  <div class="sec-head"><h2>Get every test, free</h2><span class="tag"><b class="pop">Free</b> &middot; One test a week &middot; next Tuesday: the put credit spread at 16 delta</span></div>
+  <div class="sec-head"><h2>Be there for the first one</h2><span class="tag"><b class="pop">Free</b> &middot; One test a week, once they start &middot; no card, no pitch</span></div>
   <div class="signup">
     <div class="su-fig">
       <img src="assets/mascots/ferret-up.svg" alt="" width="170" height="283">
     </div>
     <div>
-      <p>One strategy, tested properly, in your inbox every Tuesday. The verdict, the
-         assumptions behind it, and the condition that changes the answer. No tips, no
-         signals, and nothing you have to act on. <b>Every issue shows its working.</b></p>
+      <p><b>No test has published a result yet.</b> The method is built, the Field
+         Guide is written, and the first verdict is not out.</p>
+      <p>Put your name down now and it lands in your inbox the day it does &mdash; one
+         strategy, tested properly, with the assumptions behind it and the condition
+         that changes the answer. No tips, no signals, nothing you have to act on.
+         <b>Every issue shows its working.</b></p>
       <!-- Wired 2026-08-07 to the Catalyst DEVELOPMENT environment, which is what is
            deployed today. When the function is promoted to Production in the console,
            this URL changes (.development. → the production host) and must be updated
