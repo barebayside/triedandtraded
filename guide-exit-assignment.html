@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exit 6 — assignment &mdash; Tried &amp; Traded</title>
+<meta name="description" content="Assignment ends an options trade by delivering shares. Taken on purpose it is a strategy; taken by surprise it is the most expensive way a defined-risk trade goes wrong.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://triedandtraded.com/guide-exit-assignment.html">
+<meta name="theme-color" content="#0B3B3C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Additions this page type introduces. Every value is a site token, so dark mode
+   is free and nothing here can drift from the brand. */
+
+/* ---- SCALE: the display face is sized for a landing page. On an article it
+   shouts, so it steps down. ---- */
+.article-main h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1;
+  letter-spacing:-.01em;margin:6px 0 14px}
+.sec{padding:52px 0}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2}
+.sec-head h2:after{width:10px;height:10px}
+.article-main h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2;margin:0 0 16px}
+.article-main h3{font-size:16px;margin:30px 0 10px}
+
+/* ---- READING: body copy sits on --ink. The mid-tone grey washes out at reading
+   size on the paper ground. Site-native Inter — never a serif. ---- */
+.article-main p,.article-main li{color:var(--ink);font-family:var(--sans)}
+.article-main p{font-size:18px;line-height:1.62;margin:0 0 18px;max-width:60ch}
+.article-main li{margin:0 0 10px;font-size:18px;line-height:1.58}
+.article-main ul{margin:0 0 22px;padding-left:22px;max-width:60ch}
+.article-main a{color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-underline-offset:3px}
+.article-main a:hover{color:var(--accent)}
+.lead{font-size:21px;line-height:1.5;color:var(--body)}
+ul.lead{margin:0 0 26px;padding-left:0;list-style:none;max-width:60ch}
+ul.lead li{font-size:21px;line-height:1.5;color:var(--body);margin:0 0 10px;
+  padding-left:20px;position:relative}
+ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;
+  background:var(--accent)}
+
+/* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
+   do that — each band is its own <section>, so a sticky rail is trapped inside
+   whichever one contains it. Fixed to the viewport, content column inset. ---- */
+@media (min-width:1120px){
+  /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
+     insetting those squeezed the nav into the brand mark. */
+  .sec > .wrap{padding-right:258px}
+  .rail{position:fixed;top:88px;width:212px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:22px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:6px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ol{list-style:none;margin:0;padding:8px 0;counter-reset:n}
+.rail-nav li{counter-increment:n;margin:0}
+.rail-nav a{display:block;font-family:var(--mono);font-size:12.5px;line-height:1.35;
+  color:var(--body);text-decoration:none;padding:6px 12px 6px 32px;position:relative}
+.rail-nav a:before{content:counter(n);position:absolute;left:11px;top:6px;
+  font-size:11px;color:var(--mute)}
+.rail-nav a:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav a.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- data tables ---- */
+.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+.gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
+  font-size:14.5px;vertical-align:top;color:var(--ink)}
+.gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);border-bottom:var(--bw) solid var(--ink)}
+.gt tbody th{font-weight:700;color:var(--ink)}
+
+/* ---- the one line that has to land ---- */
+.pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
+  font-size:19px;line-height:1.55;color:var(--ink);max-width:60ch}
+.article-main p.aside{font-size:15px;color:var(--body);
+  border-left:2px solid var(--hair);padding:2px 0 2px 14px;margin:22px 0 0}
+
+/* ---- questions, answered where a reader (or an answer engine) can lift them ---- */
+.faq{border-top:var(--bw) solid var(--ink);max-width:70ch}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{font-weight:700;font-size:17px;color:var(--ink);padding:14px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary:after{content:"\2212"}
+.faq details p{margin:0 0 14px;max-width:66ch}
+.related h4{font-family:var(--display)}
+.guide-close{font-family:var(--mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);display:block;margin:26px 0 0}
+</style>
+</head>
+<body>
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded &mdash; home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a href="archive.html">The Archive</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+<section class="sec"><div class="wrap article-layout">
+<div class="article-main">
+<span class="tag">Field guide &middot; exits</span>
+<h1>Exit 6 &mdash; assignment</h1>
+<ul class="lead"><li>Assignment ends the trade by delivering the shares.</li><li>Chosen on purpose it is a strategy. Arrived at by accident it is the most expensive exit on the list.</li></ul>
+<h2 id="s1">What it is</h2>
+<ul><li><strong>You are short an option</strong> and the person on the other side exercises it.</li><li><strong>You take delivery.</strong> A short put means buying the shares at the strike; a short call means selling them.</li><li><strong>The option position ends</strong> and a stock position replaces it.</li><li><strong>You keep the premium either way.</strong> It was paid to you at the start.</li></ul>
+<h3>When it is the plan</h3>
+<ul><li>The wheel is built on it &mdash; sell a put, accept the shares, then sell calls against them.</li><li>A cash-secured put is an offer to buy a stock lower, and assignment is the offer being taken.</li><li>In both cases the shares were always the point, so nothing has gone wrong.</li></ul>
+</div>
+<aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">What it is</a></li><li><a href="#s2">When it is not the plan</a></li><li><a href="#s3">Where it bites</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">How this shows up in our tests</a></li></ol></div><p class="rail-note">A Field Guide entry states no results. <b>Every number here is arithmetic from the specification beside it.</b></p></aside>
+</div></section>
+<section class="sec light" id="s2"><div class="wrap">
+  <div class="sec-head"><h2>When it is not the plan</h2></div>
+  <div class="article-main">
+<ul><li><strong>On a spread it is a mechanical problem.</strong> The short leg is assigned; the long leg is still an option.</li><li><strong>You end up holding stock plus one option</strong>, which is not the position you sized.</li><li><strong>The capital requirement jumps</strong> overnight, and a defined-risk trade briefly stops behaving like one.</li><li><strong>The maths usually still works out</strong> &mdash; exercising the long leg recovers most of it &mdash; but only if you have the buying power to get there.</li></ul>
+<h3>Early assignment</h3>
+<ul><li>American-style options can be exercised at any time, not only at expiry.</li><li>It becomes likely when a short option is deep in the money and has little time value left.</li><li>A dividend can bring it forward on a short call &mdash; the holder exercises to capture the payment.</li><li><strong>None of that is random</strong>, which means it can be anticipated rather than feared.</li></ul>
+<div class="callout"><div class="ct">Why this matters for a backtest</div><p>Most options backtests assume European-style behaviour: nothing happens until expiry. On American-style single-name options that assumption is wrong some of the time, and it is wrong in the direction that flatters the result. A study that never models early assignment should say so.</p></div>
+  </div>
+</div></section>
+<section class="sec" id="s3"><div class="wrap">
+  <div class="sec-head"><h2>Where it bites</h2></div>
+  <div class="article-main">
+<p class="pull">Assignment isn&rsquo;t a loss. It is a position you now own, at a price you agreed to weeks ago.</p>
+<ul><li>The premium you collected lowers your effective cost, which is the part people forget when they see the shares appear.</li><li>What has genuinely changed is the risk profile &mdash; a defined-risk option trade has become an open-ended stock position.</li><li><strong>The danger is the size, not the price.</strong> A put sold against capital you don&rsquo;t have becomes a margin call rather than an investment.</li></ul>
+<h3>The weekend problem</h3>
+<ul><li>A stock closing right on your short strike may or may not be assigned.</li><li>You find out after the market has shut, and you carry the uncertainty until it opens.</li><li>That is pin risk, and it is the strongest practical argument for the <a href="guide-exit-time.html">time exit</a>.</li></ul>
+  </div>
+</div></section>
+<section class="sec light" id="faq"><div class="wrap">
+  <div class="sec-head"><h2>Common questions</h2></div>
+  <div class="article-main">
+<div class="faq"><details><summary>Can I be assigned on a trade that is out of the money?</summary><p>It happens, though rarely, and it is almost never in the exerciser&rsquo;s interest. Treat it as noise rather than as a risk to plan around.</p></details><details><summary>Does assignment cost me the maximum loss on a spread?</summary><p>No. The long leg is still there and still worth something. What assignment costs is the certainty and the buying power, not usually the money.</p></details><details><summary>How do I avoid assignment?</summary><p>Close the short leg before it goes deep in the money, or use a time exit that takes you out before expiry week. Both are exits from this list.</p></details><details><summary>Is assignment more likely before a dividend?</summary><p>On a short call that is in the money, yes. It is the one case where the timing is predictable enough to plan around.</p></details></div>
+  </div>
+</div></section>
+<section class="sec" id="tests"><div class="wrap">
+  <div class="sec-head"><h2>How this shows up in our tests</h2></div>
+  <div class="article-main">
+<p>No assignment result is published yet.</p><p>It matters most for the wheel, where assignment is the strategy rather than an accident. That test is queued, and when it publishes this entry will link to what the assignment rate actually was under the specification we ran.</p><div class="related"><a class="rcard" href="guide-seven-exits.html"><div class="rk">The hub</div><h4>The seven ways<br>to exit</h4></a><a class="rcard" href="guide-exit-expiry.html"><div class="rk">Related exit</div><h4>Holding to<br>expiry</h4></a><a class="rcard" href="guide-exit-time.html"><div class="rk">The defence</div><h4>The time<br>exit</h4></a></div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+<script>
+(function(){
+  var ls=[].slice.call(document.querySelectorAll('.rail-nav a'));
+  var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i});
+    ls.forEach(function(a,i){a.className=i===k?'on':''})}
+  addEventListener('scroll',up,{passive:true});up();
+})();
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>

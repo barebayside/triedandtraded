@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is an exit rule? &mdash; Tried &amp; Traded</title>
+<meta name="description" content="An exit rule is the part of a strategy that decides when a trade ends, stated before the trade opens. Here is what makes one a rule rather than a habit.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://triedandtraded.com/guide-exit-rule.html">
+<meta name="theme-color" content="#0B3B3C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Additions this page type introduces. Every value is a site token, so dark mode
+   is free and nothing here can drift from the brand. */
+
+/* ---- SCALE: the display face is sized for a landing page. On an article it
+   shouts, so it steps down. ---- */
+.article-main h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1;
+  letter-spacing:-.01em;margin:6px 0 14px}
+.sec{padding:52px 0}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2}
+.sec-head h2:after{width:10px;height:10px}
+.article-main h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2;margin:0 0 16px}
+.article-main h3{font-size:16px;margin:30px 0 10px}
+
+/* ---- READING: body copy sits on --ink. The mid-tone grey washes out at reading
+   size on the paper ground. Site-native Inter — never a serif. ---- */
+.article-main p,.article-main li{color:var(--ink);font-family:var(--sans)}
+.article-main p{font-size:18px;line-height:1.62;margin:0 0 18px;max-width:60ch}
+.article-main li{margin:0 0 10px;font-size:18px;line-height:1.58}
+.article-main ul{margin:0 0 22px;padding-left:22px;max-width:60ch}
+.article-main a{color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-underline-offset:3px}
+.article-main a:hover{color:var(--accent)}
+.lead{font-size:21px;line-height:1.5;color:var(--body)}
+ul.lead{margin:0 0 26px;padding-left:0;list-style:none;max-width:60ch}
+ul.lead li{font-size:21px;line-height:1.5;color:var(--body);margin:0 0 10px;
+  padding-left:20px;position:relative}
+ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;
+  background:var(--accent)}
+
+/* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
+   do that — each band is its own <section>, so a sticky rail is trapped inside
+   whichever one contains it. Fixed to the viewport, content column inset. ---- */
+@media (min-width:1120px){
+  /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
+     insetting those squeezed the nav into the brand mark. */
+  .sec > .wrap{padding-right:258px}
+  .rail{position:fixed;top:88px;width:212px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:22px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:6px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ol{list-style:none;margin:0;padding:8px 0;counter-reset:n}
+.rail-nav li{counter-increment:n;margin:0}
+.rail-nav a{display:block;font-family:var(--mono);font-size:12.5px;line-height:1.35;
+  color:var(--body);text-decoration:none;padding:6px 12px 6px 32px;position:relative}
+.rail-nav a:before{content:counter(n);position:absolute;left:11px;top:6px;
+  font-size:11px;color:var(--mute)}
+.rail-nav a:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav a.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- data tables ---- */
+.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+.gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
+  font-size:14.5px;vertical-align:top;color:var(--ink)}
+.gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);border-bottom:var(--bw) solid var(--ink)}
+.gt tbody th{font-weight:700;color:var(--ink)}
+
+/* ---- the one line that has to land ---- */
+.pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
+  font-size:19px;line-height:1.55;color:var(--ink);max-width:60ch}
+.article-main p.aside{font-size:15px;color:var(--body);
+  border-left:2px solid var(--hair);padding:2px 0 2px 14px;margin:22px 0 0}
+
+/* ---- questions, answered where a reader (or an answer engine) can lift them ---- */
+.faq{border-top:var(--bw) solid var(--ink);max-width:70ch}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{font-weight:700;font-size:17px;color:var(--ink);padding:14px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary:after{content:"\2212"}
+.faq details p{margin:0 0 14px;max-width:66ch}
+.related h4{font-family:var(--display)}
+.guide-close{font-family:var(--mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);display:block;margin:26px 0 0}
+</style>
+</head>
+<body>
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded &mdash; home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a href="archive.html">The Archive</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+<section class="sec"><div class="wrap article-layout">
+<div class="article-main">
+<span class="tag">Field guide &middot; exits</span>
+<h1>What is an exit rule?</h1>
+<ul class="lead"><li>An exit rule is the part of a strategy that decides when a trade ends.</li><li>Write it before you open the trade &mdash; or you aren&rsquo;t running a strategy, you&rsquo;re improvising with real money.</li></ul>
+<h2 id="s1">What it is</h2>
+<p>An exit rule states, in advance, the condition that closes a position: a profit, a loss, a date, a price signal, or an expiry you let run. It has to be checkable by somebody who wasn&rsquo;t there.</p>
+<ul><li><strong>Stated before the entry.</strong> A reason you find afterwards is a story, not a rule.</li><li><strong>One condition, or a stated order of them.</strong> &ldquo;Whichever comes first&rdquo; is a rule. &ldquo;It depends&rdquo; isn&rsquo;t.</li><li><strong>Checkable by a stranger.</strong> Two people running it on the same trade have to reach the same answer.</li><li><strong>It ends the trade.</strong> Something that changes the trade instead is a <a href="guide-exit-roll.html">roll</a>, and that is a different animal.</li></ul>
+<h3>Why it is half the strategy</h3>
+<ul><li>The entry decides which trades you take.</li><li>The exit decides what each one is worth.</li><li>Same entries, different exits, different results.</li><li>So a strategy quoted without its exit isn&rsquo;t a specification. It&rsquo;s a name.</li></ul>
+</div>
+<aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">What it is</a></li><li><a href="#s2">Rule, habit, or reflex</a></li><li><a href="#s3">Where it bites</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">How this shows up in our tests</a></li></ol></div><p class="rail-note">A Field Guide entry states no results. <b>Every number here is arithmetic from the specification beside it.</b></p></aside>
+</div></section>
+<section class="sec light" id="s2"><div class="wrap">
+  <div class="sec-head"><h2>Rule, habit, or reflex</h2></div>
+  <div class="article-main">
+<p>Most traders have an exit. Far fewer have an exit rule.</p>
+<div class="tablewrap"><table class="gt"><thead><tr><th></th><th>What it looks like</th><th>Can it be tested?</th></tr></thead><tbody><tr><th><strong>A rule</strong></th><td>Close at 50% of the credit received, or at 21 days, whichever comes first</td><td>Yes</td></tr><tr><th><strong>A habit</strong></th><td>&ldquo;I usually take profits about halfway&rdquo;</td><td>No &mdash; &ldquo;about&rdquo; and &ldquo;usually&rdquo; have no value</td></tr><tr><th><strong>A reflex</strong></th><td>Close it when the position starts to hurt</td><td>No &mdash; the condition is a feeling</td></tr></tbody></table></div>
+<ul><li>Only the first row can be backtested, because only the first row can be written as code.</li><li>The other two are still exits. They just can&rsquo;t be measured, which means they can&rsquo;t be improved.</li><li>That is the whole reason this site insists on the wording.</li></ul>
+<h3>What a complete exit rule contains</h3>
+<ul><li><strong>The trigger.</strong> What has to be true.</li><li><strong>The measurement.</strong> Percentage of what &mdash; the credit, the width, the account?</li><li><strong>The timing.</strong> Checked at the close, intraday, or at a fixed time.</li><li><strong>The tie-break.</strong> What happens when two conditions fire on the same day.</li></ul>
+<p class="aside">That fourth one gets skipped constantly. A profit target and a time exit that both trigger on the same afternoon need a stated winner, or two people testing &ldquo;the same&rdquo; rule get different numbers.</p>
+  </div>
+</div></section>
+<section class="sec" id="s3"><div class="wrap">
+  <div class="sec-head"><h2>Where it bites</h2></div>
+  <div class="article-main">
+<p class="pull">The most expensive words in an exit rule are &ldquo;a percentage&rdquo; &mdash; because nobody says of what.</p>
+<ul><li><strong>50% of maximum profit</strong> and <strong>50% of the credit</strong> mean the same thing on a credit spread. On a debit spread they don&rsquo;t.</li><li><strong>A 200% stop</strong> is a multiple of what you took in, not of what you can lose. See the <a href="guide-exit-stop-loss.html">stop loss</a> entry.</li><li><strong>&ldquo;Close at 21 days&rdquo;</strong> is unambiguous. <strong>&ldquo;Close in the last three weeks&rdquo;</strong> is three different rules.</li></ul>
+<h3>The one that costs real money</h3>
+<ul><li>An exit rule that can only be evaluated <em>after</em> the day is over cannot be traded on that day.</li><li>If your test closes at a price the market only revealed later, the test is reading tomorrow&rsquo;s paper.</li><li>It is the single most common way a backtested exit beats the live one.</li></ul>
+  </div>
+</div></section>
+<section class="sec light" id="faq"><div class="wrap">
+  <div class="sec-head"><h2>Common questions</h2></div>
+  <div class="article-main">
+<div class="faq"><details><summary>Is an exit rule the same as a stop loss?</summary><p>No. A stop loss is one of seven exits. An exit rule is the umbrella term for whichever of them you have written down &mdash; a profit target and a time exit are exit rules too.</p></details><details><summary>Do I need more than one exit rule on a trade?</summary><p>Usually yes. Most premium-selling strategies carry a profit target and a time or loss condition together, with a stated order for when both fire at once.</p></details><details><summary>Can an exit rule be discretionary?</summary><p>It can be discretionary in life. It cannot be discretionary in a test. Anything that needs your judgement on the day can&rsquo;t be measured, so it can&rsquo;t be compared against the alternative.</p></details><details><summary>Which exit is best?</summary><p>That is the question the whole cluster exists to answer, and it is not answerable in the abstract &mdash; it depends on the structure, the tenor and the underlying. What is clear is that changing it changes the result more than most traders expect.</p></details></div>
+  </div>
+</div></section>
+<section class="sec" id="tests"><div class="wrap">
+  <div class="sec-head"><h2>How this shows up in our tests</h2></div>
+  <div class="article-main">
+<p>No test on this site has published a result yet, so this page doesn&rsquo;t claim one.</p><p>The first run that turns on this page is the exit ladder: one set of entries, closed seven different ways, scored on expectancy rather than win rate. This entry will link to it the day it publishes.</p><div class="related"><a class="rcard" href="guide-seven-exits.html"><div class="rk">The hub</div><h4>The seven ways<br>to exit</h4></a><a class="rcard" href="guide-exit-changes-the-answer.html"><div class="rk">The finding</div><h4>Why the exit changes<br>the answer</h4></a><a class="rcard" href="guide-exit-stop-loss.html"><div class="rk">The trap</div><h4>The stop that isn&rsquo;t<br>what you think</h4></a></div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+<script>
+(function(){
+  var ls=[].slice.call(document.querySelectorAll('.rail-nav a'));
+  var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i});
+    ls.forEach(function(a,i){a.className=i===k?'on':''})}
+  addEventListener('scroll',up,{passive:true});up();
+})();
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>

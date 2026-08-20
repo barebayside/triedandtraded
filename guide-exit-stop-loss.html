@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exit 2 — the stop loss &mdash; Tried &amp; Traded</title>
+<meta name="description" content="A stop loss on an options trade is a multiple of what you staked, not of what you can lose. Get that backwards and the stop fires far too early or far too late.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://triedandtraded.com/guide-exit-stop-loss.html">
+<meta name="theme-color" content="#0B3B3C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Additions this page type introduces. Every value is a site token, so dark mode
+   is free and nothing here can drift from the brand. */
+
+/* ---- SCALE: the display face is sized for a landing page. On an article it
+   shouts, so it steps down. ---- */
+.article-main h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1;
+  letter-spacing:-.01em;margin:6px 0 14px}
+.sec{padding:52px 0}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2}
+.sec-head h2:after{width:10px;height:10px}
+.article-main h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2;margin:0 0 16px}
+.article-main h3{font-size:16px;margin:30px 0 10px}
+
+/* ---- READING: body copy sits on --ink. The mid-tone grey washes out at reading
+   size on the paper ground. Site-native Inter — never a serif. ---- */
+.article-main p,.article-main li{color:var(--ink);font-family:var(--sans)}
+.article-main p{font-size:18px;line-height:1.62;margin:0 0 18px;max-width:60ch}
+.article-main li{margin:0 0 10px;font-size:18px;line-height:1.58}
+.article-main ul{margin:0 0 22px;padding-left:22px;max-width:60ch}
+.article-main a{color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-underline-offset:3px}
+.article-main a:hover{color:var(--accent)}
+.lead{font-size:21px;line-height:1.5;color:var(--body)}
+ul.lead{margin:0 0 26px;padding-left:0;list-style:none;max-width:60ch}
+ul.lead li{font-size:21px;line-height:1.5;color:var(--body);margin:0 0 10px;
+  padding-left:20px;position:relative}
+ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;
+  background:var(--accent)}
+
+/* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
+   do that — each band is its own <section>, so a sticky rail is trapped inside
+   whichever one contains it. Fixed to the viewport, content column inset. ---- */
+@media (min-width:1120px){
+  /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
+     insetting those squeezed the nav into the brand mark. */
+  .sec > .wrap{padding-right:258px}
+  .rail{position:fixed;top:88px;width:212px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:22px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:6px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ol{list-style:none;margin:0;padding:8px 0;counter-reset:n}
+.rail-nav li{counter-increment:n;margin:0}
+.rail-nav a{display:block;font-family:var(--mono);font-size:12.5px;line-height:1.35;
+  color:var(--body);text-decoration:none;padding:6px 12px 6px 32px;position:relative}
+.rail-nav a:before{content:counter(n);position:absolute;left:11px;top:6px;
+  font-size:11px;color:var(--mute)}
+.rail-nav a:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav a.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- data tables ---- */
+.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+.gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
+  font-size:14.5px;vertical-align:top;color:var(--ink)}
+.gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);border-bottom:var(--bw) solid var(--ink)}
+.gt tbody th{font-weight:700;color:var(--ink)}
+
+/* ---- the one line that has to land ---- */
+.pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
+  font-size:19px;line-height:1.55;color:var(--ink);max-width:60ch}
+.article-main p.aside{font-size:15px;color:var(--body);
+  border-left:2px solid var(--hair);padding:2px 0 2px 14px;margin:22px 0 0}
+
+/* ---- questions, answered where a reader (or an answer engine) can lift them ---- */
+.faq{border-top:var(--bw) solid var(--ink);max-width:70ch}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{font-weight:700;font-size:17px;color:var(--ink);padding:14px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary:after{content:"\2212"}
+.faq details p{margin:0 0 14px;max-width:66ch}
+.related h4{font-family:var(--display)}
+.guide-close{font-family:var(--mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);display:block;margin:26px 0 0}
+</style>
+</head>
+<body>
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded &mdash; home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a href="archive.html">The Archive</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+<section class="sec"><div class="wrap article-layout">
+<div class="article-main">
+<span class="tag">Field guide &middot; exits</span>
+<h1>Exit 2 &mdash; the stop loss</h1>
+<ul class="lead"><li>A stop loss closes the trade once the loss reaches a stated size.</li><li>On a credit trade that size is quoted as a multiple of the credit you took in &mdash; not of the money at risk.</li></ul>
+<h2 id="s1">What it is</h2>
+<ul><li><strong>You state a multiple.</strong> &ldquo;A 200% stop&rdquo; is the common phrasing.</li><li><strong>It is a multiple of the premium staked</strong>, which on a credit trade means the credit received.</li><li><strong>When the position can only be closed for that much more than you took in, you close it.</strong></li><li><strong>It caps the size of the worst trade</strong>, which is the entire argument for it.</li></ul>
+<p class="pull">A stop here is a percentage of what you staked &mdash; not of what you can lose.</p>
+<h3>The same spread, in numbers</h3>
+<p>Sell the 95 put, buy the 90 put, 45 days out, stock at $100. Credit <strong>$93</strong>. Maximum loss <strong>$407</strong>, because the spread is $5 wide and you keep the credit.</p>
+<div class="tablewrap"><table class="gt"><thead><tr><th>Stop</th><th>Spread has to reach</th><th>You lose</th><th>As a share of max loss</th></tr></thead><tbody><tr><th>100%</th><td>$1.86</td><td>$93</td><td>23%</td></tr><tr><th>200%</th><td>$2.79</td><td>$186</td><td>46%</td></tr><tr><th>300%</th><td>$3.72</td><td>$279</td><td>69%</td></tr><tr><th>No stop</th><td>$5.00</td><td>$407</td><td>100%</td></tr></tbody></table></div>
+<ul><li>A 200% stop does <strong>not</strong> mean losing twice the trade.</li><li>It means letting the spread run to <strong>$2.79</strong> against you and taking a <strong>$186</strong> loss.</li><li>That is under half of what the position could have cost you.</li></ul>
+<p class="aside">Arithmetic from the specification above, at 25% volatility and a 4% rate. Not a measured result.</p>
+</div>
+<aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">What it is</a></li><li><a href="#s2">Why the confusion is expensive</a></li><li><a href="#s3">Where it bites</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">How this shows up in our tests</a></li></ol></div><p class="rail-note">A Field Guide entry states no results. <b>Every number here is arithmetic from the specification beside it.</b></p></aside>
+</div></section>
+<section class="sec light" id="s2"><div class="wrap">
+  <div class="sec-head"><h2>Why the confusion is expensive</h2></div>
+  <div class="article-main">
+<ul><li><strong>Read as a share of max loss</strong>, a &ldquo;200% stop&rdquo; would be impossible &mdash; you cannot lose twice the maximum on a defined-risk spread.</li><li><strong>Read as a share of the credit</strong>, it is an ordinary rule that closes a fair way before the worst case.</li><li><strong>Get it backwards and the stop fires at completely the wrong distance.</strong></li><li><strong>A working strategy becomes a losing one</strong> without a single rule appearing to change.</li></ul>
+<h3>It also changes with the width</h3>
+<ul><li>The stop is quoted off the credit, but what you can lose is set by the width.</li><li>Widen the spread and the credit moves a little; the maximum loss moves a lot.</li><li>So the same stated stop protects a different fraction of the risk on a $5 spread than on a $10 one.</li><li><strong>A stop is not portable between specifications.</strong></li></ul>
+  </div>
+</div></section>
+<section class="sec" id="s3"><div class="wrap">
+  <div class="sec-head"><h2>Where it bites</h2></div>
+  <div class="article-main">
+<h3>A stop can be hit by the spread, not the stock</h3>
+<ul><li>Option prices move on volatility as well as on the underlying.</li><li>A jump in implied volatility can widen a spread enough to trigger the stop while the stock has barely moved.</li><li>You are then out of a position whose thesis never broke.</li></ul>
+<h3>And the mid price may not be a price</h3>
+<ul><li>Stops are usually tested against the mid of the bid and ask.</li><li>On a wide market, the mid is a number nobody was willing to trade at.</li><li>A stop that only ever triggered on a fictional mid did not happen.</li></ul>
+<div class="callout"><div class="ct">Why a stop can lower the win rate and still be right</div><p>Adding a stop turns some trades that would have recovered into realised losses. The win rate falls. Whether the strategy is better off depends on what those cut trades would have cost had they not recovered &mdash; which is an expectancy question, and a measurable one.</p></div>
+  </div>
+</div></section>
+<section class="sec light" id="faq"><div class="wrap">
+  <div class="sec-head"><h2>Common questions</h2></div>
+  <div class="article-main">
+<div class="faq"><details><summary>Is a stop loss a real order, or a rule?</summary><p>Either. A resting stop order on a spread can fill badly in a fast market, so many traders run it as a rule checked at a set time instead. The two behave differently and a test has to say which one it modelled.</p></details><details><summary>Does a defined-risk spread need a stop at all?</summary><p>It is a genuine argument. The maximum loss is already known and capped, so the stop is buying a smaller worst case at the cost of cutting trades that would have come back. That is exactly the sort of trade-off worth measuring.</p></details><details><summary>What stop do most people use?</summary><p>Two to three times the credit is the range you see quoted most often. That is convention, not evidence.</p></details><details><summary>Can a stop be set as a share of the account instead?</summary><p>Yes, and it is a cleaner way to think about sizing. It is a different rule though &mdash; it depends on how many contracts you traded, so two traders running the same strategy would exit at different times.</p></details></div>
+  </div>
+</div></section>
+<section class="sec" id="tests"><div class="wrap">
+  <div class="sec-head"><h2>How this shows up in our tests</h2></div>
+  <div class="article-main">
+<p>No stop-loss result is published yet.</p><p>The queued run is a credit spread traded with and without a stop, over the same entries, scored on expectancy and on the worst drawdown. Both numbers matter: the stop is supposed to buy the second at the cost of the first.</p><div class="related"><a class="rcard" href="guide-seven-exits.html"><div class="rk">The hub</div><h4>The seven ways<br>to exit</h4></a><a class="rcard" href="guide-exit-rule.html"><div class="rk">The umbrella</div><h4>What is an<br>exit rule?</h4></a><a class="rcard" href="guide-exit-technical.html"><div class="rk">Related exit</div><h4>The technical<br>exit</h4></a></div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+<script>
+(function(){
+  var ls=[].slice.call(document.querySelectorAll('.rail-nav a'));
+  var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i});
+    ls.forEach(function(a,i){a.className=i===k?'on':''})}
+  addEventListener('scroll',up,{passive:true});up();
+})();
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>

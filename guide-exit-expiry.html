@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exit 4 — holding to expiry &mdash; Tried &amp; Traded</title>
+<meta name="description" content="Holding an options trade to expiry is the exit that costs nothing to run and is the control every other exit has to beat.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://triedandtraded.com/guide-exit-expiry.html">
+<meta name="theme-color" content="#0B3B3C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Additions this page type introduces. Every value is a site token, so dark mode
+   is free and nothing here can drift from the brand. */
+
+/* ---- SCALE: the display face is sized for a landing page. On an article it
+   shouts, so it steps down. ---- */
+.article-main h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1;
+  letter-spacing:-.01em;margin:6px 0 14px}
+.sec{padding:52px 0}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2}
+.sec-head h2:after{width:10px;height:10px}
+.article-main h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2;margin:0 0 16px}
+.article-main h3{font-size:16px;margin:30px 0 10px}
+
+/* ---- READING: body copy sits on --ink. The mid-tone grey washes out at reading
+   size on the paper ground. Site-native Inter — never a serif. ---- */
+.article-main p,.article-main li{color:var(--ink);font-family:var(--sans)}
+.article-main p{font-size:18px;line-height:1.62;margin:0 0 18px;max-width:60ch}
+.article-main li{margin:0 0 10px;font-size:18px;line-height:1.58}
+.article-main ul{margin:0 0 22px;padding-left:22px;max-width:60ch}
+.article-main a{color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-underline-offset:3px}
+.article-main a:hover{color:var(--accent)}
+.lead{font-size:21px;line-height:1.5;color:var(--body)}
+ul.lead{margin:0 0 26px;padding-left:0;list-style:none;max-width:60ch}
+ul.lead li{font-size:21px;line-height:1.5;color:var(--body);margin:0 0 10px;
+  padding-left:20px;position:relative}
+ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;
+  background:var(--accent)}
+
+/* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
+   do that — each band is its own <section>, so a sticky rail is trapped inside
+   whichever one contains it. Fixed to the viewport, content column inset. ---- */
+@media (min-width:1120px){
+  /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
+     insetting those squeezed the nav into the brand mark. */
+  .sec > .wrap{padding-right:258px}
+  .rail{position:fixed;top:88px;width:212px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:22px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:6px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ol{list-style:none;margin:0;padding:8px 0;counter-reset:n}
+.rail-nav li{counter-increment:n;margin:0}
+.rail-nav a{display:block;font-family:var(--mono);font-size:12.5px;line-height:1.35;
+  color:var(--body);text-decoration:none;padding:6px 12px 6px 32px;position:relative}
+.rail-nav a:before{content:counter(n);position:absolute;left:11px;top:6px;
+  font-size:11px;color:var(--mute)}
+.rail-nav a:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav a.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- data tables ---- */
+.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+.gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
+  font-size:14.5px;vertical-align:top;color:var(--ink)}
+.gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);border-bottom:var(--bw) solid var(--ink)}
+.gt tbody th{font-weight:700;color:var(--ink)}
+
+/* ---- the one line that has to land ---- */
+.pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
+  font-size:19px;line-height:1.55;color:var(--ink);max-width:60ch}
+.article-main p.aside{font-size:15px;color:var(--body);
+  border-left:2px solid var(--hair);padding:2px 0 2px 14px;margin:22px 0 0}
+
+/* ---- questions, answered where a reader (or an answer engine) can lift them ---- */
+.faq{border-top:var(--bw) solid var(--ink);max-width:70ch}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{font-weight:700;font-size:17px;color:var(--ink);padding:14px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary:after{content:"\2212"}
+.faq details p{margin:0 0 14px;max-width:66ch}
+.related h4{font-family:var(--display)}
+.guide-close{font-family:var(--mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);display:block;margin:26px 0 0}
+</style>
+</head>
+<body>
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded &mdash; home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a href="archive.html">The Archive</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+<section class="sec"><div class="wrap article-layout">
+<div class="article-main">
+<span class="tag">Field guide &middot; exits</span>
+<h1>Exit 4 &mdash; holding to expiry</h1>
+<ul class="lead"><li>Holding to expiry is the exit where you do nothing.</li><li>It is also the control: any exit that can&rsquo;t beat doing nothing is costing you money to run.</li></ul>
+<h2 id="s1">What it is</h2>
+<ul><li><strong>You open the trade and leave it.</strong></li><li><strong>It settles on expiry day</strong>, either worthless or in the money.</li><li><strong>You collect the whole credit</strong> if it expires out of the money.</li><li><strong>No decisions, no closing costs, no chance to change your mind.</strong></li></ul>
+<h3>Why it belongs on the list</h3>
+<ul><li>Every other exit costs something &mdash; a spread crossed, a win cut short, a loser booked early.</li><li>Holding to expiry costs none of those.</li><li>So it is the baseline. An exit rule earns its place by beating this one, not by sounding prudent.</li><li><strong>A test that never runs the baseline can&rsquo;t say whether its exit helped.</strong></li></ul>
+</div>
+<aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">What it is</a></li><li><a href="#s2">What it actually costs</a></li><li><a href="#s3">Where it bites</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">How this shows up in our tests</a></li></ol></div><p class="rail-note">A Field Guide entry states no results. <b>Every number here is arithmetic from the specification beside it.</b></p></aside>
+</div></section>
+<section class="sec light" id="s2"><div class="wrap">
+  <div class="sec-head"><h2>What it actually costs</h2></div>
+  <div class="article-main">
+<p>Doing nothing is not free. It is just that the costs arrive as risk rather than as fees.</p>
+<ul><li><strong>The last stretch is the most dangerous.</strong> <a href="guide-gamma-risk.html">Gamma</a> is largest in the final days, so the position can turn fastest exactly when you have stopped watching.</li><li><strong>The capital stays tied up</strong> for the full tenor, which lowers how many trades a year you can run.</li><li><strong>A short option in the money can be <a href="guide-exit-assignment.html">assigned</a></strong>, and on a spread that is a mechanical mess even when the maths still works out.</li><li><strong>Pin risk is real.</strong> A stock closing near your short strike leaves you unsure over the weekend whether you were assigned.</li></ul>
+<p class="pull">The reward for holding is the last few cents. The risk you carry for them is the whole position.</p>
+  </div>
+</div></section>
+<section class="sec" id="s3"><div class="wrap">
+  <div class="sec-head"><h2>Where it bites</h2></div>
+  <div class="article-main">
+<h3>It flatters the win rate</h3>
+<ul><li>Held to expiry, a far out-of-the-money credit trade wins most of the time by construction.</li><li>The losses are rarer and larger, which is the shape most likely to be mistaken for skill.</li><li>A high win rate here is a description of the strikes you chose, not evidence that the strategy makes money.</li></ul>
+<h3>And it is the easiest exit to model wrongly</h3>
+<ul><li>At expiry an option is worth its intrinsic value, so a backtest needs no pricing model &mdash; which makes this the cheapest exit to simulate.</li><li>That cheapness is why so many published backtests hold to expiry without saying so.</li><li>If a study doesn&rsquo;t name its exit, this is usually the one it used.</li></ul>
+<div class="callout"><div class="ct">Read this before comparing two studies</div><p>A backtest that holds to expiry and one that closes at half the credit are not testing the same strategy, however identical their entries look. Comparing their headline numbers is the most common mistake in published options research.</p></div>
+  </div>
+</div></section>
+<section class="sec light" id="faq"><div class="wrap">
+  <div class="sec-head"><h2>Common questions</h2></div>
+  <div class="article-main">
+<div class="faq"><details><summary>Is holding to expiry lazy?</summary><p>It is the simplest choice and sometimes the right one. What it is not is neutral &mdash; it concentrates the risk into the final days and the results reflect that.</p></details><details><summary>Do I get charged to let an option expire worthless?</summary><p>Generally no, which is part of the appeal. Closing early means crossing a spread and paying a commission on a position that may be worth almost nothing.</p></details><details><summary>What about the last hour on expiry day?</summary><p>It is the most unstable part of the trade&rsquo;s life. A stock a few cents either side of your strike is the difference between the full credit and an assignment.</p></details><details><summary>Should a test always include hold-to-expiry as a comparison?</summary><p>Yes. Without it there is no way to say whether the exit rule contributed anything at all.</p></details></div>
+  </div>
+</div></section>
+<section class="sec" id="tests"><div class="wrap">
+  <div class="sec-head"><h2>How this shows up in our tests</h2></div>
+  <div class="article-main">
+<p>No expiry-versus-managed comparison is published yet.</p><p>It is the spine of the exit ladder run: the same entries held to expiry, then closed seven other ways, on one scale. Hold-to-expiry is the control, and it will be reported even where it wins.</p><div class="related"><a class="rcard" href="guide-seven-exits.html"><div class="rk">The hub</div><h4>The seven ways<br>to exit</h4></a><a class="rcard" href="guide-exit-profit-target.html"><div class="rk">The alternative</div><h4>The profit<br>target</h4></a><a class="rcard" href="guide-gamma-risk.html"><div class="rk">The mechanism</div><h4>Gamma risk<br>near expiry</h4></a></div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+<script>
+(function(){
+  var ls=[].slice.call(document.querySelectorAll('.rail-nav a'));
+  var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i});
+    ls.forEach(function(a,i){a.className=i===k?'on':''})}
+  addEventListener('scroll',up,{passive:true});up();
+})();
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>

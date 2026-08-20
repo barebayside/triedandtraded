@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why the exit changes the answer more than the entry does &mdash; Tried &amp; Traded</title>
+<meta name="description" content="Two traders can run identical option entries for a year and reach opposite conclusions. The exit is usually why, and here is the mechanism.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://triedandtraded.com/guide-exit-changes-the-answer.html">
+<meta name="theme-color" content="#0B3B3C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Additions this page type introduces. Every value is a site token, so dark mode
+   is free and nothing here can drift from the brand. */
+
+/* ---- SCALE: the display face is sized for a landing page. On an article it
+   shouts, so it steps down. ---- */
+.article-main h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1;
+  letter-spacing:-.01em;margin:6px 0 14px}
+.sec{padding:52px 0}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2}
+.sec-head h2:after{width:10px;height:10px}
+.article-main h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2;margin:0 0 16px}
+.article-main h3{font-size:16px;margin:30px 0 10px}
+
+/* ---- READING: body copy sits on --ink. The mid-tone grey washes out at reading
+   size on the paper ground. Site-native Inter — never a serif. ---- */
+.article-main p,.article-main li{color:var(--ink);font-family:var(--sans)}
+.article-main p{font-size:18px;line-height:1.62;margin:0 0 18px;max-width:60ch}
+.article-main li{margin:0 0 10px;font-size:18px;line-height:1.58}
+.article-main ul{margin:0 0 22px;padding-left:22px;max-width:60ch}
+.article-main a{color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-underline-offset:3px}
+.article-main a:hover{color:var(--accent)}
+.lead{font-size:21px;line-height:1.5;color:var(--body)}
+ul.lead{margin:0 0 26px;padding-left:0;list-style:none;max-width:60ch}
+ul.lead li{font-size:21px;line-height:1.5;color:var(--body);margin:0 0 10px;
+  padding-left:20px;position:relative}
+ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;
+  background:var(--accent)}
+
+/* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
+   do that — each band is its own <section>, so a sticky rail is trapped inside
+   whichever one contains it. Fixed to the viewport, content column inset. ---- */
+@media (min-width:1120px){
+  /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
+     insetting those squeezed the nav into the brand mark. */
+  .sec > .wrap{padding-right:258px}
+  .rail{position:fixed;top:88px;width:212px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:22px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:6px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ol{list-style:none;margin:0;padding:8px 0;counter-reset:n}
+.rail-nav li{counter-increment:n;margin:0}
+.rail-nav a{display:block;font-family:var(--mono);font-size:12.5px;line-height:1.35;
+  color:var(--body);text-decoration:none;padding:6px 12px 6px 32px;position:relative}
+.rail-nav a:before{content:counter(n);position:absolute;left:11px;top:6px;
+  font-size:11px;color:var(--mute)}
+.rail-nav a:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav a.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- data tables ---- */
+.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+.gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
+  font-size:14.5px;vertical-align:top;color:var(--ink)}
+.gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);border-bottom:var(--bw) solid var(--ink)}
+.gt tbody th{font-weight:700;color:var(--ink)}
+
+/* ---- the one line that has to land ---- */
+.pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
+  font-size:19px;line-height:1.55;color:var(--ink);max-width:60ch}
+.article-main p.aside{font-size:15px;color:var(--body);
+  border-left:2px solid var(--hair);padding:2px 0 2px 14px;margin:22px 0 0}
+
+/* ---- questions, answered where a reader (or an answer engine) can lift them ---- */
+.faq{border-top:var(--bw) solid var(--ink);max-width:70ch}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{font-weight:700;font-size:17px;color:var(--ink);padding:14px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary:after{content:"\2212"}
+.faq details p{margin:0 0 14px;max-width:66ch}
+.related h4{font-family:var(--display)}
+.guide-close{font-family:var(--mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);display:block;margin:26px 0 0}
+</style>
+</head>
+<body>
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded &mdash; home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a href="archive.html">The Archive</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+<section class="sec"><div class="wrap article-layout">
+<div class="article-main">
+<span class="tag">Field guide &middot; exits</span>
+<h1>Why the exit changes the answer more than the entry</h1>
+<ul class="lead"><li>Two traders can run identical entries for a year and disagree about whether the strategy works.</li><li>The exit is usually the reason, and it is the part most strategy write-ups leave as one clause at the end.</li></ul>
+<h2 id="s1">The mechanism</h2>
+<p>An entry decides which trades you take. An exit decides what each one is worth &mdash; and it makes that decision once per trade, on every trade.</p>
+<ul><li><strong>Change the entry</strong> and you get a different set of trades, most of them still broadly similar in character.</li><li><strong>Change the exit</strong> and you keep every trade you had, but each one now pays a different amount.</li><li><strong>The second change touches the whole sample.</strong> The first one only touches the trades at the boundary.</li><li><strong>That is why the exit moves the result harder.</strong> It is arithmetic, not a finding.</li></ul>
+</div>
+<aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">The mechanism</a></li><li><a href="#s2">The same position, two answers</a></li><li><a href="#s3">Where it bites</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">How this shows up in our tests</a></li></ol></div><p class="rail-note">A Field Guide entry states no results. <b>Every number here is arithmetic from the specification beside it.</b></p></aside>
+</div></section>
+<section class="sec light" id="s2"><div class="wrap">
+  <div class="sec-head"><h2>The same position, two answers</h2></div>
+  <div class="article-main">
+<p>Take the bull put spread this site uses as its worked example &mdash; short the 95 put, long the 90, 45 days out, $93.20 credit. Now put the stock exactly at $95, the strike it sold.</p>
+<div class="tablewrap"><table class="gt"><thead><tr><th>When you look</th><th>The position is worth</th><th>What that is</th></tr></thead><tbody><tr><th>Day one</th><td>&minus;$94.53</td><td>worse than the entire credit you took in</td></tr><tr><th>Three weeks in</th><td>&minus;$71.37</td><td>still a loss</td></tr><tr><th>A week out</th><td>&minus;$26.62</td><td>nearly back</td></tr><tr><th>At expiry</th><td>+$93.20</td><td>the maximum win</td></tr></tbody></table></div>
+<ul><li><strong>Same stock price in every row.</strong> The only thing that changed is when you looked.</li><li><strong>An exit rule is a decision about which row you get paid on.</strong></li><li>A stop that fires on day one books a loss on a trade that finishes at maximum profit.</li><li>A hold to expiry collects the lot and carries all the risk in between.</li></ul>
+<p class="pull">The expiry chart is the picture everybody knows. It is also the row you are least likely to be standing on.</p>
+<p class="aside">Arithmetic from the specification above at 25% volatility and a 4% rate. Not a measured result.</p>
+  </div>
+</div></section>
+<section class="sec" id="s3"><div class="wrap">
+  <div class="sec-head"><h2>Where it bites</h2></div>
+  <div class="article-main">
+<h3>Two studies of the same strategy are not comparable</h3>
+<ul><li>One closes at half the credit, one holds to expiry, and both call themselves a test of the same trade.</li><li>Their headline numbers will differ, and neither is wrong.</li><li><strong>Comparing them is the most common mistake in published options research</strong>, including by people being careful.</li><li>If a study doesn&rsquo;t name its exit, assume it held to expiry &mdash; that is the cheapest one to model.</li></ul>
+<h3>And it makes the entry look more important than it is</h3>
+<ul><li>Entries are visible, arguable and fun to optimise.</li><li>Exits are boring and get one line.</li><li>So the effort goes into the half of the strategy that moves the number least.</li></ul>
+<div class="callout"><div class="ct">What this site does about it</div><p>Every test article names its exit in the specification, before the run, alongside the delta, the tenor, the width and the minimum credit. And the queue includes a run whose whole purpose is this question: one set of entries, closed seven different ways, on one scale.</p></div>
+  </div>
+</div></section>
+<section class="sec light" id="faq"><div class="wrap">
+  <div class="sec-head"><h2>Common questions</h2></div>
+  <div class="article-main">
+<div class="faq"><details><summary>Does this mean the entry doesn't matter?</summary><p>No. A bad entry can&rsquo;t be rescued by any exit. The point is narrower: for a given set of entries, the exit is the bigger lever on the result.</p></details><details><summary>How much difference does the exit actually make?</summary><p>We haven&rsquo;t published a number and won&rsquo;t until the run is done. What this page states is the mechanism, which is arithmetic and doesn&rsquo;t need a test to be true.</p></details><details><summary>Is there a best exit?</summary><p>Not in the abstract. It depends on the structure, the tenor and how quickly you can redeploy the capital. Anyone who names one without naming those has skipped the question.</p></details><details><summary>Why do so few articles cover exits?</summary><p>They are harder to write about &mdash; there is no chart of an exit, and the interesting part only shows up across a whole sample of trades.</p></details></div>
+  </div>
+</div></section>
+<section class="sec" id="tests"><div class="wrap">
+  <div class="sec-head"><h2>How this shows up in our tests</h2></div>
+  <div class="article-main">
+<p>This is the finding the site is built to produce, and it is not published yet.</p><p>The exit ladder run takes one set of entries and closes them seven ways &mdash; profit target at three levels, stop, time exit, expiry, technical, assignment and roll &mdash; then reports expectancy per trade for each. Until those numbers exist, this page states the mechanism and nothing more.</p><div class="related"><a class="rcard" href="guide-seven-exits.html"><div class="rk">The hub</div><h4>The seven ways<br>to exit</h4></a><a class="rcard" href="guide-exit-rule.html"><div class="rk">The umbrella</div><h4>What is an<br>exit rule?</h4></a><a class="rcard" href="guide-exit-profit-target.html"><div class="rk">The exit</div><h4>The profit<br>target</h4></a></div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+<script>
+(function(){
+  var ls=[].slice.call(document.querySelectorAll('.rail-nav a'));
+  var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i});
+    ls.forEach(function(a,i){a.className=i===k?'on':''})}
+  addEventListener('scroll',up,{passive:true});up();
+})();
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>
