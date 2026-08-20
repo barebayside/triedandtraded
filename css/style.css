@@ -114,13 +114,15 @@ h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:-.02
    the wordmark — 50px was tried and dominated the bar. Sprites drop out below
    900px where there is no room and three tiny animals are noise, not branding. */
 .mark{font-family:var(--display);font-size:23px;text-transform:uppercase;letter-spacing:-.03em;
-  white-space:nowrap;display:flex;align-items:center;gap:12px}
+  white-space:nowrap;display:flex;align-items:center;gap:10px;flex:0 0 auto}
 .mark-cast{display:flex;align-items:flex-end;gap:2px;flex:none}
 .mark-cast img{height:32px;width:auto;margin:0;display:block;image-rendering:pixelated}
 .mark-word{display:block}
-@media (max-width:900px){.mark-cast{display:none}}
+/* The three sprites are the first thing to go when the bar is tight. They are
+   branding, and the nav is navigation. Below 1240 there is not room for both. */
+@media (max-width:1240px){.mark-cast{display:none}}
 .mark b{color:var(--accent);-webkit-text-stroke:.4px var(--ink)}
-.menubar nav{margin-left:auto;display:flex;gap:22px;font-family:var(--mono);font-size:15px;
+.menubar nav{margin-left:auto;display:flex;gap:15px;font-family:var(--mono);font-size:13.5px;
   letter-spacing:.08em;text-transform:uppercase;align-items:center}
 .menubar nav a{text-decoration:none;color:var(--body);white-space:nowrap}
 .menubar nav a:hover{color:var(--pop)}
@@ -142,6 +144,10 @@ h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:-.02
 .hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:52px;align-items:center}
 .hero h1{font-size:clamp(41px,6.24vw,79px);margin-top:16px}
 .hero h1 em{font-style:normal;color:var(--deep);text-shadow:4px 4px 0 var(--accent)}
+/* The plain hero headline. The shouting version is still here for a landing page
+   that wants it; the homepage does not. Edward, 2026-08-20: "just really small." */
+.hero h1.plain{font-size:clamp(27px,3.1vw,38px);line-height:1.15;margin:14px 0 28px;
+  max-width:31ch}
 .lede{font-size:23px;color:var(--body);max-width:33em;margin:22px 0 30px}
 .cta-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .cta-note{font-family:var(--mono);font-size:14px;color:var(--mute)}
