@@ -5,16 +5,158 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Exit 5 — the technical exit &mdash; Tried &amp; Traded</title>
 <meta name="description" content="A technical exit closes an options trade when the underlying does something you named in advance. It is the hardest exit to test honestly.">
-<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<!-- TT-SEO:BEGIN — generated block, see docs/sites/triedandtraded/SEO-PLAN.md -->
 <link rel="canonical" href="https://triedandtraded.com/guide-exit-technical.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tried &amp; Traded">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://triedandtraded.com/guide-exit-technical.html">
+<meta property="og:title" content="Exit 5 — the technical exit &mdash; Tried &amp; Traded">
+<meta property="og:description" content="A technical exit closes an options trade when the underlying does something you named in advance. It is the hardest exit to test honestly.">
+<meta property="og:image" content="https://triedandtraded.com/assets/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Exit 5 — the technical exit — Tried &amp; Traded">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@triedandtraded">
+<meta name="twitter:title" content="Exit 5 — the technical exit &mdash; Tried &amp; Traded">
+<meta name="twitter:description" content="A technical exit closes an options trade when the underlying does something you named in advance. It is the hardest exit to test honestly.">
+<meta name="twitter:image" content="https://triedandtraded.com/assets/og/home.png">
 <meta name="theme-color" content="#0B3B3C">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://triedandtraded.com/#organization",
+      "name": "Tried & Traded",
+      "url": "https://triedandtraded.com/",
+      "description": "We test the trading strategies everyone talks about and publish the verdict.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://triedandtraded.com/assets/og/home.png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://triedandtraded.com/#website",
+      "url": "https://triedandtraded.com/",
+      "name": "Tried & Traded",
+      "publisher": {
+        "@id": "https://triedandtraded.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://triedandtraded.com/guide-exit-technical.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://triedandtraded.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Field Guide",
+          "item": "https://triedandtraded.com/guide.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Exit 5 — the technical exit",
+          "item": "https://triedandtraded.com/guide-exit-technical.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://triedandtraded.com/guide-exit-technical.html#article",
+      "isPartOf": {
+        "@id": "https://triedandtraded.com/#website"
+      },
+      "headline": "Exit 5 — the technical exit",
+      "description": "A technical exit closes an options trade when the underlying does something you named in advance. It is the hardest exit to test honestly.",
+      "url": "https://triedandtraded.com/guide-exit-technical.html",
+      "datePublished": "2026-08-07",
+      "dateModified": "2026-08-07",
+      "publisher": {
+        "@id": "https://triedandtraded.com/#organization"
+      },
+      "image": "https://triedandtraded.com/assets/og/home.png",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "about": {
+        "@id": "https://triedandtraded.com/guide-exit-technical.html#term"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://triedandtraded.com/guide-exit-technical.html#term",
+      "name": "technical exit",
+      "alternateName": "Exit 5 — the technical exit",
+      "description": "A technical exit closes an options trade when the underlying does something you named in advance. It is the hardest exit to test honestly.",
+      "url": "https://triedandtraded.com/guide-exit-technical.html",
+      "inDefinedTermSet": {
+        "@id": "https://triedandtraded.com/guide.html#glossary"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://triedandtraded.com/guide-exit-technical.html#faq",
+      "isPartOf": {
+        "@id": "https://triedandtraded.com/#website"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is a technical exit compatible with a purely mechanical strategy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, as long as the condition is fully specified &mdash; the level, the timeframe and the confirmation. If it needs you to look at the chart and decide, it can&rsquo;t be tested."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which technical signals are worth using as exits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That is an open question and one worth separating from entries. A signal that makes a poor entry can still make a good exit, because the two jobs are different."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the exit have to use the same signal as the entry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, and forcing it to is a habit rather than a principle. There is no reason the condition that gets you in has to be the mirror of the one that gets you out."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a technical exit fire while the option position is profitable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and that is the point of it. You are closing because the reason for the trade has gone, not because the money has."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- TT-SEO:END -->
 <link rel="stylesheet" href="css/style.css">
 <style>
 /* Additions this page type introduces. Every value is a site token, so dark mode

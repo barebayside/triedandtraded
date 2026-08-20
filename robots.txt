@@ -1,9 +1,13 @@
 # Tried & Traded — https://triedandtraded.com
 #
-# Crawling is allowed. Indexing is currently NOT — every page carries a
-# noindex meta tag until the first real test is published. That is deliberate:
-# the site is a finished frame around results that do not exist yet, and a
-# search engine should not carry a page of placeholder dashes under this brand.
+# Crawling is allowed everywhere. Indexing is allowed for the FIELD GUIDE ONLY
+# (/guide.html and /guide-*.html) — 39 reference pages that state no results and
+# contain no placeholders, so there is nothing on them to hide from a reader.
+#
+# Everything else still carries a noindex meta tag until the first real test is
+# published: the homepage, the archive, the three test articles, the methodology
+# page and the disclaimer all either show placeholder dashes or point at a verdict
+# that does not exist yet. A search engine should not carry those under this brand.
 #
 # Crawlers must be allowed in for the noindex to be SEEN. Blocking them here
 # would leave the pages eligible for indexing from third-party links, with no

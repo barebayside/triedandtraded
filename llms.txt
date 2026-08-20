@@ -44,6 +44,61 @@ cite any number from this site — there are none to cite.
 - [The bull put spread at 16 delta](https://triedandtraded.com/test-bull-put-spread.html)
 - [The bear call spread into a downtrend](https://triedandtraded.com/test-bear-call-spread.html)
 
+## The Field Guide
+
+One page per term, each with a permanent URL, each stating **no results** —
+every number on a Field Guide page is arithmetic from a specification printed
+beside it. This is the only part of the site currently open to indexing, and it
+is the part written to be quoted.
+
+Start here: [The Field Guide](https://triedandtraded.com/guide.html)
+
+### Exits — how a trade ends (13)
+
+- [What is the 21-DTE exit?](https://triedandtraded.com/guide-21-dte-exit.html)
+- [Does closing at 50% beat holding to expiry?](https://triedandtraded.com/guide-close-at-50.html)
+- [Exit 6 &mdash; assignment](https://triedandtraded.com/guide-exit-assignment.html)
+- [Why the exit changes the answer more than the entry](https://triedandtraded.com/guide-exit-changes-the-answer.html)
+- [Exit 4 &mdash; holding to expiry](https://triedandtraded.com/guide-exit-expiry.html)
+- [Exit 1 &mdash; the profit target](https://triedandtraded.com/guide-exit-profit-target.html)
+- [Exit 7 &mdash; the roll](https://triedandtraded.com/guide-exit-roll.html)
+- [What is an exit rule?](https://triedandtraded.com/guide-exit-rule.html)
+- [Exit 2 &mdash; the stop loss](https://triedandtraded.com/guide-exit-stop-loss.html)
+- [Exit 5 &mdash; the technical exit](https://triedandtraded.com/guide-exit-technical.html)
+- [Exit 3 &mdash; the time exit](https://triedandtraded.com/guide-exit-time.html)
+- [What is gamma risk near expiry?](https://triedandtraded.com/guide-gamma-risk.html)
+- [The seven ways to exit an options trade](https://triedandtraded.com/guide-seven-exits.html)
+
+### Structures — what each strategy is made of (17)
+
+- [What is 0-DTE trading?](https://triedandtraded.com/guide-0dte.html)
+- [The bear call spread](https://triedandtraded.com/guide-bear-call-spread.html)
+- [The broken-wing butterfly](https://triedandtraded.com/guide-broken-wing-butterfly.html)
+- [The bull put spread](https://triedandtraded.com/guide-bull-put-spread.html)
+- [The calendar spread](https://triedandtraded.com/guide-calendar-spread.html)
+- [The cash-secured put](https://triedandtraded.com/guide-cash-secured-put.html)
+- [The covered call](https://triedandtraded.com/guide-covered-call.html)
+- [What is a credit spread?](https://triedandtraded.com/guide-credit-spread.html)
+- [The debit spread](https://triedandtraded.com/guide-debit-spread.html)
+- [The diagonal spread](https://triedandtraded.com/guide-diagonal-spread.html)
+- [The iron condor](https://triedandtraded.com/guide-iron-condor.html)
+- [The iron fly](https://triedandtraded.com/guide-iron-fly.html)
+- [The poor man's covered call](https://triedandtraded.com/guide-pmcc.html)
+- [The ratio spread](https://triedandtraded.com/guide-ratio-spread.html)
+- [The short straddle](https://triedandtraded.com/guide-straddle.html)
+- [The naked strangle](https://triedandtraded.com/guide-strangle.html)
+- [What is the wheel strategy?](https://triedandtraded.com/guide-the-wheel.html)
+
+### What a strategy is — and what makes one testable (8)
+
+- [What is a backtest?](https://triedandtraded.com/guide-backtest.html)
+- [A default is not an instruction](https://triedandtraded.com/guide-default-not-instruction.html)
+- [What is expectancy?](https://triedandtraded.com/guide-expectancy.html)
+- [What is a specification?](https://triedandtraded.com/guide-specification.html)
+- [Strategy, setup, system](https://triedandtraded.com/guide-strategy-vs-setup-vs-system.html)
+- [What is a trading strategy?](https://triedandtraded.com/guide-trading-strategy.html)
+- [Why &ldquo;the wheel&rdquo; is not a strategy yet](https://triedandtraded.com/guide-wheel-not-a-strategy.html)
+- [Why win rate is the most misleading number in trading](https://triedandtraded.com/guide-win-rate.html)
 ## Terms as this site uses them
 
 - **Expectancy** — average profit per trade once losses are counted at full size. The only
@@ -53,6 +108,13 @@ cite any number from this site — there are none to cite.
 - **A specification** — for shares: universe, entry, exit, position size, holding period.
   For options, additionally: delta, tenor, strike width, minimum credit. A claim without
   these cannot be tested, only argued about.
+- **A stop loss** — always a percentage of the premium **staked** (the credit received or
+  the debit paid), never of the maximum loss. 200% of stake means the loss reached twice
+  what you put up. On a debit trade stake and maximum loss are the same number, so nothing
+  above 100% exists there.
+- **Breakeven win rate** — on a defined-risk credit spread, the maximum loss divided by the
+  width. It is set by the structure, not by skill, and it is the bar a win rate has to be
+  read against.
 
 ## Contact
 

@@ -5,16 +5,158 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>What is a backtest? &mdash; Tried &amp; Traded</title>
 <meta name="description" content="A backtest replays a specified strategy against price history to find out what it would have produced. What it can show, and the four things it cannot fix.">
-<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<!-- TT-SEO:BEGIN — generated block, see docs/sites/triedandtraded/SEO-PLAN.md -->
 <link rel="canonical" href="https://triedandtraded.com/guide-backtest.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tried &amp; Traded">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://triedandtraded.com/guide-backtest.html">
+<meta property="og:title" content="What is a backtest? &mdash; Tried &amp; Traded">
+<meta property="og:description" content="A backtest replays a specified strategy against price history to find out what it would have produced. What it can show, and the four things it cannot fix.">
+<meta property="og:image" content="https://triedandtraded.com/assets/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="What is a backtest? — Tried &amp; Traded">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@triedandtraded">
+<meta name="twitter:title" content="What is a backtest? &mdash; Tried &amp; Traded">
+<meta name="twitter:description" content="A backtest replays a specified strategy against price history to find out what it would have produced. What it can show, and the four things it cannot fix.">
+<meta name="twitter:image" content="https://triedandtraded.com/assets/og/home.png">
 <meta name="theme-color" content="#0B3B3C">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://triedandtraded.com/#organization",
+      "name": "Tried & Traded",
+      "url": "https://triedandtraded.com/",
+      "description": "We test the trading strategies everyone talks about and publish the verdict.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://triedandtraded.com/assets/og/home.png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://triedandtraded.com/#website",
+      "url": "https://triedandtraded.com/",
+      "name": "Tried & Traded",
+      "publisher": {
+        "@id": "https://triedandtraded.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://triedandtraded.com/guide-backtest.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://triedandtraded.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Field Guide",
+          "item": "https://triedandtraded.com/guide.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "What is a backtest?",
+          "item": "https://triedandtraded.com/guide-backtest.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://triedandtraded.com/guide-backtest.html#article",
+      "isPartOf": {
+        "@id": "https://triedandtraded.com/#website"
+      },
+      "headline": "What is a backtest?",
+      "description": "A backtest replays a specified strategy against price history to find out what it would have produced. What it can show, and the four things it cannot fix.",
+      "url": "https://triedandtraded.com/guide-backtest.html",
+      "datePublished": "2026-08-07",
+      "dateModified": "2026-08-07",
+      "publisher": {
+        "@id": "https://triedandtraded.com/#organization"
+      },
+      "image": "https://triedandtraded.com/assets/og/home.png",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "about": {
+        "@id": "https://triedandtraded.com/guide-backtest.html#term"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://triedandtraded.com/guide-backtest.html#term",
+      "name": "backtest",
+      "alternateName": "What is a backtest?",
+      "description": "A backtest replays a specified strategy against price history to find out what it would have produced. What it can show, and the four things it cannot fix.",
+      "url": "https://triedandtraded.com/guide-backtest.html",
+      "inDefinedTermSet": {
+        "@id": "https://triedandtraded.com/guide.html#glossary"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://triedandtraded.com/guide-backtest.html#faq",
+      "isPartOf": {
+        "@id": "https://triedandtraded.com/#website"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many trades does a backtest need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "More than most publish. A few dozen tells you almost nothing about a strategy that wins most of the time and loses rarely &mdash; the losses are the part you have not sampled."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a backtest the same as paper trading?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A backtest replays history quickly and can cover decades. Paper trading is slow and forward-looking, and it tests your behaviour as much as the rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a backtest prove a strategy works?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It can show a strategy would have worked, on that data, under those assumptions. That is worth a great deal and it is not proof."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why publish the number of variations tried?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because trying twenty things and showing the best one produces an impressive number from pure noise. The count is what lets a reader discount it properly."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- TT-SEO:END -->
 <link rel="stylesheet" href="css/style.css">
 <style>
 /* Additions this page type introduces. Every value is a site token, so dark mode
