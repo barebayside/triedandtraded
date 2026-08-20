@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strategy vs setup vs system &mdash; Tried &amp; Traded</title>
+<meta name="description" content="Three words traders use interchangeably that mean different things. A setup is the conditions, a strategy adds the trade and the exit, a system adds the money.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://triedandtraded.com/guide-strategy-vs-setup-vs-system.html">
+<meta name="theme-color" content="#0B3B3C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Additions this page type introduces. Every value is a site token, so dark mode
+   is free and nothing here can drift from the brand. */
+
+/* ---- SCALE: the display face is sized for a landing page. On an article it
+   shouts, so it steps down. ---- */
+.article-main h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1;
+  letter-spacing:-.01em;margin:6px 0 14px}
+.sec{padding:52px 0}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2}
+.sec-head h2:after{width:10px;height:10px}
+.article-main h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2;margin:0 0 16px}
+.article-main h3{font-size:16px;margin:30px 0 10px}
+
+/* ---- READING: body copy sits on --ink. The mid-tone grey washes out at reading
+   size on the paper ground. Site-native Inter — never a serif. ---- */
+.article-main p,.article-main li{color:var(--ink);font-family:var(--sans)}
+.article-main p{font-size:18px;line-height:1.62;margin:0 0 18px;max-width:60ch}
+.article-main li{margin:0 0 10px;font-size:18px;line-height:1.58}
+.article-main ul{margin:0 0 22px;padding-left:22px;max-width:60ch}
+.article-main a{color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-underline-offset:3px}
+.article-main a:hover{color:var(--accent)}
+.lead{font-size:21px;line-height:1.5;color:var(--body)}
+ul.lead{margin:0 0 26px;padding-left:0;list-style:none;max-width:60ch}
+ul.lead li{font-size:21px;line-height:1.5;color:var(--body);margin:0 0 10px;
+  padding-left:20px;position:relative}
+ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;
+  background:var(--accent)}
+
+/* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
+   do that — each band is its own section element, so a sticky rail is trapped inside
+   whichever one contains it. Fixed to the viewport, content column inset. ---- */
+@media (min-width:1120px){
+  /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
+     insetting those squeezed the nav into the brand mark. */
+  .sec > .wrap{padding-right:258px}
+  .rail{position:fixed;top:88px;width:212px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:22px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:6px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ol{list-style:none;margin:0;padding:8px 0;counter-reset:n}
+.rail-nav li{counter-increment:n;margin:0}
+.rail-nav a{display:block;font-family:var(--mono);font-size:12.5px;line-height:1.35;
+  color:var(--body);text-decoration:none;padding:6px 12px 6px 32px;position:relative}
+.rail-nav a:before{content:counter(n);position:absolute;left:11px;top:6px;
+  font-size:11px;color:var(--mute)}
+.rail-nav a:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav a.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- data tables ---- */
+.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+.gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
+  font-size:14.5px;vertical-align:top;color:var(--ink)}
+.gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);border-bottom:var(--bw) solid var(--ink)}
+.gt tbody th{font-weight:700;color:var(--ink)}
+
+/* ---- the one line that has to land ---- */
+.pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
+  font-size:19px;line-height:1.55;color:var(--ink);max-width:60ch}
+.article-main p.aside{font-size:15px;color:var(--body);
+  border-left:2px solid var(--hair);padding:2px 0 2px 14px;margin:22px 0 0}
+
+/* ---- questions, answered where a reader (or an answer engine) can lift them ---- */
+.faq{border-top:var(--bw) solid var(--ink);max-width:70ch}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{font-weight:700;font-size:17px;color:var(--ink);padding:14px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary:after{content:"\2212"}
+.faq details p{margin:0 0 14px;max-width:66ch}
+.related h4{font-family:var(--display)}
+.guide-close{font-family:var(--mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);display:block;margin:26px 0 0}
+</style>
+</head>
+<body>
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded &mdash; home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a class="hub" href="archive.html">The Archive</a>
+    <a class="hub" href="guide.html">Field Guide</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+<section class="sec"><div class="wrap article-layout">
+<div class="article-main">
+<a class="tag" href="guide.html" style="text-decoration:none">&larr; Field guide &middot; what a strategy is</a>
+<h1>Strategy, setup, system</h1>
+<ul class="lead"><li>Three words used interchangeably, for three different things.</li><li>Getting them apart is what lets you say which part of a losing run actually failed.</li></ul>
+<h2 id="s1">What each one is</h2>
+<div class="tablewrap"><table class="gt"><thead><tr><th></th><th>What it covers</th><th>Example</th></tr></thead><tbody><tr><th><strong>Setup</strong></th><td>The conditions that have to be true before you look at a trade</td><td>Stock above its 50-day average, IV rank over 30</td></tr><tr><th><strong>Strategy</strong></th><td>The setup, plus what you trade and when you get out</td><td>That setup, traded as a 16&#916; put spread, $5 wide, closed at half</td></tr><tr><th><strong>System</strong></th><td>The strategy, plus how much and how many at once</td><td>That strategy, at 2% of the account per trade, ten open at most</td></tr></tbody></table></div>
+<ul><li><strong>A setup does not tell you what to trade.</strong> The same setup can be expressed as a spread, a naked put or shares.</li><li><strong>A strategy does not tell you how much to risk.</strong> That is the system&rsquo;s job, and it is where accounts actually die.</li><li><strong>Each layer can be right while the one above it is wrong.</strong></li></ul>
+</div>
+<aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">What each one is</a></li><li><a href="#s2">Why the distinction earns its keep</a></li><li><a href="#s3">Where it bites</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">How this shows up in our tests</a></li></ol></div><p class="rail-note">A Field Guide entry states no results. <b>Every number here is arithmetic from the specification beside it.</b></p></aside>
+</div></section>
+<section class="sec light" id="s2"><div class="wrap">
+  <div class="sec-head"><h2>Why the distinction earns its keep</h2></div>
+  <div class="article-main">
+<p>When a run of trades goes badly, these three words are the diagnosis.</p>
+<ul><li><strong>Did the setup stop appearing?</strong> Then the market changed and the strategy never got a chance.</li><li><strong>Did the setup appear and the trades still lose?</strong> Then the structure or the exit is wrong, not the entry.</li><li><strong>Did the trades work and the account still shrink?</strong> Then it is sizing, and no amount of tinkering with strikes will fix it.</li><li><strong>Three questions, three different repairs.</strong> Collapse the words and you cannot tell which one you are looking at.</li></ul>
+<h3>It also decides what a test can prove</h3>
+<ul><li>A backtest of a <strong>strategy</strong> tells you what the trades were worth.</li><li>It says nothing about whether you could have held ten of them at once, or what one bad month would have done to the account.</li><li><strong>That is a system question</strong>, and it needs the trades plus a sizing rule before it can be answered.</li></ul>
+  </div>
+</div></section>
+<section class="sec" id="s3"><div class="wrap">
+  <div class="sec-head"><h2>Where it bites</h2></div>
+  <div class="article-main">
+<p class="pull">Almost every argument about whether something &ldquo;works&rdquo; is two people talking about different layers.</p>
+<ul><li>One says the wheel works &mdash; he means the setup keeps appearing and the trades keep closing green.</li><li>The other says it does not &mdash; he means the account went nowhere once a bad year is included.</li><li><strong>Both can be right at once</strong>, because they are describing different layers of the same thing.</li></ul>
+<h3>What this site tests</h3>
+<ul><li><strong>We test strategies.</strong> Structure, four numbers, universe, period, exit.</li><li><strong>We report system-level numbers where the data allows it</strong> &mdash; the worst drawdown, and how much of an account the strategy could actually absorb.</li><li><strong>We do not publish a sizing rule</strong>, because that is advice and this site does not give any.</li></ul>
+  </div>
+</div></section>
+<section class="sec light" id="faq"><div class="wrap">
+  <div class="sec-head"><h2>Common questions</h2></div>
+  <div class="article-main">
+<div class="faq"><details><summary>Is 'the wheel' a setup, a strategy or a system?</summary><p>As usually described, none of them &mdash; it is a sequence of positions with no numbers attached. See <a href="guide-wheel-not-a-strategy.html">why the wheel is not a strategy yet</a>.</p></details><details><summary>Can a good setup have a bad strategy attached?</summary><p>Easily. The same correct read on a stock can be expressed as a trade that pays well or one that pays terribly, and the difference is structure and exit.</p></details><details><summary>Which layer matters most?</summary><p>The one you have not written down. In practice that is usually sizing, because it is the layer nobody publishes and the one that decides whether a bad month is an annoyance or the end.</p></details><details><summary>Do I need all three before I trade?</summary><p>You have all three whether you write them down or not. The only question is whether you chose them.</p></details></div>
+  </div>
+</div></section>
+<section class="sec" id="tests"><div class="wrap">
+  <div class="sec-head"><h2>How this shows up in our tests</h2></div>
+  <div class="article-main">
+<p>Every test article on this site names the strategy layer in full and says which system-level numbers it can and cannot report.</p><p>No result is published yet. When one is, the drawdown and the capacity will be reported next to the per-trade numbers, because a strategy that cannot be held at size is a different proposition from one that can.</p><div class="related"><a class="rcard" href="guide-trading-strategy.html"><div class="rk">Before this</div><h4>What is a<br>trading strategy?</h4></a><a class="rcard" href="guide-specification.html"><div class="rk">The centre</div><h4>What is a<br>specification?</h4></a><a class="rcard" href="guide.html"><div class="rk">The shelf</div><h4>Every page in<br>the Field Guide</h4></a></div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a class="hub" href="guide.html">Field Guide</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+<script>
+(function(){
+  var ls=[].slice.call(document.querySelectorAll('.rail-nav a'));
+  var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i});
+    ls.forEach(function(a,i){a.className=i===k?'on':''})}
+  addEventListener('scroll',up,{passive:true});up();
+})();
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>

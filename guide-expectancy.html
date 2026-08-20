@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is expectancy? &mdash; Tried &amp; Traded</title>
+<meta name="description" content="Expectancy is what one trade is worth on average, once the size of the wins and the losses is taken into account. It is the number this site judges a strategy on.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — phase 3 of BLOG-QUEUE.md removes this -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://triedandtraded.com/guide-expectancy.html">
+<meta name="theme-color" content="#0B3B3C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Additions this page type introduces. Every value is a site token, so dark mode
+   is free and nothing here can drift from the brand. */
+
+/* ---- SCALE: the display face is sized for a landing page. On an article it
+   shouts, so it steps down. ---- */
+.article-main h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1;
+  letter-spacing:-.01em;margin:6px 0 14px}
+.sec{padding:52px 0}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2}
+.sec-head h2:after{width:10px;height:10px}
+.article-main h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2;margin:0 0 16px}
+.article-main h3{font-size:16px;margin:30px 0 10px}
+
+/* ---- READING: body copy sits on --ink. The mid-tone grey washes out at reading
+   size on the paper ground. Site-native Inter — never a serif. ---- */
+.article-main p,.article-main li{color:var(--ink);font-family:var(--sans)}
+.article-main p{font-size:18px;line-height:1.62;margin:0 0 18px;max-width:60ch}
+.article-main li{margin:0 0 10px;font-size:18px;line-height:1.58}
+.article-main ul{margin:0 0 22px;padding-left:22px;max-width:60ch}
+.article-main a{color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-underline-offset:3px}
+.article-main a:hover{color:var(--accent)}
+.lead{font-size:21px;line-height:1.5;color:var(--body)}
+ul.lead{margin:0 0 26px;padding-left:0;list-style:none;max-width:60ch}
+ul.lead li{font-size:21px;line-height:1.5;color:var(--body);margin:0 0 10px;
+  padding-left:20px;position:relative}
+ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;
+  background:var(--accent)}
+
+/* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
+   do that — each band is its own section element, so a sticky rail is trapped inside
+   whichever one contains it. Fixed to the viewport, content column inset. ---- */
+@media (min-width:1120px){
+  /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
+     insetting those squeezed the nav into the brand mark. */
+  .sec > .wrap{padding-right:258px}
+  .rail{position:fixed;top:88px;width:212px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:22px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:6px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ol{list-style:none;margin:0;padding:8px 0;counter-reset:n}
+.rail-nav li{counter-increment:n;margin:0}
+.rail-nav a{display:block;font-family:var(--mono);font-size:12.5px;line-height:1.35;
+  color:var(--body);text-decoration:none;padding:6px 12px 6px 32px;position:relative}
+.rail-nav a:before{content:counter(n);position:absolute;left:11px;top:6px;
+  font-size:11px;color:var(--mute)}
+.rail-nav a:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav a.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- data tables ---- */
+.gt{width:100%;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+.gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
+  font-size:14.5px;vertical-align:top;color:var(--ink)}
+.gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);border-bottom:var(--bw) solid var(--ink)}
+.gt tbody th{font-weight:700;color:var(--ink)}
+
+/* ---- the one line that has to land ---- */
+.pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
+  font-size:19px;line-height:1.55;color:var(--ink);max-width:60ch}
+.article-main p.aside{font-size:15px;color:var(--body);
+  border-left:2px solid var(--hair);padding:2px 0 2px 14px;margin:22px 0 0}
+
+/* ---- questions, answered where a reader (or an answer engine) can lift them ---- */
+.faq{border-top:var(--bw) solid var(--ink);max-width:70ch}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{font-weight:700;font-size:17px;color:var(--ink);padding:14px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary:after{content:"\2212"}
+.faq details p{margin:0 0 14px;max-width:66ch}
+.related h4{font-family:var(--display)}
+.guide-close{font-family:var(--mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);display:block;margin:26px 0 0}
+</style>
+</head>
+<body>
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded &mdash; home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
+    <a class="hub" href="archive.html">The Archive</a>
+    <a class="hub" href="guide.html">Field Guide</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+<section class="sec"><div class="wrap article-layout">
+<div class="article-main">
+<a class="tag" href="guide.html" style="text-decoration:none">&larr; Field guide &middot; what a strategy is</a>
+<h1>What is expectancy?</h1>
+<ul class="lead"><li>Expectancy is what the average trade is worth &mdash; wins and losses, size included.</li><li>It is the number that decides whether a strategy makes money. Win rate is not.</li></ul>
+<h2 id="s1">What it is</h2>
+<p>Expectancy is the average outcome of one trade, worked out from how often you win, how much you win, and how much you lose when you don&rsquo;t.</p>
+<ul><li><strong>How often you win</strong> &times; <strong>the average win</strong></li><li><strong>less</strong> how often you lose &times; the average loss</li><li><strong>The answer is a dollar figure per trade.</strong> Positive means the strategy makes money over enough trades. Negative means it does not.</li><li><strong>Nothing else in this calculation is optional.</strong> Take any one part out and the answer is meaningless.</li></ul>
+<h3>On the spread this site uses as its example</h3>
+<p>Sell the 95 put, buy the 90, 45 days out. Credit <strong>$93</strong>, maximum loss <strong>$407</strong>. Assume for a moment it is held to expiry and every loss is the full one.</p>
+<div class="tablewrap"><table class="gt"><thead><tr><th>If it wins this often</th><th>Expectancy per trade</th><th>Meaning</th></tr></thead><tbody><tr><th>95%</th><td>+$68</td><td>Comfortably profitable</td></tr><tr><th>85%</th><td>+$18</td><td>Profitable, and thinner than it looks</td></tr><tr><th>81.4%</th><td>$0</td><td>The breakeven point</td></tr><tr><th>75%</th><td>&minus;$32</td><td>Losing money while winning three trades in four</td></tr></tbody></table></div>
+<p class="aside">Those win rates are <strong>assumed</strong>, to show the arithmetic. They are not measurements &mdash; no test on this site has published a result. The dollar figures are arithmetic from the specification above.</p>
+</div>
+<aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">What it is</a></li><li><a href="#s2">The breakeven win rate</a></li><li><a href="#s3">Where it bites</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">How this shows up in our tests</a></li></ol></div><p class="rail-note">A Field Guide entry states no results. <b>Every number here is arithmetic from the specification beside it.</b></p></aside>
+</div></section>
+<section class="sec light" id="s2"><div class="wrap">
+  <div class="sec-head"><h2>The breakeven win rate</h2></div>
+  <div class="article-main">
+<p class="pull">On a defined-risk credit spread the breakeven win rate is the maximum loss divided by the width. Nothing else.</p>
+<ul><li><strong>$407 of risk over a $500 width is 81.4%.</strong></li><li><strong>So this trade has to win more than four times in five just to stand still</strong>, before costs.</li><li><strong>It is fixed by the structure, not by skill.</strong> Choose the width and the credit and you have chosen the bar you have to clear.</li><li><strong>Work it out before you trade something, not after.</strong> It takes ten seconds and it reframes the whole trade.</li></ul>
+<h3>Which is why the far-out-of-the-money trade is not free money</h3>
+<ul><li>Sell further from the money and the win rate rises &mdash; that part is real.</li><li><strong>The credit falls faster.</strong> Take $25 on the same $5 width and the breakeven win rate becomes 95%.</li><li><strong>At that point you need nineteen wins for every loss simply to break even.</strong></li><li>The trade that feels safest is the one with the least room for error.</li></ul>
+  </div>
+</div></section>
+<section class="sec" id="s3"><div class="wrap">
+  <div class="sec-head"><h2>Where it bites</h2></div>
+  <div class="article-main">
+<ul><li><strong>Expectancy needs enough trades to mean anything.</strong> A high win rate strategy hides its losses in the tail, and a short sample may contain none of them.</li><li><strong>It is per trade, not per year.</strong> A strategy worth $18 a trade that fires twice a year is not a business.</li><li><strong>It is before costs unless you say otherwise.</strong> Commissions and the spread crossed come out of a number this small very quickly.</li><li><strong>And it assumes the average loss is the full one</strong>, which an exit rule is meant to change &mdash; which is exactly why the exit moves the answer so much.</li></ul>
+<h3>How this site uses it</h3>
+<ul><li><strong>Expectancy per trade decides every verdict here.</strong></li><li>It is published next to the win rate, never instead of it.</li><li><strong>A strategy with a beautiful win rate and negative expectancy gets a Fails</strong>, and the win rate is printed anyway so you can see how it happened.</li></ul>
+  </div>
+</div></section>
+<section class="sec light" id="faq"><div class="wrap">
+  <div class="sec-head"><h2>Common questions</h2></div>
+  <div class="article-main">
+<div class="faq"><details><summary>Is expectancy the same as average profit per trade?</summary><p>Yes, that is exactly what it is. The word is used to signal that it is worked out from the win rate and the average sizes rather than just totalled up.</p></details><details><summary>What is a good expectancy?</summary><p>Positive, after costs, on data the strategy was not chosen on, over enough trades that the losses have actually shown up. A number without those four conditions is not comparable with anything.</p></details><details><summary>Can expectancy be positive and the strategy still be unusable?</summary><p>Easily. If it takes a $10,000 buying-power reduction to earn $18 a trade, or the worst drawdown is more than you would sit through, the arithmetic is fine and the trade is not.</p></details><details><summary>Why do so few write-ups quote it?</summary><p>Because win rate is easier to say and sounds better. A 90% win rate is a good headline; the expectancy behind it is often not.</p></details></div>
+  </div>
+</div></section>
+<section class="sec" id="tests"><div class="wrap">
+  <div class="sec-head"><h2>How this shows up in our tests</h2></div>
+  <div class="article-main">
+<p>Every verdict on this site is decided on expectancy per trade, and none has been published yet.</p><p>When one is, the win rate will be printed beside it &mdash; not because it decides anything, but because seeing the two together is how the point lands.</p><div class="related"><a class="rcard" href="guide-win-rate.html"><div class="rk">The trap</div><h4>Why win rate<br>misleads</h4></a><a class="rcard" href="guide-specification.html"><div class="rk">The centre</div><h4>What is a<br>specification?</h4></a><a class="rcard" href="guide-seven-exits.html"><div class="rk">Related</div><h4>The seven ways<br>to exit</h4></a></div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a class="hub" href="guide.html">Field Guide</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+<script>
+(function(){
+  var ls=[].slice.call(document.querySelectorAll('.rail-nav a'));
+  var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i});
+    ls.forEach(function(a,i){a.className=i===k?'on':''})}
+  addEventListener('scroll',up,{passive:true});up();
+})();
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>
