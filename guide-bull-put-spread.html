@@ -1,3 +1,6 @@
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
@@ -46,7 +49,7 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 
 /* ============ THE RAIL ============
    It must follow you the whole way down. `position:sticky` cannot do that here:
-   each band is its own <section>, so a sticky rail is trapped inside whichever
+   each band is its own section element, so a sticky rail is trapped inside whichever
    one contains it. Fixed to the viewport instead, with the content column
    inset to leave room. */
 @media (min-width:1120px){
@@ -155,13 +158,19 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 .pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
   font-size:19px;line-height:1.55;color:var(--ink)}
 </style>
+</head>
+<body>
 
-<div class="menubar"><div class="wrap menubar-inner">
-  <a class="brand" href="index.html">TRIED &amp; TRADED</a>
-  <nav class="menu">
-    <a href="index.html">Test of the Week</a>
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded &mdash; home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a href="test-the-wheel.html">Test of the Week</a>
     <a href="archive.html">The Archive</a>
     <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
   </nav>
 </div></div>
 <section class="sec"><div class="wrap article-layout">
@@ -381,3 +390,27 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
   </div>
 </div></section>
 <script>var ls=[].slice.call(document.querySelectorAll(".rail-nav a"));var ts=ls.map(function(a){return document.getElementById(a.getAttribute("href").slice(1));});function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i;});ls.forEach(function(a,i){a.className=i===k?"on":"";});}addEventListener("scroll",up,{passive:true});up();</script>
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+<script>
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>

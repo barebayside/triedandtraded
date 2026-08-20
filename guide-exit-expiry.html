@@ -48,7 +48,7 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
   background:var(--accent)}
 
 /* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
-   do that — each band is its own <section>, so a sticky rail is trapped inside
+   do that — each band is its own section element, so a sticky rail is trapped inside
    whichever one contains it. Fixed to the viewport, content column inset. ---- */
 @media (min-width:1120px){
   /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
