@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The calendar call, 4,937 times — Tried &amp; Traded</title>
+<meta name="description" content="We ran the calendar call 4,937 times across nine names on quoted prices. It made money. Forty-nine trades were ninety-six percent of it. Here is the verdict and the arithmetic.">
+<meta name="robots" content="noindex,nofollow"><!-- PREVIEW ONLY — remove before launch -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<!-- TT-SEO:BEGIN — generated block, see docs/sites/triedandtraded/SEO-PLAN.md -->
+<link rel="canonical" href="https://triedandtraded.com/test-calendar-call.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tried &amp; Traded">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://triedandtraded.com/test-calendar-call.html">
+<meta property="og:title" content="The calendar call, 4,937 times — Tried &amp; Traded">
+<meta property="og:description" content="We ran the calendar call 4,937 times across nine names on quoted prices. It made money. Forty-nine trades were ninety-six percent of it.">
+<meta property="og:image" content="https://triedandtraded.com/assets/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The calendar call, 4,937 times — Tried &amp; Traded">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@triedandtraded">
+<meta name="twitter:title" content="The calendar call, 4,937 times — Tried &amp; Traded">
+<meta name="twitter:description" content="We ran the calendar call 4,937 times across nine names on quoted prices. It made money. Forty-nine trades were ninety-six percent of it.">
+<meta name="twitter:image" content="https://triedandtraded.com/assets/og/home.png">
+<meta name="theme-color" content="#0B3B3C">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://triedandtraded.com/#organization",
+      "name": "Tried & Traded",
+      "url": "https://triedandtraded.com/",
+      "description": "We test the trading strategies everyone talks about and publish the verdict.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://triedandtraded.com/assets/og/home.png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://triedandtraded.com/#website",
+      "url": "https://triedandtraded.com/",
+      "name": "Tried & Traded",
+      "publisher": { "@id": "https://triedandtraded.com/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://triedandtraded.com/test-calendar-call.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://triedandtraded.com/" },
+        { "@type": "ListItem", "position": 2, "name": "The Archive", "item": "https://triedandtraded.com/archive.html" },
+        { "@type": "ListItem", "position": 3, "name": "Options backtesting", "item": "https://triedandtraded.com/archive-options.html" },
+        { "@type": "ListItem", "position": 4, "name": "The calendar call, 4,937 times", "item": "https://triedandtraded.com/test-calendar-call.html" }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://triedandtraded.com/test-calendar-call.html#article",
+      "isPartOf": { "@id": "https://triedandtraded.com/#website" },
+      "headline": "The calendar call, 4,937 times",
+      "description": "We ran the calendar call 4,937 times across nine names on quoted prices. It made money. Forty-nine trades were ninety-six percent of it.",
+      "url": "https://triedandtraded.com/test-calendar-call.html",
+      "datePublished": "2026-08-22",
+      "dateModified": "2026-08-22",
+      "publisher": { "@id": "https://triedandtraded.com/#organization" },
+      "image": "https://triedandtraded.com/assets/og/home.png",
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
+<!-- TT-SEO:END -->
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Additions this page type introduces. Every value is a site token, so dark mode
+   is free and nothing here can drift from the brand. */
+
+/* ---- SCALE: the display face is sized for a landing page. On an article it
+   shouts, so it steps down. ---- */
+.article-main h1{font-size:clamp(28px,3.2vw,38px);line-height:1.1;
+  letter-spacing:-.01em;margin:6px 0 14px}
+.sec{padding:52px 0}
+.sec-head{margin-bottom:20px}
+.sec-head h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2}
+.sec-head h2:after{width:10px;height:10px}
+.article-main h2{font-size:clamp(21px,2.3vw,26px);line-height:1.2;margin:0 0 16px}
+.article-main h3{font-size:16px;margin:30px 0 10px}
+
+/* ---- READING: body copy sits on --ink. The mid-tone grey washes out at reading
+   size on the paper ground. Site-native Inter — never a serif. ---- */
+.article-main p,.article-main li{color:var(--ink);font-family:var(--sans)}
+.article-main p{font-size:18px;line-height:1.62;margin:0 0 18px;max-width:60ch}
+.article-main li{margin:0 0 10px;font-size:18px;line-height:1.58}
+.article-main ul{margin:0 0 22px;padding-left:22px;max-width:60ch}
+.article-main a{color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-underline-offset:3px}
+.article-main a:hover{color:var(--accent)}
+.lead{font-size:21px;line-height:1.5;color:var(--body)}
+ul.lead{margin:0 0 26px;padding-left:0;list-style:none;max-width:60ch}
+ul.lead li{font-size:21px;line-height:1.5;color:var(--body);margin:0 0 10px;
+  padding-left:20px;position:relative}
+ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;
+  background:var(--accent)}
+
+/* ---- THE RAIL: it has to follow you the whole way down. `position:sticky` cannot
+   do that — each band is its own section element, so a sticky rail is trapped inside
+   whichever one contains it. Fixed to the viewport, content column inset. ---- */
+@media (min-width:1120px){
+  /* Only the article bands get inset. `.wrap` is also the menubar and the footer —
+     insetting those squeezed the nav into the brand mark. */
+  .sec > .wrap{padding-right:258px}
+  .rail{position:fixed;top:88px;width:212px;right:max(24px,calc((100vw - 1180px)/2));
+    z-index:5;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  .article-layout{display:block}
+}
+.rail-nav{border:var(--bw) solid var(--ink);background:var(--panel);
+  box-shadow:5px 5px 0 var(--shadow);margin-bottom:22px}
+.rail-nav h3{font-family:var(--pixel);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--deep);margin:0;
+  padding:6px 10px;border-bottom:var(--bw) solid var(--ink)}
+.rail-nav ol{list-style:none;margin:0;padding:8px 0;counter-reset:n}
+.rail-nav li{counter-increment:n;margin:0}
+.rail-nav a{display:block;font-family:var(--mono);font-size:12.5px;line-height:1.35;
+  color:var(--body);text-decoration:none;padding:6px 12px 6px 32px;position:relative}
+.rail-nav a:before{content:counter(n);position:absolute;left:11px;top:6px;
+  font-size:11px;color:var(--mute)}
+.rail-nav a:hover{background:var(--panel-2);color:var(--ink)}
+.rail-nav a.on{color:var(--ink);font-weight:700;background:var(--panel-2);
+  box-shadow:inset 3px 0 0 var(--accent)}
+.rail-note{font-family:var(--mono);font-size:11.5px;line-height:1.55;
+  color:var(--mute);margin:0;padding:0 2px}
+.rail-note b{color:var(--body)}
+
+/* ---- data tables ---- */
+/* min-width:0 — css/style.css puts a 680px floor under every <table> so the six-column
+   archive keeps its shape. A guide table is often two or three columns and has no
+   business inheriting that: on a phone it forced a sideways scroll to read a table
+   that already fitted. These size to their own content and scroll inside .tablewrap
+   only when they genuinely do not fit. */
+.gt{width:100%;min-width:0;border-collapse:collapse;margin:0 0 6px;font-family:var(--sans)}
+.gt th,.gt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);
+  font-size:14.5px;vertical-align:top;color:var(--ink)}
+.gt thead th{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);border-bottom:var(--bw) solid var(--ink)}
+.gt tbody th{font-weight:700;color:var(--ink)}
+
+/* ---- the one line that has to land ---- */
+.pull{border-left:4px solid var(--pop);padding:4px 0 4px 18px;margin:22px 0;
+  font-size:19px;line-height:1.55;color:var(--ink);max-width:60ch}
+.article-main p.aside{font-size:15px;color:var(--body);
+  border-left:2px solid var(--hair);padding:2px 0 2px 14px;margin:22px 0 0}
+
+/* ---- questions, answered where a reader (or an answer engine) can lift them ---- */
+.faq{border-top:var(--bw) solid var(--ink);max-width:70ch}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{font-weight:700;font-size:17px;color:var(--ink);padding:14px 0;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary:after{content:"\\2212"}
+.faq details p{margin:0 0 14px;max-width:66ch}
+.related h4{font-family:var(--display)}
+.guide-close{font-family:var(--mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);display:block;margin:26px 0 0}
+</style>
+</head>
+<body data-cast="ferret" data-kind="Investigation">
+
+<!-- FIRST REAL TEST. Every figure on this page comes out of runs 1895-1903 and is
+     reproducible with scripts/_publish_calendar_call_test.py in the platform repo.
+     Nothing here is written by hand. -->
+
+<div class="menubar"><div class="wrap">
+  <a class="mark" href="index.html" style="text-decoration:none" aria-label="Tried and Traded — home">
+    <span class="mark-cast" aria-hidden="true"><img src="assets/mascots/bull-stand.svg" alt="" width="48" height="80"><img src="assets/mascots/ferret-point.svg" alt="" width="48" height="80"><img src="assets/mascots/bear-stand.svg" alt="" width="48" height="80"></span><span class="mark-word">TRIED <b>&amp;</b> TRADED</span></a>
+  <button class="navtoggle" aria-expanded="false" aria-controls="mainnav" onclick="var n=document.getElementById('mainnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">Menu</button>
+  <nav id="mainnav">
+    <a class="hub" href="archive.html">The Archive</a>
+    <a class="hub" href="guide.html">Field Guide</a>
+    <a href="methodology.html">Methodology</a>
+    <a class="cta" href="index.html#signup">Start Free</a>
+    <button class="themetoggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">&#9681;</button>
+  </nav>
+</div></div>
+
+<header class="page-head"><div class="wrap">
+  <div class="crumb"><a class="hub" href="archive.html">The Archive</a> &nbsp;/&nbsp; Test No. 1</div>
+  <h1>The calendar call, 4,937 times</h1>
+  <p class="standfirst">Sell the near expiry, buy the far one, let time do the work. It is the trade people describe as collecting rent. We ran it nearly five thousand times on prices somebody actually quoted.</p>
+  <div class="metabar">
+    <span>Published <b>22 Aug 2026</b></span>
+    <span>Period tested <b>Feb 2024 – Jun 2026</b></span>
+    <span>Trades <b>4,937</b></span>
+    <span>Data <b>QuantConnect daily chains</b></span>
+  </div>
+</div></header>
+
+<section class="sec"><div class="wrap article-layout">
+ <div class="article-main">
+
+  <!-- ===== THE VERDICT — always first. Never bury it. ===== -->
+  <div class="win verdict-hero">
+    <div class="vh-stamp"><div class="stamp fail">Fails</div></div>
+    <div class="vh-body">
+      <h2>The verdict</h2>
+      <p>It made money — and 49 of the 4,937 trades were 96% of the profit. Take away
+         the two best names out of nine and the whole thing loses. That is not an edge
+         you can run; it is a lottery with a positive average.</p>
+    </div>
+  </div>
+
+  <div class="prose">
+
+    <h3 id="s1" data-pose="point" data-say="<b>You are selling time to somebody else.</b> The near option decays faster than the far one. That gap is the trade.">The claim</h3>
+
+    <p>The case for a <a href="guide-calendar-spread.html">calendar spread</a> is a real one, and it goes like this.</p>
+
+    <ul>
+      <li><b>Two legs, one strike.</b> Sell the near-dated call, buy the far-dated call at the same strike.</li>
+      <li><b>The near one dies faster.</b> Time decay accelerates as expiry closes, so the option you sold loses value quicker than the one you own.</li>
+      <li><b>You keep the difference.</b> If the stock sits still, that gap is your profit.</li>
+      <li><b>The loss is capped.</b> You pay a debit to open it, and the debit is the most you can lose.</li>
+    </ul>
+
+    <p>Every one of those statements is true. None of them tells you whether the trade
+       makes money, because none of them is about what the stock actually does next.</p>
+
+    <h3 id="s2" data-pose="stand" data-say="<b>Write the rules down first.</b> Then there is nothing to argue about afterwards.">How we tested it</h3>
+
+    <p>The <a href="guide-specification.html">specification</a> was fixed before the run,
+       and every value the software would otherwise have chosen for us is named here.</p>
+
+    <ul>
+      <li><b>No entry filter at all.</b> The trade opens on every day the chain allows it. We are testing the structure, not a signal.</li>
+      <li><b>No exit rule.</b> Every trade runs to the near expiry. That is the baseline every other exit gets measured against.</li>
+      <li><b>Nine names, one window.</b> No name was chosen after seeing its result.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="ct">Test parameters</div>
+      <table class="kv">
+        <tr><th scope="row">Universe</th><td>AAPL · AMZN · BA · CVX · GOOGL · GS · QQQ · SMH · UNH</td></tr>
+        <tr><th scope="row">Structure</th><td>Long <a href="guide-calendar-spread.html">calendar call</a> — sell near, buy far, same strike</td></tr>
+        <tr><th scope="row">Entry delta</th><td>0.25 – 0.35 on the long leg</td></tr>
+        <tr><th scope="row">Days to expiry</th><td>Short leg 8–16 · long leg 25–35</td></tr>
+        <tr><th scope="row"><a href="guide-exit-rule.html">Exit rule</a></th><td><a href="guide-exit-expiry.html">Held to the near expiry</a> — no target, no stop</td></tr>
+        <tr><th scope="row">Minimum size</th><td>1 contract</td></tr>
+        <tr><th scope="row">Fills</th><td>Mid, moved a quarter of the spread against us — at entry and at every daily mark</td></tr>
+        <tr><th scope="row">Period</th><td>1 Feb 2024 – 30 Jun 2026</td></tr>
+        <tr><th scope="row">Prices</th><td>41,566 daily marks, 41,459 of them (99.7%) off a real two-sided quote</td></tr>
+      </table>
+    </div>
+
+    <p>That last row is the one that matters most, and it is the reason this test exists
+       at all.</p>
+
+    <ul>
+      <li><b>A model will price anything.</b> Ask it for a value on a day nobody was quoting and it returns a confident number.</li>
+      <li><b>We record when there was no quote.</b> A missing bid is stored as missing, so we know which marks were real and which were guessed.</li>
+      <li><b>An earlier version of this run was wrong about that</b>, and the correction cost it five sixths of its result. See <a href="#limits">what this does not tell you</a>.</li>
+    </ul>
+
+    <h3 id="s3" data-pose="up" data-say="<b>Positive.</b> Nearly five thousand trades and the average is above zero. That is the number I came for.">What the data showed</h3>
+
+    <p>The pooled result is positive. Read the second line before you get comfortable.</p>
+  </div>
+
+  <!-- results panel -->
+  <div class="win" style="margin:30px 0 34px">
+    <div class="win-bar">RESULTS — CALENDAR CALL · 25-35&Delta; · 8-16 / 25-35 DTE · HELD TO EXPIRY<span class="win-dots"><i></i><i></i><i></i></span></div>
+    <div class="stats">
+      <div class="stat"><b>46.8%</b><span><a href="guide-win-rate.html">Win rate</a></span></div>
+      <div class="stat"><b>+$12.83</b><span><a href="guide-expectancy.html">Expectancy</a> / trade</span></div>
+      <div class="stat"><b>54.0%</b><span>Max drawdown</span></div>
+      <div class="stat"><b>4,937</b><span>Trades tested</span></div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Two things in that panel disagree with each other, and the disagreement is the
+       whole article.</p>
+
+    <ul>
+      <li><b>The average trade makes $12.83.</b></li>
+      <li><b>The median trade loses $23.00.</b> More than half of them lose. The average is being carried by something.</li>
+    </ul>
+
+    <h3 id="s4" data-pose="cross" data-say="<b>Show me the middle trade.</b> Averages are where bad strategies go to hide.">Win rate is not the answer</h3>
+
+    <p>A strategy can win most of the time and lose money, and it can lose most of the
+       time and make money. <a href="guide-expectancy.html">Expectancy</a> is the only
+       one of the two that decides anything.</p>
+
+    <ul>
+      <li><b>This one loses most of the time</b> — 46.8% of trades win.</li>
+      <li><b>And still averages a profit</b> — because the winners are far bigger than the losers.</li>
+      <li><b>Best trade: +$1,920. Worst: −$1,426.</b> The tail on the upside is longer, and that is where the entire result lives.</li>
+    </ul>
+
+    <p>So we asked how much of the profit came from how few trades.</p>
+
+    <table class="kv">
+      <tr><th scope="row">Total profit, 4,937 trades</th><td>+$63,338</td></tr>
+      <tr><th scope="row">From the best 1% (49 trades)</th><td>+$61,068 — <b>96% of it</b></td></tr>
+      <tr><th scope="row">From the best 5% (246 trades)</th><td>+$182,004 — <b>287% of it</b></td></tr>
+      <tr><th scope="row">Median trade</th><td>−$23.00</td></tr>
+    </table>
+
+    <ul>
+      <li><b>Forty-nine trades are the strategy.</b> The other 4,888 net out to +$2,270 between them, or 46 cents each.</li>
+      <li><b>The best 5% make nearly three times the total profit</b>, which means everything outside the top 5% loses roughly two-thirds of it back.</li>
+    </ul>
+
+    <p class="pull">Miss the 49 and you did not trade a worse version of this strategy. You traded a losing one.</p>
+
+    <h3 id="s5" data-pose="stand" data-say="<b>Nine names.</b> Take the best one away and tell me what is left.">Is it the structure, or is it the names?</h3>
+
+    <p>A pooled average survives one name carrying it, and nothing in the pooled figure
+       says so. So we took the best names out, one at a time.</p>
+
+    <table class="kv">
+      <tr><th scope="row">All nine names</th><td>4,937 trades · +$12.83 a trade · +$63,338</td></tr>
+      <tr><th scope="row">Without SMH</th><td>4,347 trades · +$4.35 a trade · +$18,920</td></tr>
+      <tr><th scope="row">Without SMH and GS</th><td>3,752 trades · <b>−$1.58 a trade · −$5,933</b></td></tr>
+    </table>
+
+    <p>The per-name breakdown says the same thing more bluntly.</p>
+
+    <table class="kv">
+      <tr><th scope="row">SMH</th><td>590 trades · 55.4% win · +$75.28 a trade</td></tr>
+      <tr><th scope="row">GS</th><td>595 trades · 47.7% win · +$41.77 a trade</td></tr>
+      <tr><th scope="row">QQQ</th><td>467 trades · 52.9% win · +$28.59 a trade</td></tr>
+      <tr><th scope="row">GOOGL</th><td>546 trades · 48.7% win · +$15.96 a trade</td></tr>
+      <tr><th scope="row">CVX</th><td>456 trades · 46.9% win · +$6.99 a trade</td></tr>
+      <tr><th scope="row">AAPL</th><td>541 trades · 45.5% win · +$6.37 a trade</td></tr>
+      <tr><th scope="row">AMZN</th><td>570 trades · 45.1% win · +$1.11 a trade</td></tr>
+      <tr><th scope="row">BA</th><td>586 trades · 41.3% win · −$13.92 a trade</td></tr>
+      <tr><th scope="row">UNH</th><td>586 trades · 38.7% win · −$46.25 a trade</td></tr>
+    </table>
+
+    <ul>
+      <li><b>Two of nine names lose money outright</b>, and they lose it steadily — 586 trades each, not a bad month.</li>
+      <li><b>Only three of nine clear $20 a trade.</b></li>
+      <li><b>You would have had to pick SMH in February 2024</b> and stay with it. That is a stock-picking result wearing a strategy's clothes.</li>
+    </ul>
+
+    <h3 id="s6" data-pose="shrug" data-say="<b>Ask the account, not the leaderboard.</b> They keep giving different answers.">What it does to an actual account</h3>
+
+    <p>Every figure above is per trade. An account has to find the money for each one and
+       hold it until the trade closes, so we ran the same trades through three account
+       sizes.</p>
+
+    <table class="kv">
+      <tr><th scope="row">$25,000</th><td>Took 4,431 of 4,937 · +$24,963 · +$5.63 a trade · <b>79.3% drawdown</b></td></tr>
+      <tr><th scope="row">$50,000</th><td>Took all 4,937 · +$63,338 · +$12.83 a trade · <b>54.0% drawdown</b></td></tr>
+      <tr><th scope="row">$100,000</th><td>Took all 4,937 · +$63,338 · +$12.83 a trade · <b>35.8% drawdown</b></td></tr>
+    </table>
+
+    <ul>
+      <li><b>Under $50,000 the account runs out of money before the strategy runs out of signals</b> — 506 trades declined for cash, and the per-trade average halves.</li>
+      <li><b>The drawdown is the number to sit with.</b> Even funded properly, this took the account down 35.8% along the way to that profit.</li>
+      <li><b>Nine names at once is what makes it expensive.</b> The signals arrive together, because they are all driven by the calendar and not by the stocks.</li>
+    </ul>
+
+    <h3 id="s7" data-pose="cross" data-say="<b>No.</b> Every year here is the same market. That is one observation, not three.">Did it hold up out of sample?</h3>
+
+    <p>It was not tested out of sample, and we are not going to imply otherwise.</p>
+
+    <ul>
+      <li><b>The hold-out years are 2015, 2019 and 2023.</b> They are sealed and have never been looked at.</li>
+      <li><b>This test does not reach them.</b> It runs from February 2024, so there is no out-of-sample result to report.</li>
+      <li><b>The three years it does cover are one regime</b>, and they agree with each other — which proves less than it looks like it proves.</li>
+    </ul>
+
+    <table class="kv">
+      <tr><th scope="row">2024 (1,857 trades)</th><td>47.1% win · +$3.59 a trade</td></tr>
+      <tr><th scope="row">2025 (2,097 trades)</th><td>47.0% win · +$17.45 a trade</td></tr>
+      <tr><th scope="row">2026 to June (983 trades)</th><td>45.9% win · +$20.43 a trade</td></tr>
+    </table>
+
+    <p>A verdict of Holds on this site requires an out-of-sample result that stands on
+       its own. This test cannot earn one yet.</p>
+
+    <h3 id="s8" data-pose="point" data-say="<b>There is a boundary here.</b> It just is not one you can trade.">The condition that changes the answer</h3>
+
+    <p>Most strategies are good inside a boundary and bad outside it. This one has a
+       boundary, and it is an awkward one.</p>
+
+    <ul>
+      <li><b>The condition is the name.</b> On SMH it made $75 a trade; on UNH it lost $46.</li>
+      <li><b>That is not a rule you can apply in advance.</b> You only know which names worked after they worked.</li>
+      <li><b>We also tested a trigger</b> — entering only after a higher high off a horizontal level. It picked 212 trades and averaged $31.06, two and a half times better per trade.</li>
+      <li><b>And it made the account $18,378 worse</b>, because it declined 4,725 trades to get there. Better per trade and worse for the account is not a contradiction; it is <a href="guide-exit-changes-the-answer.html">the difference between a ranking and a result</a>.</li>
+    </ul>
+
+    <div class="callout limits" id="limits">
+      <div class="ct">What this test does not tell you</div>
+      <ul>
+        <li><b>One regime, one window.</b> Feb 2024 to Jun 2026, and no sealed year touched.</li>
+        <li><b>Nine names.</b> Large, liquid US names. Nothing here says anything about a small cap.</li>
+        <li><b>No commissions.</b> Fills are mid less a quarter of the spread, which is a real cost and the larger one, but brokerage is not modelled.</li>
+        <li><b>The final mark on each trade is settled, not quoted.</b> The expiring leg is settled by arithmetic; the surviving leg is modelled, and the model prices it about 5% of mid above the market.</li>
+        <li><b>An earlier version of this run was wrong.</b> It was pricing trades on days the market was shut — a model filling in where there was no quote at all. Corrected, the same 4,937 trades kept their entry dates and lost five sixths of their profit. The number on this page is the corrected one.</li>
+      </ul>
+    </div>
+
+    <h3 id="s9" data-pose="stand" data-say="<b>What would settle it.</b> Not another opinion — a specification.">What we'd take from this</h3>
+
+    <ul>
+      <li><b>Do not run this as an income trade.</b> The story is that it pays you rent while the stock sits still. The middle trade loses $23.</li>
+      <li><b>If you run it anyway, size for the tail.</b> Your result is 1% of your trades. Stopping early because a run of losses feels wrong is how you miss them.</li>
+      <li><b>Fund it properly or do not fund it.</b> Under $50,000 across nine names the account is the constraint, not the strategy.</li>
+      <li><b>The next version to test is not a better entry — it is a shorter far leg.</b> The gap between 8–16 and 25–35 days is what sets how much the trade is a bet on time and how much it is a bet on the stock.</li>
+    </ul>
+
+    <p class="pull">We tested the structure. The structure is not what made the money.</p>
+
+    <p><b>Ferret:</b> nothing here settles whether the calendar call works. It settles
+       that this specification, on these nine names, in this window, did not — and that
+       any test which reports only a pooled average would have called it a win. The next
+       one names the far leg's tenor before it runs, and reports the per-name table
+       whether or not it flatters us.</p>
+  </div>
+
+  <div style="margin-top:34px">
+    <a class="btn" href="index.html#signup">Get the next test free</a>
+    <a class="btn ghost" href="methodology.html">How we test &rarr;</a>
+  </div>
+
+ </div><!-- /.article-main -->
+
+ <aside class="rail">
+   <div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">The claim</a></li><li><a href="#s2">How we tested it</a></li><li><a href="#s3">What the data showed</a></li><li><a href="#s4">Win rate is not the answer</a></li><li><a href="#s5">Is it the structure, or is it the names?</a></li><li><a href="#s6">What it does to an actual account</a></li><li><a href="#s7">Did it hold up out of sample?</a></li><li><a href="#s8">The condition that changes the answer</a></li><li><a href="#s9">What we&#39;d take from this</a></li></ol></div>
+   <div class="rail-inner">
+     <span class="rail-who" id="railWho">Investigation</span>
+     <img id="railSprite" src="assets/mascots/ferret-point.svg"  alt="" width="92" height="153">
+     <div class="rail-say" id="railSay">You are selling time to somebody else. The near option decays faster than the far one. That gap is the trade.</div>
+   </div>
+ </aside>
+
+</div></section>
+
+<section class="sec light"><div class="wrap">
+  <div class="sec-head"><h2>Common questions</h2><span class="tag">Asked the way people type them</span></div>
+  <div class="prose">
+    <p><b>Does a calendar spread actually make money?</b><br>
+       Over 4,937 trades on nine large US names between February 2024 and June 2026 it
+       averaged +$12.83 a trade. 96% of that came from 49 trades, and removing the two
+       best names turned the total negative.</p>
+    <p><b>What is the win rate on a calendar call?</b><br>
+       46.8% in this test. The median trade lost $23, so more than half of them lose and
+       the average is carried by a small number of large winners.</p>
+    <p><b>How much capital do you need to run it?</b><br>
+       Across nine names, under $50,000 the account declines trades it cannot fund — 506
+       of 4,937 at $25,000 — and the per-trade average halves.</p>
+    <p><b>Is a calendar spread a low-risk trade?</b><br>
+       The most you can lose on one is the debit you paid. Run as a book, this test drew
+       the account down 35.8% at $100,000 and 79.3% at $25,000.</p>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><h2>Related tests</h2><span class="tag">Same shape of trade</span></div>
+  <div class="related">
+    <a class="rcard" href="test-bull-put-spread.html"><div class="rk">Bullish setup</div>
+      <h4>The bull put spread<br>at 16 delta</h4>
+      <span class="badge b-pending">Pending</span></a>
+    <a class="rcard" href="test-the-wheel.html"><div class="rk">Investigation</div>
+      <h4>The wheel on<br>high-IV tickers</h4>
+      <span class="badge b-pending">Pending</span></a>
+    <a class="rcard" href="guide-diagonal-spread.html"><div class="rk">Field Guide</div>
+      <h4>The diagonal spread<br>— a calendar that leans</h4>
+      <span class="badge">Read the entry</span></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span><b>TRIED &amp; TRADED</b></span>
+  <a href="archive.html">Archive</a>
+  <a class="hub" href="guide.html">Field Guide</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="disclaimer.html">Disclaimer</a>
+  <span class="disclaimer">Results are historical and do not predict future returns. Nothing here is financial advice.</span>
+</div></footer>
+
+<script>
+(function(){
+  var ls=[].slice.call(document.querySelectorAll('.rail-nav a'));
+  var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function up(){var y=scrollY+140,k=0;ts.forEach(function(t,i){if(t&&t.offsetTop<=y)k=i});
+    ls.forEach(function(a,i){a.className=i===k?'on':''})}
+  addEventListener('scroll',up,{passive:true});up();
+})();
+</script>
+<script>
+// ---- side rail: the cast reacts as you scroll ----
+(function(){
+  var sprite=document.getElementById('railSprite'), say=document.getElementById('railSay'),
+      who=document.getElementById('railWho'), cast=document.body.dataset.cast||'ferret';
+  who.textContent = document.body.dataset.kind || 'Investigation';
+  var marks=[].slice.call(document.querySelectorAll('[data-pose]'));
+  if(!marks.length || !('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      sprite.src='assets/mascots/'+cast+'-'+e.target.dataset.pose+'.svg';
+      say.innerHTML=e.target.dataset.say;
+    });
+  },{rootMargin:'-45% 0px -45% 0px'});
+  marks.forEach(function(m){io.observe(m)});
+})();
+
+(function(){
+  var root=document.documentElement, KEY='tt-theme', saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved)}
+  document.querySelector('.themetoggle').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+})();
+</script>
+<script defer src="/js/tt-popup.js"></script>
+</body>
+</html>
