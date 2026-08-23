@@ -388,7 +388,27 @@
                }, utms()))})
       .then(function(r){ if(!r.ok) throw new Error(r.status);
         say('ok','Done. Check your inbox to confirm — the first test lands Tuesday.');
-        f.reset(); f.classList.remove('tried'); })
+        f.reset(); f.classList.remove('tried');
+        // ⛔ THE GOAL FIRES ON `lead_id`, NEVER ON A 200. A bot that trips the honeypot,
+        // sends no Origin, submits in 200ms or uses a disposable inbox is deliberately
+        // told {"status":"ok"} with NO lead_id and nothing is stored — telling a bot why
+        // it failed teaches it to pass. So a goal counting 200s counts exactly the traffic
+        // the bot protection was built to discard, and the conversion rate becomes a lie.
+        //
+        // A REPEAT signup also carries lead_id, plus duplicate:true. That is a returning
+        // subscriber, not a new one — counted separately, because a rising repeat count
+        // usually means the welcome email is not arriving.
+        //
+        // ⚠️ DETACHED ON PURPOSE. This runs in its own promise with its own catch, so
+        // analytics can never break a signup. If PageSense is blocked or the body is not
+        // JSON, the visitor still sees "Done." and the lead is still in CRM.
+        r.text().then(function(b){
+          var d={}; try{ d=JSON.parse(b)||{}; }catch(e){ return; }
+          if(!d.lead_id) return;
+          window.pagesense=window.pagesense||[];
+          window.pagesense.push(['trackEvent', d.duplicate ? 'TNT Signup Repeat'
+                                                          : 'TNT Signup New']);
+        }).catch(function(){}); })
       .catch(function(){ say('err','That did not save. Nothing was recorded — please try again.'); })
       .finally(function(){ btn.disabled=false; });
   });
