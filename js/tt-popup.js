@@ -149,6 +149,24 @@
       say('ok', 'Done. Check your inbox to confirm — the first test lands Tuesday.');
       form.style.display = 'none';
       setTimeout(function () { close(false); }, 3200);
+
+      // ⛔ SAME RULE AS THE HOMEPAGE FORM: the goal fires on `lead_id`, never on a 200.
+      // The capture function answers bots with {"status":"ok"} and no lead_id on purpose.
+      //
+      // ⭐ AND THE SAME EVENT NAMES ON PURPOSE. This popup is the ONLY way to sign up
+      // from a guide or a test page — the form lives on the homepage alone. One event
+      // name means one goal counts every real signup, and PageSense attributes it to
+      // whatever page it fired on, so "did the Field Guide convert anyone" is answered
+      // for free instead of needing a second goal.
+      //
+      // ⚠️ Detached, with its own catch. Analytics must never break a signup.
+      r.text().then(function (b) {
+        var d = {}; try { d = JSON.parse(b) || {}; } catch (e) { return; }
+        if (!d.lead_id) return;
+        window.pagesense = window.pagesense || [];
+        window.pagesense.push(['trackEvent', d.duplicate ? 'TNT Signup Repeat'
+                                                         : 'TNT Signup New']);
+      }).catch(function () {});
     }).catch(function () {
       say('err', 'That did not save. Nothing was recorded — please try again.');
     }).finally(function () { btn.disabled = false; });
