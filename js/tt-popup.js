@@ -164,8 +164,8 @@
         var d = {}; try { d = JSON.parse(b) || {}; } catch (e) { return; }
         if (!d.lead_id) return;
         window.pagesense = window.pagesense || [];
-        window.pagesense.push(['trackEvent', d.duplicate ? 'Tried and Traded Signup Repeat'
-                                                         : 'Tried and Traded Signup New']);
+        window.pagesense.push(['trackEvent', d.duplicate ? 'TandT Signup Repeat'
+                                                         : 'TandT Signup']);
       }).catch(function () {});
     }).catch(function () {
       say('err', 'That did not save. Nothing was recorded — please try again.');
