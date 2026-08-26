@@ -146,7 +146,7 @@
     }).then(function (r) {
       if (!r.ok) throw new Error(r.status);
       lsSet(K_DONE, '1');
-      say('ok', 'Done. Check your inbox to confirm — the first test lands Tuesday.');
+      say('ok', 'Done — you’re on the list. The next test lands in your inbox.');
       form.style.display = 'none';
       setTimeout(function () { close(false); }, 3200);
 

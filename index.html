@@ -387,7 +387,7 @@
                  source:'triedandtraded.com', page:location.pathname
                }, utms()))})
       .then(function(r){ if(!r.ok) throw new Error(r.status);
-        say('ok','Done. Check your inbox to confirm — the first test lands Tuesday.');
+        say('ok','Done — you’re on the list. The next test lands in your inbox.');
         f.reset(); f.classList.remove('tried');
         // ⛔ THE GOAL FIRES ON `lead_id`, NEVER ON A 200. A bot that trips the honeypot,
         // sends no Origin, submits in 200ms or uses a disposable inbox is deliberately
