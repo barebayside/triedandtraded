@@ -18,7 +18,7 @@
 (function () {
   'use strict';
 
-  var ENDPOINT = 'https://bbl-pipeline-7006497428.development.catalystserverless.com.au/server/tnt_lead_capture/';
+  var ENDPOINT = 'https://bbl-pipeline-7006497428.catalystserverless.com.au/server/tnt_lead_capture/';
 
   var K_DONE = 'tt-signed-up';      // permanent — they converted
   var K_HIDE = 'tt-popup-hidden';   // timestamp — they said no
