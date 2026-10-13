@@ -133,7 +133,7 @@
           "name": "Why does spread width matter so much?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It sets the maximum loss. Delta and tenor decide where the trade sits; width and credit decide what it is worth and what it risks."
+            "text": "It sets the maximum loss. Delta and DTE decide where the trade sits; width and credit decide what it is worth and what it risks."
           }
         },
         {
@@ -271,7 +271,7 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 <h1>The default nobody chose</h1>
 <ul class="lead"><li>Every spread we captured came out $5 wide.</li><li>Nobody decided that. It was what the code did when the width was not specified.</li></ul>
 <h2 id="s1">What we had</h2>
-<ul><li><strong>A capture pipeline</strong> replaying credit spreads across years of options data.</li><li><strong>A strategy stated as three numbers</strong> &mdash; delta, tenor, and the underlying.</li><li><strong>A width the code filled in</strong> when nothing said otherwise: $5.</li><li><strong>More than a hundred thousand captured trades</strong> carrying it.</li></ul>
+<ul><li><strong>A capture pipeline</strong> replaying credit spreads across years of options data.</li><li><strong>A strategy stated as three numbers</strong> &mdash; delta, DTE, and the underlying.</li><li><strong>A width the code filled in</strong> when nothing said otherwise: $5.</li><li><strong>More than a hundred thousand captured trades</strong> carrying it.</li></ul>
 <p>Nothing in the output marked that number as inherited. It sat in the data looking exactly like a decision.</p>
 </div>
 <aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">What we had</a></li><li><a href="#s2">What was wrong with it</a></li><li><a href="#s3">How it was found</a></li><li><a href="#s4">What it cost</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">What changed</a></li></ol></div><p class="rail-note">An error of ours, published after it was corrected. <b>The wrong number is printed next to the right one.</b></p></aside>
@@ -288,7 +288,7 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 <section class="sec" id="s3"><div class="wrap">
   <div class="sec-head"><h2>How it was found</h2></div>
   <div class="article-main">
-<ul><li><strong>By reading the specification back</strong>, not by a test failing.</li><li>Every test we run has to name four numbers &mdash; delta, tenor, <strong>width</strong> and minimum credit. Writing that rule down is what exposed the fact that only three of them had ever been chosen.</li><li><strong>No alarm went off.</strong> Nothing could have: the pipeline did exactly what it was told, consistently, for a hundred thousand trades.</li><li>That is the shape of this class of error. It is invisible precisely because it is applied everywhere.</li></ul>
+<ul><li><strong>By reading the specification back</strong>, not by a test failing.</li><li>Every test we run has to name four numbers &mdash; delta, DTE, <strong>width</strong> and minimum credit. Writing that rule down is what exposed the fact that only three of them had ever been chosen.</li><li><strong>No alarm went off.</strong> Nothing could have: the pipeline did exactly what it was told, consistently, for a hundred thousand trades.</li><li>That is the shape of this class of error. It is invisible precisely because it is applied everywhere.</li></ul>
 <div class="tablewrap"><table class="gt"><thead><tr><th></th><th>What we had</th><th>What it should have been</th></tr></thead><tbody><tr><th><strong>The width</strong></th><td>$5, inherited from the code</td><td>a stated number in the specification</td></tr><tr><th><strong>Trades affected</strong></th><td>more than 100,000</td><td>&mdash;</td></tr><tr><th><strong>What it looked like</strong></th><td>a deliberate $5-wide strategy</td><td>a default nobody had weighed</td></tr></tbody></table></div>
 <p class="aside">That count is from our own capture data. It is not a strategy result &mdash; no test on this site has published one.</p>
   </div>
@@ -303,13 +303,13 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 <section class="sec" id="faq"><div class="wrap">
   <div class="sec-head"><h2>Common questions</h2></div>
   <div class="article-main">
-<div class="faq"><details><summary>Does this mean your earlier numbers were wrong?</summary><p>There were no earlier numbers. Nothing has been published. What it means is that the trades captured before 6 August described a strategy nobody had specified.</p></details><details><summary>Why does spread width matter so much?</summary><p>It sets the maximum loss. Delta and tenor decide where the trade sits; width and credit decide what it is worth and what it risks.</p></details><details><summary>How do you stop it happening again?</summary><p>Every test names four numbers before it runs, and the width is one of them. A run that cannot state all four does not get a verdict.</p></details><details><summary>Is a default always a bug?</summary><p>No. Often the value is perfectly sensible. The bug is that nobody weighed it, and that nothing in the output said so.</p></details></div>
+<div class="faq"><details><summary>Does this mean your earlier numbers were wrong?</summary><p>There were no earlier numbers. Nothing has been published. What it means is that the trades captured before 6 August described a strategy nobody had specified.</p></details><details><summary>Why does spread width matter so much?</summary><p>It sets the maximum loss. Delta and DTE decide where the trade sits; width and credit decide what it is worth and what it risks.</p></details><details><summary>How do you stop it happening again?</summary><p>Every test names four numbers before it runs, and the width is one of them. A run that cannot state all four does not get a verdict.</p></details><details><summary>Is a default always a bug?</summary><p>No. Often the value is perfectly sensible. The bug is that nobody weighed it, and that nothing in the output said so.</p></details></div>
   </div>
 </div></section>
 <section class="sec light" id="tests"><div class="wrap">
   <div class="sec-head"><h2>What changed</h2></div>
   <div class="article-main">
-<p>The width is now part of the specification printed at the top of every test, alongside the delta, the tenor and the minimum credit.</p><p>A run that cannot name all four does not get published. That rule exists because of this.</p><div class="related"><a class="rcard" href="guide-specification.html"><div class="rk">Related</div><h4>What is a<br>specification?</h4></a><a class="rcard" href="guide-bull-put-spread.html"><div class="rk">Where width bites</div><h4>The bull put<br>spread</h4></a><a class="rcard" href="guide.html"><div class="rk">The shelf</div><h4>Every page in<br>the Field Guide</h4></a></div>
+<p>The width is now part of the specification printed at the top of every test, alongside the delta, the DTE and the minimum credit.</p><p>A run that cannot name all four does not get published. That rule exists because of this.</p><div class="related"><a class="rcard" href="guide-specification.html"><div class="rk">Related</div><h4>What is a<br>specification?</h4></a><a class="rcard" href="guide-bull-put-spread.html"><div class="rk">Where width bites</div><h4>The bull put<br>spread</h4></a><a class="rcard" href="guide.html"><div class="rk">The shelf</div><h4>Every page in<br>the Field Guide</h4></a></div>
   </div>
 </div></section>
 <footer><div class="wrap">

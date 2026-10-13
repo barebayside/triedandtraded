@@ -112,7 +112,7 @@ Start here: [The Field Guide](https://triedandtraded.com/guide.html)
 - **Holds / Fails / Conditional / Pending** — the only four verdicts. Pending is a real
   state meaning the test has not run or the sample is too thin to call, never a gap.
 - **A specification** — for shares: universe, entry, exit, position size, holding period.
-  For options, additionally: delta, tenor, strike width, minimum credit. A claim without
+  For options, additionally: delta, DTE, strike width, minimum credit. A claim without
   these cannot be tested, only argued about.
 - **A stop loss** — always a percentage of the premium **staked** (the credit received or
   the debit paid), never of the maximum loss. 200% of stake means the loss reached twice

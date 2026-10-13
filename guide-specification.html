@@ -125,7 +125,7 @@
           "name": "Why four numbers and not three?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Because width and minimum credit together are the risk-to-reward, and a strategy quoted without them cannot be priced. Delta and tenor alone describe a location, not a trade."
+            "text": "Because width and minimum credit together are the risk-to-reward, and a strategy quoted without them cannot be priced. Delta and DTE alone describe a location, not a trade."
           }
         },
         {
@@ -133,7 +133,7 @@
           "name": "Does every structure need four?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The four are the credit-spread set. A covered call needs the call's delta, the tenor and the assignment rule; a calendar needs both expiries. The principle is the same: name everything that changes the trade."
+            "text": "The four are the credit-spread set. A covered call needs the call's delta, the DTE and the assignment rule; a calendar needs both expiries. The principle is the same: name everything that changes the trade."
           }
         },
         {
@@ -271,8 +271,8 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 <h1>What is a specification?</h1>
 <ul class="lead"><li>A specification is what turns a name into something testable.</li><li>For a credit spread it is four numbers, and leaving any one out means two people run different strategies.</li></ul>
 <h2 id="s1">The four numbers</h2>
-<div class="tablewrap"><table class="gt"><thead><tr><th>Number</th><th>What it sets</th><th>What happens if you leave it out</th></tr></thead><tbody><tr><th><strong>Delta</strong></th><td>How far from the money you sell</td><td>The most commonly stated one, so this rarely happens</td></tr><tr><th><strong>Tenor</strong></th><td>How many days you give it</td><td>Also usually stated</td></tr><tr><th><strong>Width</strong></th><td>How far apart the strikes are &mdash; and therefore the maximum loss</td><td><strong>Your software picks one, and you never chose it</strong></td></tr><tr><th><strong>Minimum credit</strong></th><td>The least you will accept for that risk</td><td>You take whatever is offered, including trades that were never worth it</td></tr></tbody></table></div>
-<ul><li><strong>Delta and tenor describe where the trade sits.</strong></li><li><strong>Width and minimum credit describe what it is worth.</strong></li><li><strong>The first two get quoted constantly and the last two almost never</strong> &mdash; which is why so many published results cannot be reproduced.</li></ul>
+<div class="tablewrap"><table class="gt"><thead><tr><th>Number</th><th>What it sets</th><th>What happens if you leave it out</th></tr></thead><tbody><tr><th><strong>Delta</strong></th><td>How far from the money you sell</td><td>The most commonly stated one, so this rarely happens</td></tr><tr><th><strong>DTE</strong></th><td>Days to expiration &mdash; how many days you give it</td><td>Also usually stated</td></tr><tr><th><strong>Width</strong></th><td>How far apart the strikes are &mdash; and therefore the maximum loss</td><td><strong>Your software picks one, and you never chose it</strong></td></tr><tr><th><strong>Minimum credit</strong></th><td>The least you will accept for that risk</td><td>You take whatever is offered, including trades that were never worth it</td></tr></tbody></table></div>
+<ul><li><strong>Delta and DTE describe where the trade sits.</strong></li><li><strong>Width and minimum credit describe what it is worth.</strong></li><li><strong>The first two get quoted constantly and the last two almost never</strong> &mdash; which is why so many published results cannot be reproduced.</li></ul>
 </div>
 <aside class="rail"><div class="rail-nav"><h3>On this page</h3><ol><li><a href="#s1">The four numbers</a></li><li><a href="#s2">Why the last two matter as much as the first two</a></li><li><a href="#s3">Where it bites</a></li><li><a href="#faq">Common questions</a></li><li><a href="#tests">How this shows up in our tests</a></li></ol></div><p class="rail-note">A Field Guide entry states no results. <b>Every number here is arithmetic from the specification beside it.</b></p></aside>
 </div></section>
@@ -297,7 +297,7 @@ ul.lead li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height
 <section class="sec light" id="faq"><div class="wrap">
   <div class="sec-head"><h2>Common questions</h2></div>
   <div class="article-main">
-<div class="faq"><details><summary>Why four numbers and not three?</summary><p>Because width and minimum credit together are the risk-to-reward, and a strategy quoted without them cannot be priced. Delta and tenor alone describe a location, not a trade.</p></details><details><summary>Does every structure need four?</summary><p>The four are the credit-spread set. A covered call needs the call's delta, the tenor and the assignment rule; a calendar needs both expiries. The principle is the same: name everything that changes the trade.</p></details><details><summary>What if I do not use a minimum credit?</summary><p>Then that is your specification and it should be stated. &ldquo;No minimum&rdquo; is a legitimate choice; leaving it unsaid is not.</p></details><details><summary>Is the exit part of the specification?</summary><p>Yes, and it is the part most often left out. It moves the result more than the entry does.</p></details></div>
+<div class="faq"><details><summary>Why four numbers and not three?</summary><p>Because width and minimum credit together are the risk-to-reward, and a strategy quoted without them cannot be priced. Delta and DTE alone describe a location, not a trade.</p></details><details><summary>Does every structure need four?</summary><p>The four are the credit-spread set. A covered call needs the call's delta, the DTE and the assignment rule; a calendar needs both expiries. The principle is the same: name everything that changes the trade.</p></details><details><summary>What if I do not use a minimum credit?</summary><p>Then that is your specification and it should be stated. &ldquo;No minimum&rdquo; is a legitimate choice; leaving it unsaid is not.</p></details><details><summary>Is the exit part of the specification?</summary><p>Yes, and it is the part most often left out. It moves the result more than the entry does.</p></details></div>
   </div>
 </div></section>
 <section class="sec" id="tests"><div class="wrap">
