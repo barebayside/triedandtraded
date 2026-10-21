@@ -32,8 +32,8 @@
   var visitor = get('localStorage', 'bbl_chat_visitor');
   if (!visitor) { visitor = 'v' + Math.random().toString(36).slice(2) + Date.now().toString(36); set('localStorage', 'bbl_chat_visitor', visitor); }
   var history = [];
-  try { history = JSON.parse(get('sessionStorage', 'bbl_chat_history') || '[]') || []; } catch (e) { history = []; }
-  var leadSent = get('sessionStorage', 'bbl_chat_lead') === '1';
+  try { history = JSON.parse(get('sessionStorage', 'bbl_chat_history_' + SITE) || '[]') || []; } catch (e) { history = []; }
+  var leadSent = get('sessionStorage', 'bbl_chat_lead_' + SITE) === '1';
 
   var css = '' +
     '.bbc-btn{position:fixed;left:16px;bottom:16px;z-index:59;width:64px;height:64px;border-radius:50%;border:2px solid rgba(167,139,250,.7);padding:0;cursor:pointer;' +
@@ -92,7 +92,7 @@
     return d;
   }
 
-  function save() { set('sessionStorage', 'bbl_chat_history', JSON.stringify(history.slice(-24))); }
+  function save() { set('sessionStorage', 'bbl_chat_history_' + SITE, JSON.stringify(history.slice(-24))); }
 
   function transcript() {
     return history.slice(-12).map(function (m) { return (m.role === 'user' ? 'Visitor: ' : 'Assistant: ') + m.content; }).join('\n');
@@ -127,7 +127,7 @@
       fetch(LEADS, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify(data) })
         .then(function (r) { return r.json().then(function (j) { if (!r.ok || j.status !== 'ok') throw new Error(j.message || r.status); }); })
         .then(function () {
-          leadSent = true; set('sessionStorage', 'bbl_chat_lead', '1');
+          leadSent = true; set('sessionStorage', 'bbl_chat_lead_' + SITE, '1');
           f.innerHTML = '<b>Thanks, the team has your message and will reply by email.</b>';
           (function ps(i){try{var q=window.pagesense=window.pagesense||[];if(q.push!==Array.prototype.push||i>=60){q.push(['trackEvent','chat_lead_submitted']);return;}setTimeout(function(){ps(i+1);},250);}catch(er){}})(0);
         })
